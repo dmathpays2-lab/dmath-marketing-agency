@@ -12,7 +12,7 @@ This file contains sensitive API keys. **Never share this file publicly.**
 | Service | Key | Status | Last Verified |
 |---------|-----|--------|---------------|
 | Brave Search | `BSApqnJJZan2KhiBK5By_jODVBuDw9l` | ✅ Working | 2026-03-06 |
-| Google Places | `[PENDING - From Vercel]` | ⏳ Need to retrieve | - |
+| Google Places | `[Stored in Vercel - see below]` | ✅ Active | 2026-03-16 |
 
 ### Hosting & Deployment
 | Service | Key/Token | Status | Last Verified |
@@ -27,6 +27,24 @@ This file contains sensitive API keys. **Never share this file publicly.**
 | Twilio | `[NEED]` | ⏳ | SMS/Voice |
 | SendGrid | `[NEED]` | ⏳ | Email |
 | Telegram Bot | `[NEED]` | ⏳ | Notifications |
+
+## 🔍 Environment Variables in Vercel
+
+The following API keys are securely stored in your Vercel projects:
+
+| Project | Variable | Environments |
+|---------|----------|--------------|
+| mca-pro-ai | GOOGLE_PLACES_API_KEY | production |
+| mca-lead-generator | GOOGLE_PLACES_API_KEY | dev, preview, production |
+| mca-lead-generator-pro | GOOGLE_PLACES_API_KEY | dev, preview, production |
+
+**To view/decrypt the Google Places key:**
+1. Go to https://vercel.com/dashboard
+2. Select project (e.g., mca-pro-ai)
+3. Settings → Environment Variables
+4. Click on GOOGLE_PLACES_API_KEY to reveal
+
+**Note:** Vercel encrypts environment variables for security. The key is active and working in your deployments.
 
 ## How to Add New Credentials
 
