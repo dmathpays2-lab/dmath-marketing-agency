@@ -1,41 +1,44 @@
 #!/bin/bash
 # GitHub Sync Script for Kimi Claw Memory System
-# Pushes memory files to: github.com/dmathpays2-lab/kimi-claw-memory
+# Pushes to: github.com/dmathpays2-lab/dmath-marketing-agency/kimi-claw-memory/
 
-REPO_URL="https://dmathpays2-lab:${GITHUB_TOKEN}@github.com/dmathpays2-lab/kimi-claw-memory.git"
+REPO_URL="https://dmathpays2-lab:${GITHUB_TOKEN}@github.com/dmathpays2-lab/dmath-marketing-agency.git"
 WORKSPACE="/root/.openclaw/workspace"
+SYNC_DIR="kimi-claw-memory"
 
 cd "$WORKSPACE" || exit 1
 
-# Configure git (idempotent)
+# Check for token
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo "⚠️ GITHUB_TOKEN not set"
+    exit 1
+fi
+
+# Configure git
 git config user.email "kimi-claw@automated.sync" 2>/dev/null
 git config user.name "Kimi Claw" 2>/dev/null
 
-# Check if remote exists, add if not
-if ! git remote get-url origin >/dev/null 2>&1; then
-    git remote add origin "$REPO_URL"
-    echo "Remote 'origin' added"
+# Ensure remote uses token
+if ! git remote get-url origin | grep -q "${GITHUB_TOKEN}"; then
+    git remote set-url origin "$REPO_URL"
 fi
 
-# Stage all memory-related files
-git add AGENTS.md BOOTSTRAP.md IDENTITY.md SOUL.md USER.md MEMORY.md README.md
-git add memory/ scripts/ docs/ 2>/dev/null
+# Create sync directory and copy files
+mkdir -p "$SYNC_DIR"
+cp AGENTS.md BOOTSTRAP.md IDENTITY.md SOUL.md USER.md MEMORY.md README.md TOOLS.md "$SYNC_DIR/" 2>/dev/null || true
+cp -r memory/ scripts/ docs/ briefings/ research/ "$SYNC_DIR/" 2>/dev/null || true
 
-# Check if there are changes to commit
+# Stage everything
+git add "$SYNC_DIR/"
+
+# Check for changes
 if git diff --cached --quiet 2>/dev/null; then
     echo "No changes to sync at $(date '+%Y-%m-%d %H:%M:%S')"
     exit 0
 fi
 
-# Commit with timestamp
+# Commit and push
 git commit -m "Memory sync: $(date '+%Y-%m-%d %H:%M:%S') GMT+8"
+git push origin master 2>/dev/null || git push origin main 2>/dev/null
 
-# Push to GitHub
-git push origin master 2>/dev/null || git push origin main 2>/dev/null || {
-    echo "⚠️ Push failed. Repo may not exist yet or GITHUB_TOKEN not set."
-    echo "To create repo: https://github.com/new"
-    echo "Repo name: kimi-claw-memory"
-    echo "Then: git push -u origin master"
-}
-
-echo "Memory sync completed at $(date '+%Y-%m-%d %H:%M:%S')"
+echo "✅ Memory synced at $(date '+%Y-%m-%d %H:%M:%S')"

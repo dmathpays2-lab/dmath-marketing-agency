@@ -1,0 +1,1136 @@
+{
+  "HEARTBEAT.md": {
+    "path": "HEARTBEAT.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.740300",
+    "type": ".md"
+  },
+  "RUNTIME_ERROR_FIX.md": {
+    "path": "RUNTIME_ERROR_FIX.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.456249",
+    "type": ".md"
+  },
+  ".github_backup_state.json": {
+    "path": ".github_backup_state.json",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.457268",
+    "type": ".json"
+  },
+  "GITHUB_MEMORY_INDEX.md": {
+    "path": "GITHUB_MEMORY_INDEX.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.458214",
+    "type": ".md"
+  },
+  "README.md": {
+    "path": "README.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.459202",
+    "type": ".md"
+  },
+  "USER.md": {
+    "path": "USER.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.742005",
+    "type": ".md"
+  },
+  "MEMORY.md": {
+    "path": "MEMORY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.742469",
+    "type": ".md"
+  },
+  "IDENTITY.md": {
+    "path": "IDENTITY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.742800",
+    "type": ".md"
+  },
+  "AGENTS.md": {
+    "path": "AGENTS.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.743096",
+    "type": ".md"
+  },
+  "BOOTSTRAP.md": {
+    "path": "BOOTSTRAP.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.743383",
+    "type": ".md"
+  },
+  "more-mito-compensation-plan.pdf": {
+    "path": "more-mito-compensation-plan.pdf",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.743714",
+    "type": ".pdf"
+  },
+  "TOOLS.md": {
+    "path": "TOOLS.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.743966",
+    "type": ".md"
+  },
+  "SOUL.md": {
+    "path": "SOUL.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.744258",
+    "type": ".md"
+  },
+  "github-memory/RESTORE.sh": {
+    "path": "github-memory/RESTORE.sh",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.460262",
+    "type": ".sh"
+  },
+  "github-memory/GITHUB_MEMORY_INDEX.md": {
+    "path": "github-memory/GITHUB_MEMORY_INDEX.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.461347",
+    "type": ".md"
+  },
+  "github-memory/github_memory.py": {
+    "path": "github-memory/github_memory.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.462412",
+    "type": ".py"
+  },
+  "github-memory/EMERGENCY_REBOOT.md": {
+    "path": "github-memory/EMERGENCY_REBOOT.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.463460",
+    "type": ".md"
+  },
+  "github-memory/RESTORE.json": {
+    "path": "github-memory/RESTORE.json",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.464723",
+    "type": ".json"
+  },
+  "github-memory/think-energy-business/.gitignore.meta": {
+    "path": "github-memory/think-energy-business/.gitignore.meta",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.465779",
+    "type": ".meta"
+  },
+  "github-memory/think-energy-business/LICENSE.meta": {
+    "path": "github-memory/think-energy-business/LICENSE.meta",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.466901",
+    "type": ".meta"
+  },
+  "github-memory/think-energy-business/README.md": {
+    "path": "github-memory/think-energy-business/README.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.467946",
+    "type": ".md"
+  },
+  "github-memory/think-energy-business/docs/USER.md": {
+    "path": "github-memory/think-energy-business/docs/USER.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.468987",
+    "type": ".md"
+  },
+  "github-memory/think-energy-business/docs/MEMORY.md": {
+    "path": "github-memory/think-energy-business/docs/MEMORY.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.470013",
+    "type": ".md"
+  },
+  "github-memory/think-energy-business/docs/IDENTITY.md": {
+    "path": "github-memory/think-energy-business/docs/IDENTITY.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.471005",
+    "type": ".md"
+  },
+  "github-memory/think-energy-business/docs/AGENTS.md": {
+    "path": "github-memory/think-energy-business/docs/AGENTS.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.471993",
+    "type": ".md"
+  },
+  "github-memory/think-energy-business/docs/BOOTSTRAP.md": {
+    "path": "github-memory/think-energy-business/docs/BOOTSTRAP.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.473019",
+    "type": ".md"
+  },
+  "github-memory/think-energy-business/docs/SOUL.md": {
+    "path": "github-memory/think-energy-business/docs/SOUL.md",
+    "category": "think-energy",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.474050",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/TOP_10_MCA_TOOLS_RESEARCH.md": {
+    "path": "github-memory/american-backbone-mca/TOP_10_MCA_TOOLS_RESEARCH.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.475080",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/100_AGENT_THEORY.md": {
+    "path": "github-memory/american-backbone-mca/100_AGENT_THEORY.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.476043",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/.gitignore.meta": {
+    "path": "github-memory/american-backbone-mca/.gitignore.meta",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.477028",
+    "type": ".meta"
+  },
+  "github-memory/american-backbone-mca/HOT_LEAD_MODE.md": {
+    "path": "github-memory/american-backbone-mca/HOT_LEAD_MODE.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.477947",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/RAPID_DEPLOYMENT_PLAN.md": {
+    "path": "github-memory/american-backbone-mca/RAPID_DEPLOYMENT_PLAN.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.478867",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/LICENSE.meta": {
+    "path": "github-memory/american-backbone-mca/LICENSE.meta",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.479835",
+    "type": ".meta"
+  },
+  "github-memory/american-backbone-mca/README.md": {
+    "path": "github-memory/american-backbone-mca/README.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.481003",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/swarm_status.txt": {
+    "path": "github-memory/american-backbone-mca/swarm_status.txt",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.482096",
+    "type": ".txt"
+  },
+  "github-memory/american-backbone-mca/SYSTEM_SUMMARY.md": {
+    "path": "github-memory/american-backbone-mca/SYSTEM_SUMMARY.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.483081",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/INTEGRATION_PLAN.md": {
+    "path": "github-memory/american-backbone-mca/INTEGRATION_PLAN.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.483983",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/FEW_HOURS_ANALYSIS.md": {
+    "path": "github-memory/american-backbone-mca/FEW_HOURS_ANALYSIS.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.484893",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/INTEGRATION_COMPLETE.md": {
+    "path": "github-memory/american-backbone-mca/INTEGRATION_COMPLETE.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.485795",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/20_AGENT_SWARM.md": {
+    "path": "github-memory/american-backbone-mca/20_AGENT_SWARM.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.486722",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/COMMAND_CENTER.md": {
+    "path": "github-memory/american-backbone-mca/COMMAND_CENTER.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.487668",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/orchestrator.py": {
+    "path": "github-memory/american-backbone-mca/orchestrator.py",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.488601",
+    "type": ".py"
+  },
+  "github-memory/american-backbone-mca/LEAD_HUNTER_V2.md": {
+    "path": "github-memory/american-backbone-mca/LEAD_HUNTER_V2.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.489625",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/TONIGHT_LEAD_GEN_PLAN.md": {
+    "path": "github-memory/american-backbone-mca/TONIGHT_LEAD_GEN_PLAN.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.490542",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/USER.md": {
+    "path": "github-memory/american-backbone-mca/docs/USER.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.491647",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/MEMORY.md": {
+    "path": "github-memory/american-backbone-mca/docs/MEMORY.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.492620",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/IDENTITY.md": {
+    "path": "github-memory/american-backbone-mca/docs/IDENTITY.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.493639",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/AGENTS.md": {
+    "path": "github-memory/american-backbone-mca/docs/AGENTS.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.494566",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/BOOTSTRAP.md": {
+    "path": "github-memory/american-backbone-mca/docs/BOOTSTRAP.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.495554",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/SOUL.md": {
+    "path": "github-memory/american-backbone-mca/docs/SOUL.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.496640",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/memory/2026-03-06.md": {
+    "path": "github-memory/american-backbone-mca/docs/memory/2026-03-06.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.497983",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/docs/memory/2026-03-16.md": {
+    "path": "github-memory/american-backbone-mca/docs/memory/2026-03-16.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.498949",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/swarm_deployment/STATUS_UPDATE_906PM.md": {
+    "path": "github-memory/american-backbone-mca/swarm_deployment/STATUS_UPDATE_906PM.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.499948",
+    "type": ".md"
+  },
+  "github-memory/american-backbone-mca/swarm_deployment/deploy_20_agent_swarm.py": {
+    "path": "github-memory/american-backbone-mca/swarm_deployment/deploy_20_agent_swarm.py",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.500860",
+    "type": ".py"
+  },
+  "github-memory/american-backbone-mca/swarm_deployment/DEPLOYMENT_ID.txt": {
+    "path": "github-memory/american-backbone-mca/swarm_deployment/DEPLOYMENT_ID.txt",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.501812",
+    "type": ".txt"
+  },
+  "github-memory/american-backbone-mca/swarm_deployment/status_20260307_204400.json": {
+    "path": "github-memory/american-backbone-mca/swarm_deployment/status_20260307_204400.json",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.502800",
+    "type": ".json"
+  },
+  "github-memory/american-backbone-mca/agents/lead_hunter.py": {
+    "path": "github-memory/american-backbone-mca/agents/lead_hunter.py",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.503767",
+    "type": ".py"
+  },
+  "github-memory/american-backbone-mca/agents/closer_ai.py": {
+    "path": "github-memory/american-backbone-mca/agents/closer_ai.py",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.504716",
+    "type": ".py"
+  },
+  "github-memory/american-backbone-mca/agents/social_ai.py": {
+    "path": "github-memory/american-backbone-mca/agents/social_ai.py",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.505654",
+    "type": ".py"
+  },
+  "github-memory/american-backbone-mca/agents/hunter_ai.py": {
+    "path": "github-memory/american-backbone-mca/agents/hunter_ai.py",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.506574",
+    "type": ".py"
+  },
+  "github-memory/dmath-marketing-agency/ALEX_FINN_IMPLEMENTATION.md": {
+    "path": "github-memory/dmath-marketing-agency/ALEX_FINN_IMPLEMENTATION.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.507581",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/.gitignore.meta": {
+    "path": "github-memory/dmath-marketing-agency/.gitignore.meta",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.508610",
+    "type": ".meta"
+  },
+  "github-memory/dmath-marketing-agency/LICENSE.meta": {
+    "path": "github-memory/dmath-marketing-agency/LICENSE.meta",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.509652",
+    "type": ".meta"
+  },
+  "github-memory/dmath-marketing-agency/README.md": {
+    "path": "github-memory/dmath-marketing-agency/README.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.510626",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/AI_RESUME_GUIDE.md": {
+    "path": "github-memory/dmath-marketing-agency/AI_RESUME_GUIDE.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.511643",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/research/mca-tools-research.md": {
+    "path": "github-memory/dmath-marketing-agency/research/mca-tools-research.md",
+    "category": "mca",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.512637",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/research/AI_SUPER_TEAM_RESEARCH.md": {
+    "path": "github-memory/dmath-marketing-agency/research/AI_SUPER_TEAM_RESEARCH.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.513847",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/research/nick-ponte-analysis.md": {
+    "path": "github-memory/dmath-marketing-agency/research/nick-ponte-analysis.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.514968",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/USER.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/USER.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.515968",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/MEMORY.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/MEMORY.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.516965",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/IDENTITY.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/IDENTITY.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.517932",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/AGENTS.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/AGENTS.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.518944",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/BOOTSTRAP.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/BOOTSTRAP.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.520029",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/SOUL.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/SOUL.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.521040",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/docs/memory/2026-03-06.md": {
+    "path": "github-memory/dmath-marketing-agency/docs/memory/2026-03-06.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.521989",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/business/ai-agency-business-model.md": {
+    "path": "github-memory/dmath-marketing-agency/business/ai-agency-business-model.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.523024",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/planning/kimi-claw-automation-plan.md": {
+    "path": "github-memory/dmath-marketing-agency/planning/kimi-claw-automation-plan.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.524000",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/planning/kimi-claw-business-plan.md": {
+    "path": "github-memory/dmath-marketing-agency/planning/kimi-claw-business-plan.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.525052",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/strategy/revenue-maximization-strategy.md": {
+    "path": "github-memory/dmath-marketing-agency/strategy/revenue-maximization-strategy.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.526155",
+    "type": ".md"
+  },
+  "github-memory/dmath-marketing-agency/strategy/ALEX_FINN_IMPLEMENTATION.md": {
+    "path": "github-memory/dmath-marketing-agency/strategy/ALEX_FINN_IMPLEMENTATION.md",
+    "category": "dmath-marketing",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.527136",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/.gitignore.meta": {
+    "path": "github-memory/more-mito-health/.gitignore.meta",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.528289",
+    "type": ".meta"
+  },
+  "github-memory/more-mito-health/LICENSE.meta": {
+    "path": "github-memory/more-mito-health/LICENSE.meta",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.529248",
+    "type": ".meta"
+  },
+  "github-memory/more-mito-health/README.md": {
+    "path": "github-memory/more-mito-health/README.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.530270",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/docs/USER.md": {
+    "path": "github-memory/more-mito-health/docs/USER.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.531524",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/docs/MEMORY.md": {
+    "path": "github-memory/more-mito-health/docs/MEMORY.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.532456",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/docs/IDENTITY.md": {
+    "path": "github-memory/more-mito-health/docs/IDENTITY.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.533477",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/docs/AGENTS.md": {
+    "path": "github-memory/more-mito-health/docs/AGENTS.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.534449",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/docs/BOOTSTRAP.md": {
+    "path": "github-memory/more-mito-health/docs/BOOTSTRAP.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.535449",
+    "type": ".md"
+  },
+  "github-memory/more-mito-health/docs/SOUL.md": {
+    "path": "github-memory/more-mito-health/docs/SOUL.md",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.536382",
+    "type": ".md"
+  },
+  "docs/SMART_FILING_SYSTEM.md": {
+    "path": "docs/SMART_FILING_SYSTEM.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.784461",
+    "type": ".md"
+  },
+  "docs/USER.md": {
+    "path": "docs/USER.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.785216",
+    "type": ".md"
+  },
+  "docs/MEMORY.md": {
+    "path": "docs/MEMORY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.785869",
+    "type": ".md"
+  },
+  "docs/IDENTITY.md": {
+    "path": "docs/IDENTITY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.786597",
+    "type": ".md"
+  },
+  "docs/AGENTS.md": {
+    "path": "docs/AGENTS.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.787400",
+    "type": ".md"
+  },
+  "docs/BOOTSTRAP.md": {
+    "path": "docs/BOOTSTRAP.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.788099",
+    "type": ".md"
+  },
+  "docs/SMART_MEMORY_SYSTEM.md": {
+    "path": "docs/SMART_MEMORY_SYSTEM.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.788725",
+    "type": ".md"
+  },
+  "docs/SOUL.md": {
+    "path": "docs/SOUL.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.789367",
+    "type": ".md"
+  },
+  "docs/memory/2026-03-06.md": {
+    "path": "docs/memory/2026-03-06.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.790203",
+    "type": ".md"
+  },
+  "docs/more-mito/compensation-plan.pdf": {
+    "path": "docs/more-mito/compensation-plan.pdf",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:26:03.790907",
+    "type": ".pdf"
+  },
+  "briefings/2026-03-16.md": {
+    "path": "briefings/2026-03-16.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.552462",
+    "type": ".md"
+  },
+  "kimi-claw-memory/RESTORE.sh": {
+    "path": "kimi-claw-memory/RESTORE.sh",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.554773",
+    "type": ".sh"
+  },
+  "kimi-claw-memory/START_HERE.md": {
+    "path": "kimi-claw-memory/START_HERE.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.555723",
+    "type": ".md"
+  },
+  "kimi-claw-memory/README.md": {
+    "path": "kimi-claw-memory/README.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.556695",
+    "type": ".md"
+  },
+  "kimi-claw-memory/USER.md": {
+    "path": "kimi-claw-memory/USER.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.557662",
+    "type": ".md"
+  },
+  "kimi-claw-memory/MEMORY.md": {
+    "path": "kimi-claw-memory/MEMORY.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.558589",
+    "type": ".md"
+  },
+  "kimi-claw-memory/IDENTITY.md": {
+    "path": "kimi-claw-memory/IDENTITY.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.559557",
+    "type": ".md"
+  },
+  "kimi-claw-memory/AGENTS.md": {
+    "path": "kimi-claw-memory/AGENTS.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.560515",
+    "type": ".md"
+  },
+  "kimi-claw-memory/EMERGENCY_REBOOT.md": {
+    "path": "kimi-claw-memory/EMERGENCY_REBOOT.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.561508",
+    "type": ".md"
+  },
+  "kimi-claw-memory/RESTORE.json": {
+    "path": "kimi-claw-memory/RESTORE.json",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.562475",
+    "type": ".json"
+  },
+  "kimi-claw-memory/BOOTSTRAP.md": {
+    "path": "kimi-claw-memory/BOOTSTRAP.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.563442",
+    "type": ".md"
+  },
+  "kimi-claw-memory/SOUL.md": {
+    "path": "kimi-claw-memory/SOUL.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.564825",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/USER.md": {
+    "path": "kimi-claw-memory/docs/USER.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.565829",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/MEMORY.md": {
+    "path": "kimi-claw-memory/docs/MEMORY.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.566806",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/IDENTITY.md": {
+    "path": "kimi-claw-memory/docs/IDENTITY.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.567823",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/AGENTS.md": {
+    "path": "kimi-claw-memory/docs/AGENTS.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.568856",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/BOOTSTRAP.md": {
+    "path": "kimi-claw-memory/docs/BOOTSTRAP.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.569819",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/SMART_MEMORY_SYSTEM.md": {
+    "path": "kimi-claw-memory/docs/SMART_MEMORY_SYSTEM.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.570816",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/SOUL.md": {
+    "path": "kimi-claw-memory/docs/SOUL.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.571802",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/memory/2026-03-06.md": {
+    "path": "kimi-claw-memory/docs/memory/2026-03-06.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.572816",
+    "type": ".md"
+  },
+  "kimi-claw-memory/docs/more-mito/compensation-plan.pdf": {
+    "path": "kimi-claw-memory/docs/more-mito/compensation-plan.pdf",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.573858",
+    "type": ".pdf"
+  },
+  "kimi-claw-memory/scripts/github_sync.sh": {
+    "path": "kimi-claw-memory/scripts/github_sync.sh",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.574903",
+    "type": ".sh"
+  },
+  "kimi-claw-memory/scripts/auto_compact.sh": {
+    "path": "kimi-claw-memory/scripts/auto_compact.sh",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.575881",
+    "type": ".sh"
+  },
+  "kimi-claw-memory/scripts/github_memory.py": {
+    "path": "kimi-claw-memory/scripts/github_memory.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.576817",
+    "type": ".py"
+  },
+  "kimi-claw-memory/scripts/diagnose.sh": {
+    "path": "kimi-claw-memory/scripts/diagnose.sh",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.577845",
+    "type": ".sh"
+  },
+  "kimi-claw-memory/scripts/memory_manager.py": {
+    "path": "kimi-claw-memory/scripts/memory_manager.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.578818",
+    "type": ".py"
+  },
+  "kimi-claw-memory/scripts/preflight.sh": {
+    "path": "kimi-claw-memory/scripts/preflight.sh",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.579860",
+    "type": ".sh"
+  },
+  "kimi-claw-memory/memory/2026-03-06.md": {
+    "path": "kimi-claw-memory/memory/2026-03-06.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.581138",
+    "type": ".md"
+  },
+  "scripts/github_sync.sh": {
+    "path": "scripts/github_sync.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.582275",
+    "type": ".sh"
+  },
+  "scripts/auto_compact.sh": {
+    "path": "scripts/auto_compact.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.583368",
+    "type": ".sh"
+  },
+  "scripts/github_memory.py": {
+    "path": "scripts/github_memory.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.584352",
+    "type": ".py"
+  },
+  "scripts/diagnose.sh": {
+    "path": "scripts/diagnose.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.585307",
+    "type": ".sh"
+  },
+  "scripts/memory_manager.py": {
+    "path": "scripts/memory_manager.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.586297",
+    "type": ".py"
+  },
+  "scripts/preflight.sh": {
+    "path": "scripts/preflight.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.587351",
+    "type": ".sh"
+  },
+  "memory/2026-03-06.md": {
+    "path": "memory/2026-03-06.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.588486",
+    "type": ".md"
+  },
+  "system/filer.py": {
+    "path": "system/filer.py",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.589535",
+    "type": ".py"
+  },
+  "system/file_index.json": {
+    "path": "system/file_index.json",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.590607",
+    "type": ".json"
+  },
+  "MASTER_INDEX.md": {
+    "path": "MASTER_INDEX.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.455058",
+    "type": ".md"
+  },
+  "shared/SMART_FILING_SYSTEM.md": {
+    "path": "shared/SMART_FILING_SYSTEM.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.537377",
+    "type": ".md"
+  },
+  "shared/USER.md": {
+    "path": "shared/USER.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.538304",
+    "type": ".md"
+  },
+  "shared/MEMORY.md": {
+    "path": "shared/MEMORY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.539259",
+    "type": ".md"
+  },
+  "shared/IDENTITY.md": {
+    "path": "shared/IDENTITY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.540161",
+    "type": ".md"
+  },
+  "shared/AGENTS.md": {
+    "path": "shared/AGENTS.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.541169",
+    "type": ".md"
+  },
+  "shared/BOOTSTRAP.md": {
+    "path": "shared/BOOTSTRAP.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.542063",
+    "type": ".md"
+  },
+  "shared/SMART_MEMORY_SYSTEM.md": {
+    "path": "shared/SMART_MEMORY_SYSTEM.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.543046",
+    "type": ".md"
+  },
+  "shared/SOUL.md": {
+    "path": "shared/SOUL.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.544051",
+    "type": ".md"
+  },
+  "shared/memory/2026-03-06.md": {
+    "path": "shared/memory/2026-03-06.md",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.551469",
+    "type": ".md"
+  },
+  "businesses/more-mito/docs/compensation-plan.pdf": {
+    "path": "businesses/more-mito/docs/compensation-plan.pdf",
+    "category": "more-mito",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.553717",
+    "type": ".pdf"
+  },
+  "system/smart-sync.sh": {
+    "path": "system/smart-sync.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.591548",
+    "type": ".sh"
+  },
+  "system/identity/HEARTBEAT.md": {
+    "path": "system/identity/HEARTBEAT.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.592591",
+    "type": ".md"
+  },
+  "system/identity/USER.md": {
+    "path": "system/identity/USER.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.593678",
+    "type": ".md"
+  },
+  "system/identity/MEMORY.md": {
+    "path": "system/identity/MEMORY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.594686",
+    "type": ".md"
+  },
+  "system/identity/IDENTITY.md": {
+    "path": "system/identity/IDENTITY.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.595640",
+    "type": ".md"
+  },
+  "system/identity/AGENTS.md": {
+    "path": "system/identity/AGENTS.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.596679",
+    "type": ".md"
+  },
+  "system/identity/BOOTSTRAP.md": {
+    "path": "system/identity/BOOTSTRAP.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.598036",
+    "type": ".md"
+  },
+  "system/identity/TOOLS.md": {
+    "path": "system/identity/TOOLS.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.599067",
+    "type": ".md"
+  },
+  "system/identity/SOUL.md": {
+    "path": "system/identity/SOUL.md",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.600132",
+    "type": ".md"
+  },
+  "shared/scripts/github_sync.sh": {
+    "path": "shared/scripts/github_sync.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.545055",
+    "type": ".sh"
+  },
+  "shared/scripts/auto_compact.sh": {
+    "path": "shared/scripts/auto_compact.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.546130",
+    "type": ".sh"
+  },
+  "shared/scripts/github_memory.py": {
+    "path": "shared/scripts/github_memory.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.547062",
+    "type": ".py"
+  },
+  "shared/scripts/diagnose.sh": {
+    "path": "shared/scripts/diagnose.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.548385",
+    "type": ".sh"
+  },
+  "shared/scripts/memory_manager.py": {
+    "path": "shared/scripts/memory_manager.py",
+    "category": "memory",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.549462",
+    "type": ".py"
+  },
+  "shared/scripts/preflight.sh": {
+    "path": "shared/scripts/preflight.sh",
+    "category": "other",
+    "tags": [],
+    "added": "2026-03-16T05:27:11.550454",
+    "type": ".sh"
+  }
+}

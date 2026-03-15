@@ -1,0 +1,134 @@
+{
+  "deployment_id": "20260307_204400",
+  "start_time": "2026-03-07T08:46:05.524195",
+  "status": "DEPLOYING",
+  "agents": {
+    "AGENT_01": {
+      "role": "INFRA",
+      "task": "Email service setup",
+      "status": "STARTING",
+      "tool": "SHARED"
+    },
+    "AGENT_02": {
+      "role": "INFRA",
+      "task": "Database setup",
+      "status": "STARTING",
+      "tool": "SHARED"
+    },
+    "AGENT_03": {
+      "role": "INFRA",
+      "task": "API connections",
+      "status": "STARTING",
+      "tool": "SHARED"
+    },
+    "AGENT_04": {
+      "role": "INFRA",
+      "task": "Codebase setup",
+      "status": "STARTING",
+      "tool": "SHARED"
+    },
+    "AGENT_05": {
+      "role": "BUILD",
+      "task": "Apollo lead scraper core",
+      "status": "QUEUED",
+      "tool": "APOLLO"
+    },
+    "AGENT_06": {
+      "role": "BUILD",
+      "task": "Apollo hot lead filter",
+      "status": "QUEUED",
+      "tool": "APOLLO"
+    },
+    "AGENT_07": {
+      "role": "BUILD",
+      "task": "Seamless phone extractor",
+      "status": "QUEUED",
+      "tool": "SEAMLESS"
+    },
+    "AGENT_08": {
+      "role": "BUILD",
+      "task": "Seamless email verifier",
+      "status": "QUEUED",
+      "tool": "SEAMLESS"
+    },
+    "AGENT_09": {
+      "role": "BUILD",
+      "task": "6sense FB monitor",
+      "status": "QUEUED",
+      "tool": "6SENSE"
+    },
+    "AGENT_10": {
+      "role": "BUILD",
+      "task": "6sense Reddit monitor",
+      "status": "QUEUED",
+      "tool": "6SENSE"
+    },
+    "AGENT_11": {
+      "role": "BUILD",
+      "task": "6sense intent scorer",
+      "status": "QUEUED",
+      "tool": "6SENSE"
+    },
+    "AGENT_12": {
+      "role": "BUILD",
+      "task": "Clay LinkedIn enrichment",
+      "status": "QUEUED",
+      "tool": "CLAY"
+    },
+    "AGENT_13": {
+      "role": "BUILD",
+      "task": "Clay personalization engine",
+      "status": "QUEUED",
+      "tool": "CLAY"
+    },
+    "AGENT_14": {
+      "role": "INTEGRATE",
+      "task": "Hot lead hunter integration",
+      "status": "QUEUED",
+      "tool": "INTEGRATION"
+    },
+    "AGENT_15": {
+      "role": "INTEGRATE",
+      "task": "Orchestrator updates",
+      "status": "QUEUED",
+      "tool": "INTEGRATION"
+    },
+    "AGENT_16": {
+      "role": "INTEGRATE",
+      "task": "API wiring",
+      "status": "QUEUED",
+      "tool": "INTEGRATION"
+    },
+    "AGENT_17": {
+      "role": "QA",
+      "task": "Tool testing",
+      "status": "QUEUED",
+      "tool": "QA"
+    },
+    "AGENT_18": {
+      "role": "QA",
+      "task": "Integration testing",
+      "status": "QUEUED",
+      "tool": "QA"
+    },
+    "AGENT_19": {
+      "role": "QA",
+      "task": "End-to-end testing",
+      "status": "QUEUED",
+      "tool": "QA"
+    },
+    "AGENT_20": {
+      "role": "COMMANDER",
+      "task": "Swarm coordination",
+      "status": "ACTIVE",
+      "tool": "COMMAND"
+    }
+  },
+  "target_completion": "3 hours",
+  "deliverables": [
+    "Apollo",
+    "Seamless",
+    "6sense",
+    "Clay"
+  ]
+}

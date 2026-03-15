@@ -3,15 +3,11 @@
 ## Core Facts
 
 ### User
-- **Name:** Damon Matthewson
+- **Name:** Damon Mathews
 - **Business:** MCA Broker, Think Energy Advisor, More MITO
 - **Goals:** Build wealth fast through MLM + tech ownership
 - **Style:** Direct, fast-paced, no fluff
 - **Timezone:** GMT+8
-
-### Important Correction
-- Name was previously recorded incorrectly as "Mathews" in some files
-- **Correct:** Damon **Matthewson**
 
 ### Projects
 
@@ -376,50 +372,4 @@ npx clawhub@latest install transcriptapi
 
 ---
 
-*Last updated: 2026-03-16 04:20 GMT+8*
-
----
-
-## Smart Memory System Upgrade (2026-03-16)
-
-**Problem:** Session files hitting 856KB+ caused timeouts (IM runtime dispatch errors)
-
-**Solution:** Smart memory management with automatic overload prevention
-
-**New System:**
-- **Auto-compaction**: Triggers at 300KB, preserves last 50 lines of context
-- **Hourly health checks**: Monitors session size, alerts on warnings
-- **Smart archiving**: Old daily files (30+ days) compressed to `memory/archive/`
-- **Same structure**: MEMORY.md + memory/YYYY-MM-DD.md unchanged
-
-**Commands:**
-```bash
-python3 scripts/memory_manager.py stats    # Check current size
-python3 scripts/memory_manager.py health   # Check system health
-python3 scripts/memory_manager.py compact  # Force compact
-```
-
-**Docs:** `/root/.openclaw/workspace/docs/SMART_MEMORY_SYSTEM.md`
-
-**Current Status:** Session at 64KB/300KB ✅ Healthy
-
----
-
-## Runtime Error Fix Applied (2026-03-16)
-
-**Issue:** "IM runtime dispatch timed out after 300000ms" errors
-
-**Root Cause:** Session file bloat (856KB → context overload → timeouts)
-
-**Fix Applied:**
-- ✅ Reset session file (856KB → 404 bytes)
-- ✅ Created auto-compaction script
-- ✅ Set daily compaction cron job
-- ✅ Documented in RUNTIME_ERROR_FIX.md
-
-**Prevention:**
-- Daily auto-compaction checks for files >500KB
-- Token count monitoring
-- Automatic backup before compaction
-
----
+*Last updated: 2026-03-08 02:00 GMT+8*

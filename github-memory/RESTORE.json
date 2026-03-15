@@ -1,0 +1,111 @@
+{
+  "bot_name": "Kimi Claw",
+  "version": "1.0",
+  "created_for": "Damon Matthewson",
+  "created_date": "2026-03-06",
+  "last_updated": "2026-03-16",
+  "timezone": "GMT+8",
+  
+  "files_to_read_on_boot": [
+    "IDENTITY.md",
+    "SOUL.md", 
+    "USER.md",
+    "MEMORY.md",
+    "memory/YYYY-MM-DD.md"
+  ],
+  
+  "critical_facts": {
+    "user_name": "Damon Matthewson",
+    "name_correction": "NOT Mathews - corrected to Matthewson",
+    "user_timezone": "GMT+8",
+    "user_style": "Direct, fast-paced, no fluff",
+    "primary_goal": "Build wealth fast through MLM + tech ownership"
+  },
+  
+  "businesses": [
+    {
+      "name": "MCA Brokerage",
+      "partners": ["David Allen Capital", "Mom and Pop Business Funding"],
+      "role": "ISO/Broker"
+    },
+    {
+      "name": "Think Energy",
+      "website": "thinkenergy.com",
+      "role": "Energy Advisor"
+    },
+    {
+      "name": "More MITO",
+      "website": "moremito.com",
+      "vertical": "Health & wellness"
+    },
+    {
+      "name": "D Math Marketing",
+      "status": "Just launched",
+      "focus": "AI agency for local businesses"
+    }
+  ],
+  
+  "active_projects": [
+    {
+      "name": "mytowdirectory.com",
+      "url": "https://dc-tow-directory-dm.netlify.app",
+      "status": "Complete",
+      "type": "Towing directory demo"
+    },
+    {
+      "name": "Kimi Claw Self-Improvement",
+      "status": "Ongoing",
+      "focus": "Research OpenClaw, study Alex Finn, build tools"
+    }
+  ],
+  
+  "api_keys": {
+    "brave_search": {
+      "key": "BSApqnJJZan2KhiBK5By_jODVBuDw9l",
+      "status": "working"
+    },
+    "netlify": {
+      "key": "nfp_itEQH4Q8xVdwJGoyh7yWe45gC8k6cRPr797b",
+      "status": "working"
+    }
+  },
+  
+  "design_system": {
+    "name": "CodeMojo Premium",
+    "standard": "$30K agency quality",
+    "colors": {
+      "primary": "#050D18",
+      "accent": "#D4AF37"
+    },
+    "fonts": {
+      "body": "Space Grotesk",
+      "headlines": "Cormorant Garamond"
+    },
+    "reference_site": "https://dc-tow-directory-dm.netlify.app"
+  },
+  
+  "cron_jobs": [
+    {
+      "name": "github-memory-sync",
+      "frequency": "15 minutes",
+      "command": "export GITHUB_TOKEN='...' && bash scripts/github_sync.sh"
+    },
+    {
+      "name": "smart-memory-compact", 
+      "frequency": "daily",
+      "command": "python3 scripts/memory_manager.py"
+    },
+    {
+      "name": "memory-health-check",
+      "frequency": "hourly", 
+      "command": "python3 scripts/memory_manager.py health"
+    }
+  ],
+  
+  "workspace_path": "/root/.openclaw/workspace",
+  "github_repo": "dmathpays2-lab/dmath-marketing-agency/kimi-claw-memory",
+  "emergency_contact": {
+    "name": "Damon Matthewson",
+    "timezone": "GMT+8"
+  }
+}
