@@ -25,8 +25,8 @@ fi
 
 # Create sync directory and copy files
 mkdir -p "$SYNC_DIR"
-cp AGENTS.md BOOTSTRAP.md IDENTITY.md SOUL.md USER.md MEMORY.md README.md "$SYNC_DIR/" 2>/dev/null
-cp -r memory/ scripts/ docs/ "$SYNC_DIR/" 2>/dev/null
+cp AGENTS.md BOOTSTRAP.md IDENTITY.md SOUL.md USER.md MEMORY.md README.md TOOLS.md "$SYNC_DIR/" 2>/dev/null || true
+cp -r memory/ scripts/ docs/ briefings/ research/ "$SYNC_DIR/" 2>/dev/null || true
 
 # Stage everything
 git add "$SYNC_DIR/"
