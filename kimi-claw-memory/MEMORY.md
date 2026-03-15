@@ -76,6 +76,25 @@
 
 ---
 
+#### 4. More MITO - Health & Wellness Business
+**Company:** More MITO  
+**Website:** moremito.com  
+**Vertical:** Health, wellness, lifestyle products
+
+**Compensation Plan (RECEIVED 2026-03-16):**
+- **File:** `/root/.openclaw/workspace/more-mito-compensation-plan.pdf`
+- **Backup:** `/root/.openclaw/workspace/docs/more-mito/compensation-plan.pdf`
+- **Original Date:** March 21, 2025
+- **Size:** 16 pages, 1.05MB
+- **Status:** ✅ Archived locally + synced to GitHub
+
+**Next Steps:**
+- [ ] Extract rank/commission structure details
+- [ ] Document product line
+- [ ] Build lead gen system for health vertical
+
+---
+
 ### System Configuration Updates
 
 #### Daily Morning Briefing System (2026-03-07)
