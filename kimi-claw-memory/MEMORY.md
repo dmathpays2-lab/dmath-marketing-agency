@@ -376,7 +376,7 @@ npx clawhub@latest install transcriptapi
 
 ---
 
-*Last updated: 2026-03-16 04:20 GMT+8*
+*Last updated: 2026-03-16 05:15 GMT+8*
 
 ---
 
@@ -424,6 +424,61 @@ If Kimi Claw needs to be rebuilt from scratch:
 3. Or parses `RESTORE.json` for machine-readable config
 
 **Auto-sync:** Every 15 minutes via cron
+
+---
+
+## GitHub Full Repo Backup System (2026-03-16) ✅ COMPLETE
+
+**Problem:** When asked to "memorize all GitHub folders," system timed out trying to fetch everything at once.
+
+**Solution:** Incremental backup system that batches operations into safe chunks.
+
+**All 4 Repos Backed Up:**
+
+| Repo | Size | Files | Status |
+|------|------|-------|--------|
+| american-backbone-mca | 124KB | 37 | ✅ Complete |
+| dmath-marketing-agency | 79KB | 26 | ✅ Complete |
+| more-mito-health | 26KB | 10 | ✅ Complete |
+| think-energy-business | 26KB | 10 | ✅ Complete |
+| **TOTAL** | **255KB** | **83** | **✅ All Done** |
+
+**Files Created:**
+- `GITHUB_MEMORY_INDEX.md` - Master catalog of all repos
+- `scripts/github_memory.py` - Incremental backup tool
+- `github-memory/` - Local cache of all repos
+- `.github_backup_state.json` - Resume state for interrupted backups
+
+**How It Works (No Timeouts):**
+- Batches: 50-100 files at a time (< 30 seconds each)
+- Resume: Can pick up where it left off if interrupted
+- Parallel-safe: Uses background sessions, doesn't block
+- Dual-storage: Cloud (GitHub) + Local (disk)
+
+**Commands:**
+```bash
+# Check backup status
+python3 scripts/github_memory.py status
+
+# Backup one repo (safe, fast)
+python3 scripts/github_memory.py backup REPO_NAME
+
+# Backup all repos (batched, resumable)
+python3 scripts/github_memory.py backup-all
+```
+
+**Disaster Recovery:**
+If OpenClaw breaks and you need to reinstall:
+1. Clone `dmath-marketing-agency` repo
+2. Copy `kimi-claw-memory/` to workspace
+3. Run `python3 scripts/github_memory.py backup-all`
+4. All repos restored locally, all memory intact
+
+**Restore Files Included:**
+- `EMERGENCY_REBOOT.md` - Full recovery guide
+- `RESTORE.sh` - Automated restore script
+- `RESTORE.json` - Machine-readable config
+- `github_memory.py` - Backup tool itself
 
 ---
 

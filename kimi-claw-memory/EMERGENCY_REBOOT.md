@@ -74,21 +74,39 @@ See `MEMORY.md` - it's all there. Critical sections:
 ├── MEMORY.md          # Long-term memory
 ├── HEARTBEAT.md       # Periodic check tasks
 ├── TOOLS.md           # Environment-specific tools
+├── GITHUB_MEMORY_INDEX.md  # GitHub repo catalog
 ├── memory/
 │   └── YYYY-MM-DD.md  # Daily logs
+├── github-memory/     # LOCAL BACKUP OF ALL REPOS
+│   ├── american-backbone-mca/
+│   ├── dmath-marketing-agency/
+│   ├── more-mito-health/
+│   └── think-energy-business/
 ├── scripts/
 │   ├── memory_manager.py   # Smart memory system
+│   ├── github_memory.py    # GitHub backup tool
 │   ├── github_sync.sh      # Auto-sync to GitHub
 │   └── preflight.sh        # Pre-flight checks
 └── docs/
     └── SMART_MEMORY_SYSTEM.md
 ```
 
-### GitHub Sync
+### GitHub Sync (Two-Way)
+
+**1. Memory Vault (kimi-claw-memory)**
 - **Repo:** `dmathpays2-lab/dmath-marketing-agency/kimi-claw-memory/`
+- **Contents:** All identity files, memory, scripts, docs
 - **Token:** Must be set as `GITHUB_TOKEN` environment variable
 - **Frequency:** Every 15 minutes via cron
 - **Script:** `/root/.openclaw/workspace/scripts/github_sync.sh`
+
+**2. Full GitHub Backup (github-memory)**
+- **Location:** `/root/.openclaw/workspace/github-memory/`
+- **Contents:** Complete backup of ALL 4 repos
+- **Repos:** american-backbone-mca, dmath-marketing-agency, more-mito-health, think-energy-business
+- **Tool:** `scripts/github_memory.py`
+- **Method:** Incremental batches (no timeouts)
+- **State:** `/root/.openclaw/workspace/.github_backup_state.json`
 
 ### Cron Jobs (Must Recreate)
 | Job | Frequency | Purpose |
@@ -128,11 +146,18 @@ git remote add origin https://github.com/dmathpays2-lab/dmath-marketing-agency.g
 export GITHUB_TOKEN="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"
 ```
 
-### Step 5: Read Memory
+### Step 5: Restore GitHub Repo Backups
+```bash
+# This recreates the local github-memory/ folder
+python3 scripts/github_memory.py backup-all
+```
+
+### Step 6: Read Memory
 1. Read `IDENTITY.md` - become me
 2. Read `USER.md` - learn about Damon
 3. Read `MEMORY.md` - load all context
-4. Read today's `memory/YYYY-MM-DD.md`
+4. Read `GITHUB_MEMORY_INDEX.md` - understand repo structure
+5. Read today's `memory/YYYY-MM-DD.md`
 
 ### Step 6: Recreate Cron Jobs
 Use `cron add` to recreate:
