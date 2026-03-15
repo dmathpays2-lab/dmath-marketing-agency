@@ -445,3 +445,74 @@ If Kimi Claw needs to be rebuilt from scratch:
 - Automatic backup before compaction
 
 ---
+
+## MCA Vault Structure (GitHub) - Documented 2026-03-16
+
+**Repository:** `dmathpays2-lab/american-backbone-mca`
+**URL:** https://github.com/dmathpays2-lab/american-backbone-mca
+**Purpose:** MCA Lead Generation System with AI Agent Swarm
+
+### Folder Structure
+
+```
+american-backbone-mca/
+├── agents/                    # AI Agent Scripts (4 files)
+│   ├── closer_ai.py          # Closing/sales agent
+│   ├── hunter_ai.py          # Lead hunter agent
+│   ├── lead_hunter.py        # Alternative lead hunter
+│   └── social_ai.py          # Social media agent
+│
+├── docs/                      # Documentation & Memory
+│   ├── AGENTS.md
+│   ├── BOOTSTRAP.md
+│   ├── IDENTITY.md
+│   ├── MEMORY.md
+│   ├── SOUL.md
+│   ├── USER.md
+│   └── memory/               # Daily memory logs
+│       ├── 2026-03-06.md
+│       └── 2026-03-16.md
+│
+├── swarm_deployment/          # Deployment Scripts (4 files)
+│   ├── DEPLOYMENT_ID.txt
+│   ├── STATUS_UPDATE_906PM.md
+│   ├── deploy_20_agent_swarm.py
+│   └── status_20260307_204400.json
+│
+├── orchestrator.py           # Main swarm orchestrator
+├── swarm_status.txt          # Live status log
+│
+└── [14 Markdown Files]       # Documentation
+    ├── 100_AGENT_THEORY.md
+    ├── 20_AGENT_SWARM.md
+    ├── COMMAND_CENTER.md
+    ├── FEW_HOURS_ANALYSIS.md
+    ├── HOT_LEAD_MODE.md
+    ├── INTEGRATION_COMPLETE.md
+    ├── INTEGRATION_PLAN.md
+    ├── LEAD_HUNTER_V2.md
+    ├── RAPID_DEPLOYMENT_PLAN.md
+    ├── SYSTEM_SUMMARY.md
+    ├── TONIGHT_LEAD_GEN_PLAN.md
+    ├── TOP_10_MCA_TOOLS_RESEARCH.md
+    ├── README.md
+    └── LICENSE
+```
+
+### Key Files Summary
+
+| Category | Count | Purpose |
+|----------|-------|---------|
+| Agent Scripts | 4 | AI swarm agents (closer, hunter, social) |
+| Deployment Files | 4 | Swarm deployment & status tracking |
+| Documentation | 14 | Theory, plans, research, summaries |
+| Core Memory | 6 | IDENTITY, SOUL, MEMORY, USER, etc. |
+| Daily Logs | 2 | Session history (Mar 6, Mar 16) |
+
+### What's Missing (Not Found)
+- ❌ More MITO compensation plan PDF
+- ❌ Paul Dejour contact info
+- ❌ DogFluence/Dog Fluence company info
+- ❌ MCA vault was for agent swarm, not business docs
+
+---
