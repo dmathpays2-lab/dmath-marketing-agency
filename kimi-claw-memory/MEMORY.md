@@ -405,6 +405,28 @@ python3 scripts/memory_manager.py compact  # Force compact
 
 ---
 
+## GitHub Memory Vault (2026-03-16)
+
+**Created:** Complete backup system for disaster recovery
+
+**Location:** `github.com/dmathpays2-lab/dmath-marketing-agency/kimi-claw-memory/`
+
+**Contents:**
+- All memory files (IDENTITY.md, SOUL.md, USER.md, MEMORY.md)
+- Daily logs (memory/)
+- Automation scripts (scripts/)
+- Emergency restore docs (EMERGENCY_REBOOT.md, RESTORE.sh, RESTORE.json)
+
+**Emergency Restore:**
+If Kimi Claw needs to be rebuilt from scratch:
+1. New bot reads `EMERGENCY_REBOOT.md`
+2. Or runs `RESTORE.sh` for automated setup
+3. Or parses `RESTORE.json` for machine-readable config
+
+**Auto-sync:** Every 15 minutes via cron
+
+---
+
 ## Runtime Error Fix Applied (2026-03-16)
 
 **Issue:** "IM runtime dispatch timed out after 300000ms" errors
