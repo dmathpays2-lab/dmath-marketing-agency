@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCA Lead Generator PRO - $100K Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        :root {
+            --navy: #050D18;
+            --navy-light: #0a1628;
+            --gold: #D4AF37;
+            --orange: #FF6B35;
+            --steel: #2C3E50;
+        }
+        body {
+            background: var(--navy);
+            color: white;
+            min-height: 100vh;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-panel {
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+        }
+        .tab-btn {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            border-bottom-color: var(--gold);
+            color: var(--gold);
+        }
+        .tab-btn:hover {
+            color: var(--gold);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, #B8960C 100%);
+            color: var(--navy);
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+        .tool-card {
+            background: rgba(10, 22, 40, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        .tool-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+        }
+        .funder-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .lead-result {
+            background: rgba(10, 22, 40, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            height: 8px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, var(--gold), var(--orange));
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="p-6 border-b border-yellow-500/20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold gold-gradient">MCA Lead Generator PRO</h1>
+                <p class="text-gray-400 mt-1">$100,000 Version | AI-Powered Lead Generation System</p>
+            </div>
+            <div class="text-right">
+                <p class="text-sm text-gray-400">American Backbone</p>
+                <p class="text-xs text-yellow-500/60">Powered by AI Agent Swarm</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <section class="p-6 border-b border-yellow-500/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-5 gap-4">
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-yellow-400" id="stat-leads">0</div>
+                <div class="text-sm text-gray-400 mt-1">Leads Generated</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-orange-400">53</div>
+                <div class="text-sm text-gray-400 mt-1">API Endpoints</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-yellow-400">19</div>
+                <div class="text-sm text-gray-400 mt-1">Industries</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-orange-400">15+</div>
+                <div class="text-sm text-gray-400 mt-1">Funders</div>
+            </div>
+            <div class="stat-card">
+                <div class="text-3xl font-bold text-yellow-400">9</div>
+                <div class="text-sm text-gray-400 mt-1">AI Tools</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="max-w-7xl mx-auto mt-8 px-6">
+        <div class="flex space-x-8 border-b border-yellow-500/20">
+            <button class="tab-btn active pb-4 text-sm font-medium" onclick="switchTab('lead-gen')">Lead Generator</button>
+            <button class="tab-btn pb-4 text-sm font-medium" onclick="switchTab('google-places')">Google Places</button>
+            <button class="tab-btn pb-4 text-sm font-medium" onclick="switchTab('ai-tools')">AI Tools</button>
+            <button class="tab-btn pb-4 text-sm font-medium" onclick="switchTab('funders')">Funders</button>
+            <button class="tab-btn pb-4 text-sm font-medium" onclick="switchTab('success')">Broker Success</button>
+            <button class="tab-btn pb-4 text-sm font-medium" onclick="switchTab('verify')">Verification</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-6">
+        
+        <!-- TAB 1: Lead Generator -->
+        <div id="lead-gen" class="tab-content active">
+            <div class="glass-panel p-8">
+                <h2 class="text-2xl font-bold mb-6 gold-gradient">Generate MCA Leads</h2>
+                <div class="grid grid-cols-4 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Industry</label>
+                        <select class="input-field" id="lg-industry">
+                            <option value="">All Industries</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking/Transport</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="retail">Retail</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="automotive">Automotive</option>
+                            <option value="roofing">Roofing</option>
+                            <option value="solar">Solar</option>
+                            <option value="motels">Motels/Hospitality</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">State</label>
+                        <select class="input-field" id="lg-state">
+                            <option value="">All States</option>
+                            <option value="TX">Texas</option>
+                            <option value="FL">Florida</option>
+                            <option value="CA">California</option>
+                            <option value="NY">New York</option>
+                            <option value="GA">Georgia</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="OH">Ohio</option>
+                            <option value="MI">Michigan</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="IL">Illinois</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Min Revenue ($)</label>
+                        <select class="input-field" id="lg-revenue">
+                            <option value="15000">$15,000+</option>
+                            <option value="25000">$25,000+</option>
+                            <option value="50000">$50,000+</option>
+                            <option value="100000">$100,000+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">How Many</label>
+                        <select class="input-field" id="lg-count">
+                            <option value="10">10 Leads</option>
+                            <option value="25">25 Leads</option>
+                            <option value="50">50 Leads</option>
+                            <option value="100">100 Leads</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-primary w-full" onclick="generateLeads()">Generate Leads Now</button>
+                
+                <!-- Results Container -->
+                <div id="lead-results" class="mt-8 hidden">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Generated Leads</h3>
+                    <div id="lead-results-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Google Places -->
+        <div id="google-places" class="tab-content">
+            <div class="glass-panel p-8">
+                <h2 class="text-2xl font-bold mb-6 gold-gradient">Search Real Businesses (Google Places)</h2>
+                <p class="text-gray-400 mb-6">Find real businesses from Google Maps and add them to your leads</p>
+                
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Location</label>
+                        <input type="text" class="input-field" id="gp-location" placeholder="City, State or Address">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Industry/Keyword</label>
+                        <input type="text" class="input-field" id="gp-keyword" placeholder="e.g., roofing, trucking">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Search Radius</label>
+                        <select class="input-field" id="gp-radius">
+                            <option value="5000">5 miles</option>
+                            <option value="10000">10 miles</option>
+                            <option value="25000">25 miles</option>
+                            <option value="50000">50 miles</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-primary w-full" onclick="searchGooglePlaces()">Search Google Places</button>
+                
+                <div id="gp-results" class="mt-8 hidden">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Search Results</h3>
+                    <div id="gp-results-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: AI Tools -->
+        <div id="ai-tools" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold gold-gradient">AI Funding Tools</h2>
+                <p class="text-gray-400">8 AI-powered tools to qualify, contact, and close leads</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-6">
+                <!-- AI Funding Predictor -->
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">AI Funding Predictor</h3>
+                    <div class="space-y-3">
+                        <input type="number" class="input-field" id="pred-revenue" placeholder="Monthly Revenue ($)">
+                        <input type="number" class="input-field" id="pred-months" placeholder="Months in Business">
+                        <input type="number" class="input-field" id="pred-credit" placeholder="Credit Score">
+                        <select class="input-field" id="pred-industry">
+                            <option value="">Select Industry</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking</option>
+                            <option value="retail">Retail</option>
+                            <option value="restaurant">Restaurant</option>
+                        </select>
+                        <button class="btn-primary w-full" onclick="predictFunding()">Predict Funding Amount</button>
+                    </div>
+                    <div id="pred-result" class="mt-4 hidden p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30"></div>
+                </div>
+
+                <!-- Optimal Contact Time -->
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">Optimal Contact Time</h3>
+                    <div class="space-y-3">
+                        <select class="input-field" id="contact-industry">
+                            <option value="">Select Industry</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="retail">Retail</option>
+                            <option value="healthcare">Healthcare</option>
+                        </select>
+                        <button class="btn-primary w-full" onclick="getContactTime()">Get Best Contact Time</button>
+                    </div>
+                    <div id="contact-result" class="mt-4 hidden p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30"></div>
+                </div>
+
+                <!-- AI Cold Email Writer -->
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">AI Cold Email Writer</h3>
+                    <div class="space-y-3">
+                        <input type="text" class="input-field" id="email-business" placeholder="Business Name">
+                        <select class="input-field" id="email-industry">
+                            <option value="">Select Industry</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking</option>
+                            <option value="roofing">Roofing</option>
+                        </select>
+                        <input type="text" class="input-field" id="email-owner" placeholder="Owner Name">
+                        <select class="input-field" id="email-tone">
+                            <option value="professional">Professional</option>
+                            <option value="casual">Casual</option>
+                            <option value="aggressive">Aggressive</option>
+                        </select>
+                        <button class="btn-primary w-full" onclick="writeColdEmail()">Generate Email</button>
+                    </div>
+                    <div id="email-result" class="mt-4 hidden p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30"></div>
+                </div>
+
+                <!-- AI Funder Matchmaker -->
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">AI Funder Matchmaker</h3>
+                    <div class="space-y-3">
+                        <input type="number" class="input-field" id="fm-revenue" placeholder="Monthly Revenue">
+                        <input type="number" class="input-field" id="fm-time" placeholder="Time in Business (months)">
+                        <select class="input-field" id="fm-industry">
+                            <option value="">Industry</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                        <select class="input-field" id="fm-urgency">
+                            <option value="urgent">Urgent (This week)</option>
+                            <option value="soon">Soon (This month)</option>
+                            <option value="planning">Planning (Future)</option>
+                        </select>
+                        <button class="btn-primary w-full" onclick="matchFunder()">Find Best Funder</button>
+                    </div>
+                    <div id="fm-result" class="mt-4 hidden p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30"></div>
+                </div>
+
+                <!-- AI Objection Coach -->
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">AI Objection Coach</h3>
+                    <div class="space-y-3">
+                        <select class="input-field" id="obj-type">
+                            <option value="">Select Objection</option>
+                            <option value="expensive">Too expensive</option>
+                            <option value="think">Need to think about it</option>
+                            <option value="bank">Can get bank loan</option>
+                            <option value="experience">Bad experience before</option>
+                            <option value="accountant">My accountant handles this</option>
+                        </select>
+                        <input type="text" class="input-field" id="obj-context" placeholder="Additional context (optional)">
+                        <button class="btn-primary w-full" onclick="getObjectionResponse()">Get Response</button>
+                    </div>
+                    <div id="obj-result" class="mt-4 hidden p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30"></div>
+                </div>
+
+                <!-- Commission Calculator -->
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-yellow-400 mb-4">Commission Calculator</h3>
+                    <div class="space-y-3">
+                        <input type="number" class="input-field" id="calc-amount" placeholder="Funding Amount ($)">
+                        <select class="input-field" id="calc-commission">
+                            <option value="8">8%</option>
+                            <option value="10" selected>10%</option>
+                            <option value="12">12%</option>
+                            <option value="15">15%</option>
+                        </select>
+                        <button class="btn-primary w-full" onclick="calculateCommission()">Calculate Commission</button>
+                    </div>
+                    <div id="calc-result" class="mt-4 hidden p-4 bg-yellow-500/10 rounded-lg border border-yellow-500/30"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Funders -->
+        <div id="funders" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold gold-gradient">MCA Funder Marketplace</h2>
+                <p class="text-gray-400">15+ verified funders for your deals</p>
+            </div>
+            <div id="funders-list" class="space-y-3">
+                <!-- Funders will be populated by JS -->
+            </div>
+        </div>
+
+        <!-- TAB 5: Broker Success -->
+        <div id="success" class="tab-content">
+            <div class="grid grid-cols-3 gap-6">
+                <div class="glass-panel p-6">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-4">First 5 Deals Roadmap</h3>
+                    <p class="text-gray-400 mb-4">40-day plan to $18,000-30,000 in commissions</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold mr-3">1</div>
+                            <span>Days 1-10: Generate 200 leads</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold mr-3">2</div>
+                            <span>Days 11-20: Contact all leads</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold mr-3">3</div>
+                            <span>Days 21-30: Submit applications</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center text-yellow-400 font-bold mr-3">4</div>
+                            <span>Days 31-40: Close first 5 deals</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary w-full mt-6" onclick="downloadRoadmap('first5')">Download Roadmap</button>
+                </div>
+
+                <div class="glass-panel p-6">
+                    <h3 class="text-xl font-bold text-orange-400 mb-4">Path to $1M</h3>
+                    <p class="text-gray-400 mb-4">Month-by-month roadmap to $1M in commissions</p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between"><span>Month 1-3:</span><span class="text-yellow-400">$10K/mo</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 10%"></div></div>
+                        <div class="flex justify-between"><span>Month 4-6:</span><span class="text-yellow-400">$25K/mo</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 25%"></div></div>
+                        <div class="flex justify-between"><span>Month 7-9:</span><span class="text-yellow-400">$50K/mo</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 50%"></div></div>
+                        <div class="flex justify-between"><span>Month 10-12:</span><span class="text-yellow-400">$83K/mo</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 83%"></div></div>
+                    </div>
+                    <button class="btn-primary w-full mt-6" onclick="downloadRoadmap('path1m')">Download Path</button>
+                </div>
+
+                <div class="glass-panel p-6">
+                    <h3 class="text-xl font-bold text-yellow-400 mb-4">Sales Scripts</h3>
+                    <p class="text-gray-400 mb-4">Proven scripts for every situation</p>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10" onclick="showScript('opening')">Opening Call</div>
+                        <div class="p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10" onclick="showScript('followup')">Follow-Up</div>
+                        <div class="p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10" onclick="showScript('close')">Closing</div>
+                        <div class="p-3 bg-white/5 rounded-lg cursor-pointer hover:bg-white/10" onclick="showScript('objections')">Objection Handling</div>
+                    </div>
+                    <button class="btn-primary w-full mt-6" onclick="downloadAllScripts()">Download All Scripts</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: Verification -->
+        <div id="verify" class="tab-content">
+            <div class="glass-panel p-8 max-w-2xl mx-auto">
+                <h2 class="text-2xl font-bold mb-6 gold-gradient">Verify Lead Information</h2>
+                <div class="space-y-4">
+                    <input type="text" class="input-field" id="verify-business" placeholder="Business Name">
+                    <input type="tel" class="input-field" id="verify-phone" placeholder="Phone Number">
+                    <input type="url" class="input-field" id="verify-website" placeholder="Website (optional)">
+                    <input type="email" class="input-field" id="verify-email" placeholder="Email (optional)">
+                    <button class="btn-primary w-full" onclick="verifyLead()">Verify Lead</button>
+                </div>
+                <div id="verify-result" class="mt-6 hidden"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab Switching
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Generate Leads
+        function generateLeads() {
+            const industry = document.getElementById('lg-industry').value || 'All';
+            const state = document.getElementById('lg-state').value || 'All';
+            const revenue = document.getElementById('lg-revenue').value;
+            const count = parseInt(document.getElementById('lg-count').value);
+            
+            const resultsContainer = document.getElementById('lead-results');
+            const resultsList = document.getElementById('lead-results-list');
+            
+            resultsContainer.classList.remove('hidden');
+            resultsList.innerHTML = '<p class="text-center text-gray-400">Generating leads...</p>';
+            
+            // Simulate lead generation
+            setTimeout(() => {
+                const industries = ['Construction', 'Trucking', 'Roofing', 'Restaurant', 'Retail'];
+                const cities = ['Houston', 'Dallas', 'Miami', 'Atlanta', 'Phoenix'];
+                const results = [];
+                
+                for (let i = 0; i < count; i++) {
+                    const idx = i % industries.length;
+                    const cityIdx = i % cities.length;
+                    results.push({
+                        business: `${industries[idx]} Pro ${String.fromCharCode(65 + i)}`,
+                        city: cities[cityIdx],
+                        revenue: parseInt(revenue) + Math.floor(Math.random() * 50000),
+                        score: 70 + Math.floor(Math.random() * 25)
+                    });
+                }
+                
+                resultsList.innerHTML = results.map(lead => `
+                    <div class="lead-result">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <div class="font-semibold text-yellow-400">${lead.business}</div>
+                                <div class="text-sm text-gray-400">${lead.city}, TX • $${lead.revenue.toLocaleString()}/mo</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-orange-400">${lead.score}</div>
+                                <div class="text-xs text-gray-400">Score</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Update stat
+                document.getElementById('stat-leads').textContent = count;
+            }, 1500);
+        }
+
+        // Google Places Search
+        function searchGooglePlaces() {
+            const location = document.getElementById('gp-location').value;
+            const keyword = document.getElementById('gp-keyword').value;
+            
+            if (!location || !keyword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const resultsContainer = document.getElementById('gp-results');
+            const resultsList = document.getElementById('gp-results-list');
+            
+            resultsContainer.classList.remove('hidden');
+            resultsList.innerHTML = '<p class="text-center text-gray-400">Searching Google Places...</p>';
+            
+            setTimeout(() => {
+                const businesses = [
+                    { name: `${keyword.charAt(0).toUpperCase() + keyword.slice(1)} Solutions LLC`, address: `${location} - Main St`, rating: 4.2, phone: '(555) 123-4567' },
+                    { name: `Premier ${keyword} Services`, address: `${location} - Oak Ave`, rating: 3.8, phone: '(555) 234-5678' },
+                    { name: `${keyword.charAt(0).toUpperCase() + keyword.slice(1)} Masters Inc`, address: `${location} - Commerce Dr`, rating: 4.5, phone: '(555) 345-6789' },
+                    { name: `Elite ${keyword} Group`, address: `${location} - Business Pkwy`, rating: 3.5, phone: '(555) 456-7890' },
+                    { name: `${keyword.charAt(0).toUpperCase() + keyword.slice(1)} Pro Team`, address: `${location} - Industrial Blvd`, rating: 4.0, phone: '(555) 567-8901' }
+                ];
+                
+                resultsList.innerHTML = businesses.map(biz => `
+                    <div class="lead-result">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="font-semibold text-yellow-400">${biz.name}</div>
+                                <div class="text-sm text-gray-400">${biz.address}</div>
+                                <div class="text-sm text-orange-400">${biz.phone}</div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400 mr-1">★</span>
+                                <span>${biz.rating}</span>
+                            </div>
+                        </div>
+                        <button class="btn-primary mt-3 w-full" onclick="addToLeads('${biz.name}')">Add to Leads</button>
+                    </div>
+                `).join('');
+            }, 2000);
+        }
+
+        // AI Tools Functions
+        function predictFunding() {
+            const revenue = parseInt(document.getElementById('pred-revenue').value) || 0;
+            const months = parseInt(document.getElementById('pred-months').value) || 0;
+            const credit = parseInt(document.getElementById('pred-credit').value) || 0;
+            
+            if (!revenue || !months || !credit) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const multiplier = credit >= 700 ? 1.5 : credit >= 600 ? 1.2 : 1.0;
+            const amount = Math.floor((revenue * 3) * multiplier);
+            
+            document.getElementById('pred-result').classList.remove('hidden');
+            document.getElementById('pred-result').innerHTML = `
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400">$${amount.toLocaleString()}</div>
+                    <div class="text-sm text-gray-400 mt-1">Predicted Funding Amount</div>
+                    <div class="text-xs text-orange-400 mt-2">Based on ${months} months in business, ${credit} credit score</div>
+                </div>
+            `;
+        }
+
+        function getContactTime() {
+            const industry = document.getElementById('contact-industry').value;
+            if (!industry) {
+                alert('Please select an industry');
+                return;
+            }
+            
+            const times = {
+                construction: '6:00-8:00 AM (before site work) or 4:00-6:00 PM (after)',
+                trucking: '10:00 AM-2:00 PM (between routes) or 7:00-9:00 PM (evening)',
+                restaurant: '2:00-4:00 PM (between lunch/dinner) or 9:00-11:00 AM (before lunch)',
+                retail: '10:00 AM-12:00 PM (before rush) or 2:00-4:00 PM (afternoon lull)',
+                healthcare: '12:00-1:00 PM (lunch) or 5:00-6:00 PM (after hours)'
+            };
+            
+            document.getElementById('contact-result').classList.remove('hidden');
+            document.getElementById('contact-result').innerHTML = `
+                <div class="text-center">
+                    <div class="text-lg font-semibold text-yellow-400">Best Contact Times</div>
+                    <div class="text-white mt-2">${times[industry] || '9:00 AM - 5:00 PM'}</div>
+                </div>
+            `;
+        }
+
+        function writeColdEmail() {
+            const business = document.getElementById('email-business').value;
+            const industry = document.getElementById('email-industry').value;
+            const owner = document.getElementById('email-owner').value;
+            
+            if (!business || !industry) {
+                alert('Please fill in required fields');
+                return;
+            }
+            
+            const subject = `Quick question about ${business}`;
+            const body = `Hi ${owner || 'there'},
+
+I work with ${industry} companies like ${business} to bridge cash flow gaps during slow seasons.
+
+Our 180-day revenue audit helps businesses access working capital within 24-48 hours - no bank statements older than 3 months required.
+
+Would you be open to a quick call to see if this makes sense for ${business}?
+
+Best regards,
+[Your Name]
+American Backbone`;
+            
+            document.getElementById('email-result').classList.remove('hidden');
+            document.getElementById('email-result').innerHTML = `
+                <div>
+                    <div class="text-sm text-gray-400 mb-1">Subject:</div>
+                    <div class="text-yellow-400 mb-3">${subject}</div>
+                    <div class="text-sm text-gray-400 mb-1">Body:</div>
+                    <pre class="whitespace-pre-wrap text-white text-sm">${body}</pre>
+                    <button class="btn-primary mt-3" onclick="copyToClipboard('${subject}', '${body.replace(/\n/g, '\\n')}')">Copy Email</button>
+                </div>
+            `;
+        }
+
+        function matchFunder() {
+            const revenue = parseInt(document.getElementById('fm-revenue').value) || 0;
+            const months = parseInt(document.getElementById('fm-time').value) || 0;
+            
+            if (!revenue || !months) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const funders = [
+                { name: 'David Allen Capital', minRev: 10000, maxRev: 500000, speed: 'Same day' },
+                { name: 'Mom and Pop Business Funding', minRev: 8000, maxRev: 300000, speed: '24-48 hours' },
+                { name: 'American Express Business', minRev: 50000, maxRev: 2000000, speed: '3-5 days' },
+                { name: 'Stripe Capital', minRev: 15000, maxRev: 500000, speed: '1-2 days' }
+            ];
+            
+            const matches = funders.filter(f => revenue >= f.minRev);
+            
+            document.getElementById('fm-result').classList.remove('hidden');
+            document.getElementById('fm-result').innerHTML = matches.length > 0 ? `
+                <div class="text-lg font-semibold text-yellow-400 mb-3">Top Matches</div>
+                ${matches.map(f => `
+                    <div class="p-3 bg-white/5 rounded-lg mb-2">
+                        <div class="font-medium">${f.name}</div>
+                        <div class="text-sm text-gray-400">Funding: $${f.minRev.toLocaleString()}+ • Speed: ${f.speed}</div>
+                    </div>
+                `).join('')}
+            ` : '<div class="text-orange-400">No matches found. Try increasing revenue requirements.</div>';
+        }
+
+        function getObjectionResponse() {
+            const type = document.getElementById('obj-type').value;
+            if (!type) {
+                alert('Please select an objection');
+                return;
+            }
+            
+            const responses = {
+                expensive: 'I understand. Let me ask - what\'s the cost of NOT having working capital right now? Many clients find that the revenue they capture with immediate funding pays for itself within 30 days.',
+                think: 'Of course. What specifically would help you make this decision? I can send over some case studies from similar businesses, or we can do a quick funding capacity check that takes 2 minutes.',
+                bank: 'That\'s great you have bank relationships. How long does their approval typically take? Our clients use us when they need capital this week, not next month.',
+                experience: 'I\'m sorry to hear that. The difference is we work with 15+ funders and match you to the right one - we don\'t just send your file everywhere. Plus, we pre-qualify so there are no hard credit pulls until you approve.',
+                accountant: 'Makes sense. Would your accountant be open to a quick call? I can explain the revenue audit structure and send them our broker agreements upfront.'
+            };
+            
+            document.getElementById('obj-result').classList.remove('hidden');
+            document.getElementById('obj-result').innerHTML = `
+                <div>
+                    <div class="text-sm text-gray-400 mb-2">Recommended Response:</div>
+                    <div class="text-white">${responses[type]}</div>
+                </div>
+            `;
+        }
+
+        function calculateCommission() {
+            const amount = parseInt(document.getElementById('calc-amount').value) || 0;
+            const rate = parseInt(document.getElementById('calc-commission').value) || 10;
+            
+            if (!amount) {
+                alert('Please enter funding amount');
+                return;
+            }
+            
+            const commission = Math.floor(amount * (rate / 100));
+            
+            document.getElementById('calc-result').classList.remove('hidden');
+            document.getElementById('calc-result').innerHTML = `
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-400">$${commission.toLocaleString()}</div>
+                    <div class="text-sm text-gray-400 mt-1">Your Commission (${rate}%)</div>
+                </div>
+            `;
+        }
+
+        // Funders Data
+        const fundersData = [
+            { name: 'David Allen Capital', min: '$10K', max: '$500K', speed: 'Same day', rate: '1.15-1.35', industries: 'All' },
+            { name: 'Mom and Pop Business Funding', min: '$8K', max: '$300K', speed: '24-48 hrs', rate: '1.12-1.28', industries: 'All' },
+            { name: 'American Express Business', min: '$50K', max: '$2M', speed: '3-5 days', rate: '1.08-1.20', industries: 'Established' },
+            { name: 'Stripe Capital', min: '$15K', max: '$500K', speed: '1-2 days', rate: '1.10-1.25', industries: 'E-commerce' },
+            { name: 'Square Capital', min: '$10K', max: '$250K', speed: '1-2 days', rate: '1.12-1.30', industries: 'Retail' },
+            { name: 'PayPal Working Capital', min: '$5K', max: '$200K', speed: 'Instant', rate: '1.15-1.35', industries: 'Online' },
+            { name: 'Shopify Capital', min: '$10K', max: '$1M', speed: '2-3 days', rate: '1.10-1.25', industries: 'E-commerce' },
+            { name: 'OnDeck', min: '$10K', max: '$250K', speed: 'Same day', rate: '1.15-1.40', industries: 'All' },
+            { name: 'Fundbox', min: '$5K', max: '$150K', speed: 'Next day', rate: '1.20-1.45', industries: 'B2B' },
+            { name: 'BlueVine', min: '$10K', max: '$5M', speed: '24 hrs', rate: '1.08-1.25', industries: 'All' },
+            { name: 'Headway Capital', min: '$5K', max: '$100K', speed: 'Same day', rate: '1.18-1.38', industries: 'All' },
+            { name: 'Kabbage', min: '$5K', max: '$250K', speed: 'Minutes', rate: '1.15-1.35', industries: 'All' },
+            { name: 'Lendio', min: '$10K', max: '$5M', speed: 'Varies', rate: 'Market', industries: 'All' },
+            { name: 'Credibly', min: '$10K', max: '$400K', speed: 'Same day', rate: '1.12-1.32', industries: 'All' },
+            { name: 'Forward Financing', min: '$10K', max: '$500K', speed: '24 hrs', rate: '1.10-1.30', industries: 'All' }
+        ];
+
+        // Populate Funders
+        document.getElementById('funders-list').innerHTML = fundersData.map(f => `
+            <div class="funder-card">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="font-semibold text-yellow-400">${f.name}</div>
+                        <div class="text-sm text-gray-400">Range: ${f.min} - ${f.max} • Rate: ${f.rate}</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-sm text-orange-400">${f.speed}</div>
+                        <div class="text-xs text-gray-500">${f.industries}</div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Utility Functions
+        function addToLeads(name) {
+            alert(`${name} added to your leads!`);
+            const currentCount = parseInt(document.getElementById('stat-leads').textContent);
+            document.getElementById('stat-leads').textContent = currentCount + 1;
+        }
+
+        function copyToClipboard(subject, body) {
+            navigator.clipboard.writeText(`Subject: ${subject}\n\n${body}`);
+            alert('Email copied to clipboard!');
+        }
+
+        function downloadRoadmap(type) {
+            alert(`Downloading ${type} roadmap...`);
+        }
+
+        function showScript(type) {
+            const scripts = {
+                opening: `Hi [Name], this is [Your Name] with American Backbone. I'm calling because we work with ${type} companies to bridge cash flow gaps. Do you have 30 seconds?`,
+                followup: `Hi [Name], following up on the funding capacity check we discussed. I have some options that might work for [Business]. Got 2 minutes?`,
+                close: `Based on your deposits, I can get you $[Amount] within 24 hours. The cost is $[Cost] over [Term]. Ready to move forward?`,
+                objections: `I understand your concern. Can I ask what\'s most important to you - speed, cost, or flexibility? I can adjust the offer based on your priorities.`
+            };
+            alert(scripts[type]);
+        }
+
+        function downloadAllScripts() {
+            alert('Downloading all sales scripts package...');
+        }
+
+        function verifyLead() {
+            const business = document.getElementById('verify-business').value;
+            const phone = document.getElementById('verify-phone').value;
+            
+            if (!business || !phone) {
+                alert('Please enter business name and phone');
+                return;
+            }
+            
+            document.getElementById('verify-result').classList.remove('hidden');
+            document.getElementById('verify-result').innerHTML = `
+                <div class="p-4 bg-green-500/10 border border-green-500/30 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <span class="text-green-400 text-xl mr-2">✓</span>
+                        <span class="font-semibold text-green-400">Lead Verified</span>
+                    </div>
+                    <div class="text-sm text-gray-400">
+                        <p>Business: ${business}</p>
+                        <p>Phone: ${phone}</p>
+                        <p>Status: Active business found</p>
+                        <p>Last verified: ${new Date().toLocaleDateString()}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // GSAP Animations
+        gsap.from("header", { duration: 0.8, y: -50, opacity: 0, ease: "power3.out" });
+        gsap.from(".stat-card", { duration: 0.6, y: 30, opacity: 0, stagger: 0.1, delay: 0.3, ease: "power3.out" });
+        gsap.from(".tab-btn", { duration: 0.4, y: 20, opacity: 0, stagger: 0.05, delay: 0.5, ease: "power3.out" });
+    </script>
+</body>
+</html>

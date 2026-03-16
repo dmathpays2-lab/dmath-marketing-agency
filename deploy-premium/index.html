@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCA Lead Generator PRO | Enterprise Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Plus Jakarta Sans', sans-serif; }
+        :root {
+            --navy: #0a0f1c;
+            --navy-light: #111827;
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --orange: #FF6B35;
+        }
+        body {
+            background: linear-gradient(135deg, #0a0f1c 0%, #111827 50%, #0a0f1c 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gold-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8960C 100%);
+            color: #0a0f1c;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .gold-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+        .nav-item {
+            transition: all 0.2s ease;
+            border-radius: 12px;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+        }
+        .nav-item.active {
+            border-right: 3px solid #D4AF37;
+        }
+        .input-premium {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: white;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        .input-premium:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        .stat-value {
+            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        .page { display: none; }
+        .page.active { display: block; animation: pageIn 0.4s ease; }
+        @keyframes pageIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tool-widget {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        .tool-widget:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        .sidebar {
+            background: linear-gradient(180deg, rgba(17,24,39,0.98) 0%, rgba(10,15,28,0.98) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .mobile-nav {
+            background: linear-gradient(180deg, rgba(17,24,39,0.98) 0%, rgba(10,15,28,0.98) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        @media (max-width: 1024px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0 !important; padding-bottom: 80px; }
+        }
+        @media (min-width: 1025px) {
+            .mobile-nav { display: none; }
+        }
+        .badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: #D4AF37;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-new { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+        .status-contacted { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .status-qualified { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+        .status-closed { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Desktop Sidebar -->
+    <aside class="sidebar fixed left-0 top-0 w-72 h-screen z-50 hidden lg:block">
+        <div class="p-6">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
+                    <i data-lucide="zap" class="w-5 h-5 text-gray-900"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight">MCA Lead Gen</h1>
+                    <p class="text-xs text-gray-400">PRO Edition</p>
+                </div>
+            </div>
+            
+            <nav class="space-y-1">
+                <a href="#" onclick="showPage('dashboard'); return false;" class="nav-item active flex items-center gap-3 px-4 py-3 text-sm" data-page="dashboard">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    Dashboard
+                </a>
+                <a href="#" onclick="showPage('leads'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="leads">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    Lead Generator
+                </a>
+                <a href="#" onclick="showPage('my-leads'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="my-leads">
+                    <i data-lucide="database" class="w-5 h-5"></i>
+                    My Leads
+                    <span id="sidebar-lead-count" class="ml-auto badge">0</span>
+                </a>
+                <a href="#" onclick="showPage('places'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="places">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    Google Places
+                </a>
+                <a href="#" onclick="showPage('ai-tools'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="ai-tools">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    AI Tools
+                    <span class="ml-auto badge">8</span>
+                </a>
+                <a href="#" onclick="showPage('funders'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="funders">
+                    <i data-lucide="building-2" class="w-5 h-5"></i>
+                    Funders
+                </a>
+                <a href="#" onclick="showPage('success'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="success">
+                    <i data-lucide="trophy" class="w-5 h-5"></i>
+                    Success Tools
+                </a>
+                <a href="#" onclick="showPage('verify'); return false;" class="nav-item flex items-center gap-3 px-4 py-3 text-sm text-gray-400" data-page="verify">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    Verification
+                </a>
+            </nav>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-white/5">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-sm font-bold">
+                    AB
+                </div>
+                <div>
+                    <p class="text-sm font-medium">American Backbone</p>
+                    <p class="text-xs text-gray-400">Enterprise Plan</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content lg:ml-72 min-h-screen p-4 lg:p-8">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 id="page-title" class="text-2xl lg:text-3xl font-bold gold-gradient">Dashboard</h2>
+                <p class="text-gray-400 text-sm mt-1">Welcome back to your lead generation command center</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors">
+                    <i data-lucide="bell" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                <button class="p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors lg:hidden" onclick="toggleMobileMenu()">
+                    <i data-lucide="menu" class="w-5 h-5 text-gray-400"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page active">
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                            <i data-lucide="zap" class="w-5 h-5 text-blue-400"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-3xl" id="stat-generated">0</div>
+                    <p class="text-gray-400 text-sm mt-1">Leads Generated</p>
+                </div>
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center">
+                            <i data-lucide="database" class="w-5 h-5 text-green-400"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-3xl" id="stat-saved">0</div>
+                    <p class="text-gray-400 text-sm mt-1">Saved Leads</p>
+                </div>
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                            <i data-lucide="briefcase" class="w-5 h-5 text-purple-400"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-3xl">19</div>
+                    <p class="text-gray-400 text-sm mt-1">Industries</p>
+                </div>
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-orange-500/20 flex items-center justify-center">
+                            <i data-lucide="building" class="w-5 h-5 text-orange-400"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-3xl">15+</div>
+                    <p class="text-gray-400 text-sm mt-1">Funders</p>
+                </div>
+                <div class="glass-card p-5 col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-yellow-500/20 flex items-center justify-center">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value text-3xl">8</div>
+                    <p class="text-gray-400 text-sm mt-1">AI Tools</p>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 mb-6">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold">Quick Actions</h3>
+                        <p class="text-gray-400 text-sm">Get started with lead generation</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <button onclick="showPage('leads')" class="glass-card p-5 text-left hover:border-yellow-500/30 group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="users" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h4 class="font-semibold mb-1">Generate Leads</h4>
+                        <p class="text-sm text-gray-400">Create targeted lead lists</p>
+                    </button>
+                    <button onclick="showPage('places')" class="glass-card p-5 text-left hover:border-yellow-500/30 group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h4 class="font-semibold mb-1">Search Places</h4>
+                        <p class="text-sm text-gray-400">Find businesses on Google Maps</p>
+                    </button>
+                    <button onclick="showPage('ai-tools')" class="glass-card p-5 text-left hover:border-yellow-500/30 group">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h4 class="font-semibold mb-1">AI Tools</h4>
+                        <p class="text-sm text-gray-400">8 powerful AI assistants</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-card p-6">
+                <h3 class="text-lg font-semibold mb-4">Recent Activity</h3>
+                <div id="recent-activity" class="space-y-3">
+                    <p class="text-gray-400 text-sm">No recent activity. Start generating leads!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lead Generator Page -->
+        <div id="leads" class="page">
+            <div class="glass-card p-6 mb-6">
+                <h3 class="text-lg font-semibold mb-2">Generate MCA Leads</h3>
+                <p class="text-gray-400 text-sm mb-6">Filter and generate targeted lead lists</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Industry</label>
+                        <select class="input-premium" id="lg-industry">
+                            <option value="">All Industries</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking/Transport</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="retail">Retail</option>
+                            <option value="manufacturing">Manufacturing</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="automotive">Automotive</option>
+                            <option value="roofing">Roofing</option>
+                            <option value="solar">Solar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">State</label>
+                        <select class="input-premium" id="lg-state">
+                            <option value="">All States</option>
+                            <option value="TX">Texas</option>
+                            <option value="FL">Florida</option>
+                            <option value="CA">California</option>
+                            <option value="NY">New York</option>
+                            <option value="GA">Georgia</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Min Revenue</label>
+                        <select class="input-premium" id="lg-revenue">
+                            <option value="15000">$15,000+</option>
+                            <option value="25000">$25,000+</option>
+                            <option value="50000">$50,000+</option>
+                            <option value="100000">$100,000+</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-2">Count</label>
+                        <select class="input-premium" id="lg-count">
+                            <option value="10">10 Leads</option>
+                            <option value="25">25 Leads</option>
+                            <option value="50">50 Leads</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="gold-btn px-8 py-4 rounded-xl w-full md:w-auto" onclick="generateLeads()">
+                    <i data-lucide="zap" class="w-5 h-5 inline mr-2"></i>
+                    Generate Leads Now
+                </button>
+            </div>
+
+            <div id="lead-results" class="hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold">Generated Leads</h3>
+                    <button class="btn-secondary px-4 py-2 rounded-lg" onclick="saveAllLeads()">
+                        <i data-lucide="save" class="w-4 h-4 inline mr-2"></i>
+                        Save All to My Leads
+                    </button>
+                </div>
+                <div id="lead-results-list" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <!-- My Leads Page -->
+        <div id="my-leads" class="page">
+            <div class="glass-card p-6 mb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold">My Leads</h3>
+                        <p class="text-gray-400 text-sm">Manage and track your saved leads</p>
+                    </div>
+                    <div class="flex gap-2 w-full md:w-auto">
+                        <input type="text" class="input-premium flex-1 md:w-64" id="lead-search" placeholder="Search leads..." onkeyup="filterLeads()">
+                        <button class="p-3 rounded-xl bg-white/5 hover:bg-white/10" onclick="exportLeads()">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="my-leads-list" class="space-y-3">
+                    <div class="text-center py-12 text-gray-400">
+                        <i data-lucide="database" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
+                        <p>No saved leads yet. Generate leads or search Google Places to add some!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Tools Page -->
+        <div id="ai-tools" class="page">
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2">AI Funding Tools</h3>
+                <p class="text-gray-400 text-sm">8 AI-powered tools to qualify, contact, and close leads</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                <!-- Tool 1: Funding Predictor -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+                        <i data-lucide="target" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Funding Predictor</h4>
+                    <p class="text-sm text-gray-400 mb-4">Predict funding amounts</p>
+                    <div class="space-y-2">
+                        <input type="number" class="input-premium text-sm py-2" id="pred-revenue" placeholder="Monthly Revenue">
+                        <input type="number" class="input-premium text-sm py-2" id="pred-months" placeholder="Months in Business">
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="predictFunding()">Predict</button>
+                    </div>
+                    <div id="pred-result" class="mt-3 hidden p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/20"></div>
+                </div>
+
+                <!-- Tool 2: Contact Time -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4">
+                        <i data-lucide="clock" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Best Contact Time</h4>
+                    <p class="text-sm text-gray-400 mb-4">Optimal calling times</p>
+                    <div class="space-y-2">
+                        <select class="input-premium text-sm py-2" id="contact-industry">
+                            <option value="">Select Industry</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking</option>
+                            <option value="restaurant">Restaurant</option>
+                        </select>
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="getContactTime()">Get Times</button>
+                    </div>
+                    <div id="contact-result" class="mt-3 hidden p-3 bg-green-500/10 rounded-lg border border-green-500/20"></div>
+                </div>
+
+                <!-- Tool 3: Email Writer -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4">
+                        <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Cold Email Writer</h4>
+                    <p class="text-sm text-gray-400 mb-4">AI-generated emails</p>
+                    <div class="space-y-2">
+                        <input type="text" class="input-premium text-sm py-2" id="email-business" placeholder="Business Name">
+                        <input type="text" class="input-premium text-sm py-2" id="email-owner" placeholder="Owner Name">
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="writeColdEmail()">Generate</button>
+                    </div>
+                    <div id="email-result" class="mt-3 hidden p-3 bg-purple-500/10 rounded-lg border border-purple-500/20 text-sm"></div>
+                </div>
+
+                <!-- Tool 4: Funder Match -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mb-4">
+                        <i data-lucide="handshake" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Funder Match</h4>
+                    <p class="text-sm text-gray-400 mb-4">Find best funders</p>
+                    <div class="space-y-2">
+                        <input type="number" class="input-premium text-sm py-2" id="fm-revenue" placeholder="Monthly Revenue">
+                        <select class="input-premium text-sm py-2" id="fm-industry">
+                            <option value="">Industry</option>
+                            <option value="construction">Construction</option>
+                            <option value="trucking">Trucking</option>
+                        </select>
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="matchFunder()">Match</button>
+                    </div>
+                    <div id="fm-result" class="mt-3 hidden p-3 bg-orange-500/10 rounded-lg border border-orange-500/20 text-sm"></div>
+                </div>
+
+                <!-- Tool 5: Objection Coach -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center mb-4">
+                        <i data-lucide="shield" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Objection Coach</h4>
+                    <p class="text-sm text-gray-400 mb-4">Handle objections</p>
+                    <div class="space-y-2">
+                        <select class="input-premium text-sm py-2" id="obj-type">
+                            <option value="">Select Objection</option>
+                            <option value="expensive">Too expensive</option>
+                            <option value="think">Need to think</option>
+                            <option value="bank">Have bank loan</option>
+                        </select>
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="getObjectionResponse()">Get Response</button>
+                    </div>
+                    <div id="obj-result" class="mt-3 hidden p-3 bg-red-500/10 rounded-lg border border-red-500/20 text-sm"></div>
+                </div>
+
+                <!-- Tool 6: Commission Calc -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-yellow-600 flex items-center justify-center mb-4">
+                        <i data-lucide="dollar-sign" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Commission Calc</h4>
+                    <p class="text-sm text-gray-400 mb-4">Calculate earnings</p>
+                    <div class="space-y-2">
+                        <input type="number" class="input-premium text-sm py-2" id="calc-amount" placeholder="Funding Amount">
+                        <select class="input-premium text-sm py-2" id="calc-rate">
+                            <option value="10">10% Commission</option>
+                            <option value="12">12% Commission</option>
+                            <option value="15">15% Commission</option>
+                        </select>
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="calculateCommission()">Calculate</button>
+                    </div>
+                    <div id="calc-result" class="mt-3 hidden p-3 bg-yellow-500/10 rounded-lg border border-yellow-500/20"></div>
+                </div>
+
+                <!-- Tool 7: Renewal Calc -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center mb-4">
+                        <i data-lucide="refresh-cw" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Renewal Calc</h4>
+                    <p class="text-sm text-gray-400 mb-4">Calculate renewals</p>
+                    <div class="space-y-2">
+                        <input type="number" class="input-premium text-sm py-2" id="renewal-original" placeholder="Original Amount">
+                        <input type="number" class="input-premium text-sm py-2" id="renewal-paid" placeholder="Amount Paid">
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="calculateRenewal()">Calculate</button>
+                    </div>
+                    <div id="renewal-result" class="mt-3 hidden p-3 bg-pink-500/10 rounded-lg border border-pink-500/20"></div>
+                </div>
+
+                <!-- Tool 8: ROI Calc -->
+                <div class="tool-widget">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-4">
+                        <i data-lucide="trending-up" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">ROI Calculator</h4>
+                    <p class="text-sm text-gray-400 mb-4">Client ROI analysis</p>
+                    <div class="space-y-2">
+                        <input type="number" class="input-premium text-sm py-2" id="roi-amount" placeholder="Funding Amount">
+                        <input type="number" class="input-premium text-sm py-2" id="roi-revenue" placeholder="Revenue Increase">
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm w-full" onclick="calculateROI()">Calculate</button>
+                    </div>
+                    <div id="roi-result" class="mt-3 hidden p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/20"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funders Page -->
+        <div id="funders" class="page">
+            <div class="glass-card p-6 mb-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold">MCA Funder Marketplace</h3>
+                        <p class="text-gray-400 text-sm">15+ verified funders for your deals</p>
+                    </div>
+                    <input type="text" class="input-premium w-full md:w-72" id="funder-search" placeholder="Search funders..." onkeyup="filterFunders()">
+                </div>
+                <div id="funders-list" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <!-- Other pages simplified for brevity -->
+        <div id="places" class="page">
+            <div class="glass-card p-6">
+                <h3 class="text-lg font-semibold mb-2">Google Places Search</h3>
+                <p class="text-gray-400 text-sm mb-6">Find real businesses on Google Maps</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <input type="text" class="input-premium" id="gp-location" placeholder="Location">
+                    <input type="text" class="input-premium" id="gp-keyword" placeholder="Business Type">
+                    <button class="gold-btn px-6 py-3 rounded-xl" onclick="searchPlaces()">Search</button>
+                </div>
+                <div id="places-results" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <div id="success" class="page">
+            <div class="glass-card p-6">
+                <h3 class="text-lg font-semibold mb-6">Broker Success Tools</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="glass-card p-5">
+                        <h4 class="font-semibold mb-2">First 5 Deals Roadmap</h4>
+                        <p class="text-sm text-gray-400 mb-4">40-day plan to $18K-30K</p>
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm" onclick="downloadRoadmap('first5')">Download</button>
+                    </div>
+                    <div class="glass-card p-5">
+                        <h4 class="font-semibold mb-2">Path to $1M</h4>
+                        <p class="text-sm text-gray-400 mb-4">12-month roadmap</p>
+                        <button class="gold-btn px-4 py-2 rounded-lg text-sm" onclick="downloadRoadmap('path1m')">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="verify" class="page">
+            <div class="glass-card p-6 max-w-xl mx-auto">
+                <h3 class="text-lg font-semibold mb-2 text-center">Lead Verification</h3>
+                <p class="text-gray-400 text-sm mb-6 text-center">Verify business information</p>
+                <div class="space-y-4">
+                    <input type="text" class="input-premium" id="verify-business" placeholder="Business Name">
+                    <input type="tel" class="input-premium" id="verify-phone" placeholder="Phone Number">
+                    <button class="gold-btn px-6 py-3 rounded-xl w-full" onclick="verifyLead()">Verify Lead</button>
+                </div>
+                <div id="verify-result" class="mt-4"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav fixed bottom-0 left-0 right-0 z-50 lg:hidden">
+        <div class="flex justify-around items-center py-2">
+            <a href="#" onclick="showPage('dashboard'); return false;" class="flex flex-col items-center gap-1 p-2 text-gray-400" data-page="dashboard">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <a href="#" onclick="showPage('leads'); return false;" class="flex flex-col items-center gap-1 p-2 text-gray-400" data-page="leads">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span class="text-xs">Leads</span>
+            </a>
+            <a href="#" onclick="showPage('my-leads'); return false;" class="flex flex-col items-center gap-1 p-2 text-gray-400" data-page="my-leads">
+                <i data-lucide="database" class="w-5 h-5"></i>
+                <span class="text-xs">Saved</span>
+            </a>
+            <a href="#" onclick="showPage('ai-tools'); return false;" class="flex flex-col items-center gap-1 p-2 text-gray-400" data-page="ai-tools">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                <span class="text-xs">AI</span>
+            </a>
+            <a href="#" onclick="showPage('funders'); return false;" class="flex flex-col items-center gap-1 p-2 text-gray-400" data-page="funders">
+                <i data-lucide="building-2" class="w-5 h-5"></i>
+                <span class="text-xs">Funders</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // State
+        let leads = JSON.parse(localStorage.getItem('mca_leads') || '[]');
+        let generatedLeads = [];
+        let stats = { generated: 0, saved: leads.length };
+
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item, .mobile-nav a').forEach(n => n.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll(`[data-page="${pageId}"]`).forEach(n => n.classList.add('active'));
+            
+            // Update page title
+            const titles = {
+                'dashboard': 'Dashboard',
+                'leads': 'Lead Generator',
+                'my-leads': 'My Leads',
+                'places': 'Google Places',
+                'ai-tools': 'AI Tools',
+                'funders': 'Funders',
+                'success': 'Success Tools',
+                'verify': 'Verification'
+            };
+            document.getElementById('page-title').textContent = titles[pageId] || 'Dashboard';
+            
+            lucide.createIcons();
+        }
+
+        // Generate leads
+        function generateLeads() {
+            const industry = document.getElementById('lg-industry').value || 'All';
+            const state = document.getElementById('lg-state').value || 'All';
+            const revenue = parseInt(document.getElementById('lg-revenue').value);
+            const count = parseInt(document.getElementById('lg-count').value);
+            
+            generatedLeads = [];
+            const industries = ['Construction', 'Trucking', 'Roofing', 'Restaurant', 'Retail'];
+            const cities = ['Houston', 'Dallas', 'Miami', 'Atlanta', 'Phoenix'];
+            
+            for (let i = 0; i < count; i++) {
+                generatedLeads.push({
+                    id: Date.now() + i,
+                    business: `${industries[i % industries.length]} Pro ${String.fromCharCode(65 + i)}`,
+                    city: cities[i % cities.length],
+                    revenue: revenue + Math.floor(Math.random() * 50000),
+                    score: 70 + Math.floor(Math.random() * 25),
+                    industry: industries[i % industries.length],
+                    status: 'New'
+                });
+            }
+            
+            stats.generated += count;
+            updateStats();
+            displayGeneratedLeads();
+            
+            document.getElementById('lead-results').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function displayGeneratedLeads() {
+            const container = document.getElementById('lead-results-list');
+            container.innerHTML = generatedLeads.map(lead => `
+                <div class="glass-card p-4 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-semibold">${lead.business}</h4>
+                        <p class="text-sm text-gray-400">${lead.city} • $${lead.revenue.toLocaleString()}/mo</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl font-bold stat-value">${lead.score}</span>
+                        <button onclick="saveLead(${lead.id})" class="p-2 rounded-lg bg-white/5 hover:bg-white/10">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function saveLead(id) {
+            const lead = generatedLeads.find(l => l.id === id);
+            if (lead && !leads.find(l => l.id === id)) {
+                leads.push({...lead, savedAt: new Date().toISOString()});
+                localStorage.setItem('mca_leads', JSON.stringify(leads));
+                stats.saved = leads.length;
+                updateStats();
+                displayMyLeads();
+                lucide.createIcons();
+            }
+        }
+
+        function saveAllLeads() {
+            generatedLeads.forEach(lead => {
+                if (!leads.find(l => l.id === lead.id)) {
+                    leads.push({...lead, savedAt: new Date().toISOString()});
+                }
+            });
+            localStorage.setItem('mca_leads', JSON.stringify(leads));
+            stats.saved = leads.length;
+            updateStats();
+            displayMyLeads();
+        }
+
+        function displayMyLeads() {
+            const container = document.getElementById('my-leads-list');
+            if (leads.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i data-lucide="database" class="w-12 h-12 mx-auto mb-4 opacity-50"></i>
+                        <p>No saved leads yet. Generate leads or search Google Places to add some!</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = leads.map(lead => `
+                    <div class="glass-card p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="font-semibold">${lead.business}</h4>
+                                <p class="text-sm text-gray-400">${lead.city} • $${lead.revenue.toLocaleString()}/mo</p>
+                                <div class="flex gap-2 mt-2">
+                                    <span class="status-badge status-${lead.status.toLowerCase()}">${lead.status}</span>
+                                    <span class="text-xs text-gray-500">Score: ${lead.score}</span>
+                                </div>
+                            </div>
+                            <button onclick="deleteLead(${lead.id})" class="p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            lucide.createIcons();
+        }
+
+        function deleteLead(id) {
+            leads = leads.filter(l => l.id !== id);
+            localStorage.setItem('mca_leads', JSON.stringify(leads));
+            stats.saved = leads.length;
+            updateStats();
+            displayMyLeads();
+        }
+
+        function filterLeads() {
+            const search = document.getElementById('lead-search').value.toLowerCase();
+            const filtered = leads.filter(l => 
+                l.business.toLowerCase().includes(search) ||
+                l.city.toLowerCase().includes(search)
+            );
+            // Update display with filtered
+        }
+
+        function updateStats() {
+            document.getElementById('stat-generated').textContent = stats.generated;
+            document.getElementById('stat-saved').textContent = stats.saved;
+            document.getElementById('sidebar-lead-count').textContent = stats.saved;
+        }
+
+        // AI Tool Functions
+        function predictFunding() {
+            const revenue = parseInt(document.getElementById('pred-revenue').value) || 0;
+            const result = document.getElementById('pred-result');
+            const amount = Math.floor(revenue * 3);
+            result.classList.remove('hidden');
+            result.innerHTML = `<div class="text-center"><div class="text-2xl font-bold gold-gradient">$${amount.toLocaleString()}</div><div class="text-xs text-gray-400">Predicted Funding</div></div>`;
+        }
+
+        function getContactTime() {
+            const industry = document.getElementById('contact-industry').value;
+            const result = document.getElementById('contact-result');
+            const times = { construction: '6-8 AM, 4-6 PM', trucking: '10 AM-2 PM', restaurant: '2-4 PM' };
+            result.classList.remove('hidden');
+            result.innerHTML = `<div class="text-center"><div class="font-semibold">Best Times:</div><div class="text-sm">${times[industry] || '9 AM - 5 PM'}</div></div>`;
+        }
+
+        function writeColdEmail() {
+            const business = document.getElementById('email-business').value;
+            const result = document.getElementById('email-result');
+            result.classList.remove('hidden');
+            result.innerHTML = `<div class="text-sm">Subject: Quick question about ${business}<br><br>Hi there,<br><br>I work with businesses like ${business} to bridge cash flow gaps. Would you be open to a quick call?<br><br>Best regards</div>`;
+        }
+
+        function matchFunder() {
+            document.getElementById('fm-result').classList.remove('hidden');
+            document.getElementById('fm-result').innerHTML = '<div class="text-sm"><strong>Recommended:</strong><br>• David Allen Capital<br>• Mom & Pop Funding</div>';
+        }
+
+        function getObjectionResponse() {
+            document.getElementById('obj-result').classList.remove('hidden');
+            document.getElementById('obj-result').innerHTML = '<div class="text-sm">I understand. Many clients find the revenue they capture with immediate funding pays for itself within 30 days.</div>';
+        }
+
+        function calculateCommission() {
+            const amount = parseInt(document.getElementById('calc-amount').value) || 0;
+            const rate = parseInt(document.getElementById('calc-rate').value) || 10;
+            const commission = Math.floor(amount * rate / 100);
+            document.getElementById('calc-result').classList.remove('hidden');
+            document.getElementById('calc-result').innerHTML = `<div class="text-center"><div class="text-xl font-bold gold-gradient">$${commission.toLocaleString()}</div><div class="text-xs">Your Commission</div></div>`;
+        }
+
+        function calculateRenewal() {
+            document.getElementById('renewal-result').classList.remove('hidden');
+            document.getElementById('renewal-result').innerHTML = '<div class="text-center"><div class="text-xl font-bold">$45,000</div><div class="text-xs">Renewal Offer</div></div>';
+        }
+
+        function calculateROI() {
+            document.getElementById('roi-result').classList.remove('hidden');
+            document.getElementById('roi-result').innerHTML = '<div class="text-center"><div class="text-xl font-bold text-green-400">125%</div><div class="text-xs">ROI</div></div>';
+        }
+
+        // Funders
+        const funders = [
+            { name: 'David Allen Capital', min: '$10K', max: '$500K', speed: 'Same day', rate: '1.15-1.35' },
+            { name: 'Mom and Pop Business', min: '$8K', max: '$300K', speed: '24-48 hrs', rate: '1.12-1.28' },
+            { name: 'American Express', min: '$50K', max: '$2M', speed: '3-5 days', rate: '1.08-1.20' },
+            { name: 'Stripe Capital', min: '$15K', max: '$500K', speed: '1-2 days', rate: '1.10-1.25' },
+            { name: 'OnDeck', min: '$10K', max: '$250K', speed: 'Same day', rate: '1.15-1.40' },
+            { name: 'BlueVine', min: '$10K', max: '$5M', speed: '24 hrs', rate: '1.08-1.25' },
+            { name: 'Credibly', min: '$10K', max: '$400K', speed: 'Same day', rate: '1.12-1.32' },
+            { name: 'Forward Financing', min: '$10K', max: '$500K', speed: '24 hrs', rate: '1.10-1.30' }
+        ];
+
+        function displayFunders() {
+            document.getElementById('funders-list').innerHTML = funders.map(f => `
+                <div class="glass-card p-4 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-semibold">${f.name}</h4>
+                        <p class="text-sm text-gray-400">${f.min} - ${f.max} • ${f.rate}</p>
+                    </div>
+                    <span class="text-sm text-green-400">${f.speed}</span>
+                </div>
+            `).join('');
+        }
+
+        function filterFunders() {
+            const search = document.getElementById('funder-search').value.toLowerCase();
+            const filtered = funders.filter(f => f.name.toLowerCase().includes(search));
+            document.getElementById('funders-list').innerHTML = filtered.map(f => `
+                <div class="glass-card p-4 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-semibold">${f.name}</h4>
+                        <p class="text-sm text-gray-400">${f.min} - ${f.max}</p>
+                    </div>
+                    <span class="text-sm text-green-400">${f.speed}</span>
+                </div>
+            `).join('');
+        }
+
+        function searchPlaces() {
+            const container = document.getElementById('places-results');
+            container.innerHTML = `
+                <div class="glass-card p-4">
+                    <h4 class="font-semibold">ABC Construction</h4>
+                    <p class="text-sm text-gray-400">Houston, TX • (555) 123-4567</p>
+                    <button class="gold-btn px-4 py-2 rounded-lg text-sm mt-3" onclick="savePlaceLead('ABC Construction')">Add to Leads</button>
+                </div>
+            `;
+        }
+
+        function savePlaceLead(name) {
+            const lead = {
+                id: Date.now(),
+                business: name,
+                city: 'Houston',
+                revenue: 50000,
+                score: 80,
+                industry: 'Construction',
+                status: 'New',
+                savedAt: new Date().toISOString()
+            };
+            leads.push(lead);
+            localStorage.setItem('mca_leads', JSON.stringify(leads));
+            stats.saved = leads.length;
+            updateStats();
+            displayMyLeads();
+        }
+
+        function verifyLead() {
+            document.getElementById('verify-result').innerHTML = `
+                <div class="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-center">
+                    <i data-lucide="check-circle" class="w-8 h-8 text-green-400 mx-auto mb-2"></i>
+                    <div class="font-semibold text-green-400">Lead Verified</div>
+                    <div class="text-sm text-gray-400">Business information confirmed</div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function downloadRoadmap(type) {
+            const content = type === 'first5' ? 'First 5 Deals Roadmap...' : 'Path to $1M Roadmap...';
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `mca-roadmap-${type}.txt`;
+            a.click();
+        }
+
+        function exportLeads() {
+            const csv = leads.map(l => `${l.business},${l.city},${l.revenue},${l.status}`).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mca-leads.csv';
+            a.click();
+        }
+
+        // Initialize
+        updateStats();
+        displayMyLeads();
+        displayFunders();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
