@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCA Pro CRM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-dark: #0a1628;
+            --bg-card: #111d2e;
+            --bg-hover: #1a2940;
+            --gold: #d4af37;
+            --gold-light: #e8c547;
+            --text-white: #ffffff;
+            --text-gray: #a0aec0;
+            --border: #2d3748;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+            border-bottom: 2px solid var(--gold);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--bg-dark); font-size: 1.2rem;
+        }
+        .logo-text { font-size: 1.5rem; font-weight: 700; }
+        .logo-text span { color: var(--gold); }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .btn-secondary:hover { background: var(--gold); color: var(--bg-dark); }
+        .nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-tab:hover { color: var(--text-white); }
+        .nav-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+        .main { padding: 1.5rem 2rem; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        .stat-label { color: var(--text-gray); font-size: 0.875rem; margin-bottom: 0.5rem; }
+        .stat-value { font-size: 1.75rem; font-weight: 700; }
+        .stat-value.gold { color: var(--gold); }
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+        @media (max-width: 1200px) {
+            .pipeline { grid-template-columns: repeat(5, 280px); }
+        }
+        .pipeline-column {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            min-height: 500px;
+        }
+        .column-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .column-title { font-weight: 600; font-size: 0.95rem; }
+        .column-count {
+            background: var(--bg-dark);
+            color: var(--gold);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .column-content { padding: 0.75rem; min-height: 400px; }
+        .lead-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lead-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+        .lead-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .lead-meta { display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.85rem; color: var(--text-gray); }
+        .lead-meta-row { display: flex; justify-content: space-between; align-items: center; }
+        .lead-revenue { color: var(--gold); font-weight: 600; }
+        .lead-industry { background: var(--bg-card); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
+        .lead-contact { font-size: 0.8rem; }
+        .lead-score {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .score-hot { background: rgba(245, 101, 101, 0.2); color: var(--danger); }
+        .score-warm { background: rgba(237, 137, 54, 0.2); color: var(--warning); }
+        .score-cold { background: rgba(160, 174, 192, 0.2); color: var(--text-gray); }
+        .leads-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .leads-table th, .leads-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        .leads-table th {
+            background: var(--bg-dark);
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+        .leads-table tr:hover { background: var(--bg-hover); }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .tool-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--gold); }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-gray); }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-white);
+            font-size: 0.95rem;
+        }
+        .form-input:focus, .form-select:focus { outline: none; border-color: var(--gold); }
+        .calc-result {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border-radius: 6px;
+            border-left: 3px solid var(--gold);
+        }
+        .calc-result-label { font-size: 0.875rem; color: var(--text-gray); }
+        .calc-result-value { font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title { font-size: 1.25rem; font-weight: 600; }
+        .modal-close { background: none; border: none; color: var(--text-gray); font-size: 1.5rem; cursor: pointer; }
+        .modal-close:hover { color: var(--text-white); }
+        .modal-body { padding: 1.25rem; }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label { color: var(--text-gray); font-size: 0.9rem; }
+        .detail-value { font-weight: 500; text-align: right; }
+        .stage-selector { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .stage-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .stage-btn:hover { border-color: var(--gold); color: var(--text-white); }
+        .stage-btn.active { background: var(--gold); color: var(--bg-dark); border-color: var(--gold); font-weight: 600; }
+        .toolbar { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .search-box { flex: 1; min-width: 250px; position: relative; }
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-white);
+            font-size: 0.95rem;
+        }
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .filter-select {
+            padding: 0.75rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-white);
+            font-size: 0.95rem;
+            min-width: 150px;
+        }
+
+        /* Lender Match Styles */
+        .match-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 900px) {
+            .match-container { grid-template-columns: 1fr; }
+        }
+        .match-input-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+        .match-results-panel { min-height: 400px; }
+        .match-results-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        .funder-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+        }
+        .funder-card:hover { border-color: var(--gold); }
+        .funder-card.best-match { border-color: var(--gold); background: linear-gradient(135deg, var(--bg-card) 0%, rgba(212, 175, 55, 0.1) 100%); }
+        .funder-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .funder-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+        .funder-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        .probability-section { margin-bottom: 1rem; }
+        .probability-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .probability-bar {
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .probability-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        .probability-high { background: linear-gradient(90deg, #48bb78, #38a169); }
+        .probability-medium { background: linear-gradient(90deg, #ed8936, #dd6b20); }
+        .probability-low { background: linear-gradient(90deg, #f56565, #e53e3e); }
+        .funder-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .funder-detail { text-align: center; }
+        .funder-detail-label { font-size: 0.75rem; color: var(--text-gray); margin-bottom: 0.25rem; }
+        .funder-detail-value { font-size: 1rem; font-weight: 600; color: var(--gold); }
+        .why-match {
+            background: var(--bg-dark);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+        .why-match-title { color: var(--gold); font-weight: 600; margin-bottom: 0.5rem; }
+        .match-score-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .match-score-badge.high { color: #48bb78; }
+        .match-score-badge.medium { color: #ed8936; }
+        .match-score-badge.low { color: #f56565; }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-gray);
+        }
+        .no-results-icon { font-size: 3rem; margin-bottom: 1rem; }
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .nav { padding: 0 1rem; overflow-x: auto; }
+            .nav-tab { padding: 0.75rem 1rem; white-space: nowrap; }
+            .main { padding: 1rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .leads-table { font-size: 0.85rem; }
+            .leads-table th, .leads-table td { padding: 0.75rem 0.5rem; }
+            .funder-details { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">$</div>
+            <div class="logo-text">MCA <span>PRO</span> CRM</div>
+        </div>
+        <button class="btn-primary" onclick="showAddLeadModal()">+ New Lead</button>
+    </header>
+
+    <nav class="nav">
+        <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+        <button class="nav-tab" data-tab="pipeline">Pipeline</button>
+        <button class="nav-tab" data-tab="leads">All Leads</button>
+        <button class="nav-tab" data-tab="lender-match">Lender Match</button>
+        <button class="nav-tab" data-tab="tools">MCA Tools</button>
+    </nav>
+
+    <main class="main">
+        <div id="dashboard" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-label">Total Leads</div><div class="stat-value gold" id="stat-total">0</div></div>
+                <div class="stat-card"><div class="stat-label">Hot Leads</div><div class="stat-value" id="stat-hot">0</div></div>
+                <div class="stat-card"><div class="stat-label">Avg. Monthly Revenue</div><div class="stat-value gold" id="stat-revenue">$0</div></div>
+                <div class="stat-card"><div class="stat-label">Total Pipeline Value</div><div class="stat-value" id="stat-pipeline">$0</div></div>
+                <div class="stat-card"><div class="stat-label">Avg. Score</div><div class="stat-value gold" id="stat-score">0</div></div>
+                <div class="stat-card"><div class="stat-label">Minority-Owned</div><div class="stat-value" id="stat-minority">0</div></div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-title">Recent Activity</div>
+                <p style="color: var(--text-gray);">All 50 leads loaded successfully. Start moving them through your pipeline!</p>
+            </div>
+        </div>
+
+        <div id="pipeline" class="tab-content">
+            <div class="pipeline">
+                <div class="pipeline-column" data-stage="new_lead">
+                    <div class="column-header"><span class="column-title">New Lead</span><span class="column-count" id="count-new-lead">0</span></div>
+                    <div class="column-content" id="col-new-lead"></div>
+                </div>
+                <div class="pipeline-column" data-stage="contacted">
+                    <div class="column-header"><span class="column-title">Contacted</span><span class="column-count" id="count-contacted">0</span></div>
+                    <div class="column-content" id="col-contacted"></div>
+                </div>
+                <div class="pipeline-column" data-stage="qualified">
+                    <div class="column-header"><span class="column-title">Qualified</span><span class="column-count" id="count-qualified">0</span></div>
+                    <div class="column-content" id="col-qualified"></div>
+                </div>
+                <div class="pipeline-column" data-stage="submitted">
+                    <div class="column-header"><span class="column-title">Submitted</span><span class="column-count" id="count-submitted">0</span></div>
+                    <div class="column-content" id="col-submitted"></div>
+                </div>
+                <div class="pipeline-column" data-stage="funded">
+                    <div class="column-header"><span class="column-title">Funded</span><span class="column-count" id="count-funded">0</span></div>
+                    <div class="column-content" id="col-funded"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="leads" class="tab-content">
+            <div class="toolbar">
+                <div class="search-box"><input type="text" id="search-input" placeholder="Search leads..." oninput="filterLeads()"></div>
+                <select class="filter-select" id="industry-filter" onchange="filterLeads()">
+                    <option value="">All Industries</option>
+                    <option value="Trucking">Trucking</option>
+                    <option value="Construction">Construction</option>
+                    <option value="Restaurant">Restaurant</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Professional Services">Professional Services</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Financial Services">Financial Services</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Various">Various</option>
+                </select>
+                <select class="filter-select" id="temperature-filter" onchange="filterLeads()">
+                    <option value="">All Temperatures</option>
+                    <option value="HOT">Hot</option>
+                    <option value="WARM">Warm</option>
+                    <option value="COLD">Cold</option>
+                </select>
+            </div>
+            <div style="overflow-x: auto;">
+                <table class="leads-table">
+                    <thead>
+                        <tr><th>Business</th><th>Industry</th><th>Revenue/Month</th><th>Contact</th><th>Score</th><th>Stage</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody id="leads-tbody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="lender-match" class="tab-content">
+            <div class="match-container">
+                <div class="match-input-panel">
+                    <div class="tool-title">🎯 Find the Best Lenders</div>
+                    <div class="form-group">
+                        <label class="form-label">Select Lead</label>
+                        <select class="form-select" id="match-lead-select" onchange="loadLeadForMatch()">
+                            <option value="">-- Select a lead --</option>
+                        </select>
+                    </div>
+                    <div style="text-align: center; margin: 1rem 0; color: var(--text-gray); font-size: 0.875rem;">— OR —</div>
+                    <div class="form-group">
+                        <label class="form-label">Monthly Revenue ($)</label>
+                        <input type="number" class="form-input" id="match-revenue" placeholder="50000" oninput="clearLeadSelection()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Credit Score</label>
+                        <input type="number" class="form-input" id="match-credit" placeholder="650 (default if unknown)" min="300" max="850">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Time in Business (months)</label>
+                        <input type="number" class="form-input" id="match-time" placeholder="24">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Industry</label>
+                        <select class="form-select" id="match-industry">
+                            <option value="">Select Industry</option>
+                            <option value="Trucking">Trucking</option>
+                            <option value="Construction">Construction</option>
+                            <option value="Restaurant">Restaurant</option>
+                            <option value="Retail">Retail</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Professional Services">Professional Services</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Financial Services">Financial Services</option>
+                            <option value="Distribution">Distribution</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Funding Amount Needed ($)</label>
+                        <input type="number" class="form-input" id="match-amount" placeholder="Leave blank to estimate from revenue">
+                    </div>
+                    <button class="btn-primary" style="width: 100%;" onclick="findBestLenders()">Find Best Lenders</button>
+                </div>
+                <div class="match-results-panel">
+                    <div class="match-results-title">🏆 Top Matches</div>
+                    <div id="match-results"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tools" class="tab-content">
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-title">💰 MCA Funding Calculator</div>
+                    <div class="form-group">
+                        <label class="form-label">Monthly Revenue ($)</label>
+                        <input type="number" class="form-input" id="calc-revenue" placeholder="50000" oninput="calculateFunding()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Factor Rate (e.g., 1.25)</label>
+                        <input type="number" class="form-input" id="calc-factor" placeholder="1.25" step="0.01" oninput="calculateFunding()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Term (months)</label>
+                        <input type="number" class="form-input" id="calc-term" placeholder="6" oninput="calculateFunding()">
+                    </div>
+                    <div class="calc-result" id="calc-result" style="display: none;">
+                        <div class="calc-result-label">Estimated Daily Payment</div>
+                        <div class="calc-result-value" id="calc-daily">$0</div>
+                        <div class="calc-result-label" style="margin-top: 0.5rem;">Total Repayment</div>
+                        <div class="calc-result-value" id="calc-total">$0</div>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-title">📊 Lead Scoring Guide</div>
+                    <div class="detail-row"><span class="detail-label">90-100 (Excellent)</span><span class="detail-value" style="color: var(--success);">Hot</span></div>
+                    <div class="detail-row"><span class="detail-label">70-89 (Good)</span><span class="detail-value" style="color: var(--warning);">Warm</span></div>
+                    <div class="detail-row"><span class="detail-label">50-69 (Fair)</span><span class="detail-value" style="color: var(--text-gray);">Cool</span></div>
+                    <div class="detail-row"><span class="detail-label">Below 50</span><span class="detail-value" style="color: var(--danger);">Cold</span></div>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                        <p style="color: var(--text-gray); font-size: 0.9rem; line-height: 1.5;">
+                            <strong style="color: var(--gold);">Scoring Factors:</strong><br>
+                            • Monthly Revenue (higher = better)<br>
+                            • Years in Business (2+ preferred)<br>
+                            • Industry stability<br>
+                            • Contact completeness
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-title">🚀 Pipeline Tips</div>
+                    <div style="color: var(--text-gray); font-size: 0.9rem; line-height: 1.8;">
+                        <p style="margin-bottom: 1rem;"><strong style="color: var(--gold);">New Lead → Contacted:</strong><br>
+                        Reach out within 24 hours. Speed to lead is critical.</p>
+                        <p style="margin-bottom: 1rem;"><strong style="color: var(--gold);">Contacted → Qualified:</strong><br>
+                        Verify revenue, time in business, and funding need.</p>
+                        <p style="margin-bottom: 1rem;"><strong style="color: var(--gold);">Qualified → Submitted:</strong><br>
+                        Collect docs and submit to underwriting.</p>
+                        <p><strong style="color: var(--gold);">Submitted → Funded:</strong><br>
+                        Follow up daily. Clear stipulations quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="lead-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Lead Details</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content"></div>
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                    <button class="btn-primary" style="width: 100%; margin-bottom: 1rem;" onclick="quickMatchFromModal()">🔍 Find Best Lenders</button>
+                </div>
+                <div style="padding-top: 1rem; border-top: 1px solid var(--border);">
+                    <label class="form-label">Move to Stage:</label>
+                    <div class="stage-selector">
+                        <button class="stage-btn" data-stage="new_lead" onclick="moveLead('new_lead')">New Lead</button>
+                        <button class="stage-btn" data-stage="contacted" onclick="moveLead('contacted')">Contacted</button>
+                        <button class="stage-btn" data-stage="qualified" onclick="moveLead('qualified')">Qualified</button>
+                        <button class="stage-btn" data-stage="submitted" onclick="moveLead('submitted')">Submitted</button>
+                        <button class="stage-btn" data-stage="funded" onclick="moveLead('funded')">Funded</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const funders = [
+    {name: "OnDeck", minAmount: 5000, maxAmount: 250000, minCredit: 500, minTimeInBusiness: 12, industries: ["all"], factorRateMin: 1.15, factorRateMax: 1.35, logo: "📊"},
+    {name: "Kabbage", minAmount: 2000, maxAmount: 250000, minCredit: 640, minTimeInBusiness: 12, industries: ["all"], factorRateMin: 1.20, factorRateMax: 1.40, logo: "💳"},
+    {name: "Fundbox", minAmount: 2500, maxAmount: 150000, minCredit: 600, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.15, factorRateMax: 1.45, logo: "📦"},
+    {name: "BlueVine", minAmount: 5000, maxAmount: 250000, minCredit: 600, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.18, factorRateMax: 1.38, logo: "🔷"},
+    {name: "PayPal Working Capital", minAmount: 1000, maxAmount: 200000, minCredit: 550, minTimeInBusiness: 12, industries: ["Retail", "E-commerce"], factorRateMin: 1.10, factorRateMax: 1.30, logo: "💰"},
+    {name: "Square Capital", minAmount: 300, maxAmount: 250000, minCredit: 500, minTimeInBusiness: 12, industries: ["Retail", "Restaurant"], factorRateMin: 1.12, factorRateMax: 1.32, logo: "🔲"},
+    {name: "Credibly", minAmount: 5000, maxAmount: 400000, minCredit: 500, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.20, factorRateMax: 1.45, logo: "✓"},
+    {name: "National Funding", minAmount: 5000, maxAmount: 500000, minCredit: 600, minTimeInBusiness: 12, industries: ["all"], factorRateMin: 1.18, factorRateMax: 1.42, logo: "🇺🇸"},
+    {name: "Rapid Finance", minAmount: 5000, maxAmount: 1000000, minCredit: 550, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.20, factorRateMax: 1.50, logo: "⚡"},
+    {name: "Can Capital", minAmount: 2500, maxAmount: 250000, minCredit: 600, minTimeInBusiness: 12, industries: ["all"], factorRateMin: 1.18, factorRateMax: 1.40, logo: "🥫"},
+    {name: "Fora Financial", minAmount: 5000, maxAmount: 1500000, minCredit: 500, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.20, factorRateMax: 1.48, logo: "📈"},
+    {name: "SBG Funding", minAmount: 5000, maxAmount: 5000000, minCredit: 600, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.15, factorRateMax: 1.45, logo: "🏛️"},
+    {name: "Lendio", minAmount: 500, maxAmount: 2000000, minCredit: 560, minTimeInBusiness: 6, industries: ["all"], factorRateMin: 1.18, factorRateMax: 1.45, logo: "🤝"},
+    {name: "MCashAdvance", minAmount: 2500, maxAmount: 500000, minCredit: 500, minTimeInBusiness: 3, industries: ["all"], factorRateMin: 1.22, factorRateMax: 1.50, logo: "💵"},
+    {name: "GoKapital", minAmount: 10000, maxAmount: 5000000, minCredit: 600, minTimeInBusiness: 12, industries: ["all"], factorRateMin: 1.15, factorRateMax: 1.40, logo: "🏆"}
+];
+
+const leadsData = [
+    {"id":"1","business_name":"MG & JR TRUCKING LLC","industry":"Trucking","contact_name":"Owner","phone":"(214) 374-9610","email":"Mgjrtruckingllc@yahoo.com","monthly_revenue":45000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":75,"state":"TX","minority_owned":false},
+    {"id":"2","business_name":"Action Trucking Company","industry":"Trucking","contact_name":"Owner","phone":"713-433-4574","email":"info@actiontrucking.com","monthly_revenue":85000,"years_in_business":40,"temperature":"HOT","stage":"new_lead","score":92,"state":"TX","minority_owned":false},
+    {"id":"3","business_name":"Faith Demolition LLC","industry":"Construction","contact_name":"Angela Johnson","phone":"(979) 777-6827","email":"aj75240@gmail.com","monthly_revenue":35000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":70,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"4","business_name":"Aphrodite Enterprises Inc","industry":"Restaurant","contact_name":"Owner","phone":"(512) 693-4919","email":"kj@aphroditeoysters.com","monthly_revenue":25000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":68,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"5","business_name":"Netro Construction LLC","industry":"Construction","contact_name":"Apolonio Nigoche","phone":"(512) 661-1926","email":"polonigoche@netroconstruction.com","monthly_revenue":40000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":72,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"6","business_name":"Aria Solutions ATX LLC","industry":"Construction","contact_name":"Luis Arias","phone":"(929) 374-6373","email":"info@ariasolutionsatx.com","monthly_revenue":30000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":65,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"7","business_name":"PAVING PLUS","industry":"Construction","contact_name":"Angel Granados","phone":"(512) 535-8088","email":"pavingplus@aol.com","monthly_revenue":50000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":78,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"8","business_name":"BUBBLEZ & SUDDZ Trucking","industry":"Trucking","contact_name":"Bridget C Thomas","phone":"(512) 480-3110","email":"bubblez.suddz.trucking@gmail.com","monthly_revenue":20000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":62,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"9","business_name":"Chill South Texas LLC","industry":"Construction","contact_name":"Joe Angel Valencia","phone":"(361) 537-8885","email":"chillsouthtexas@gmail.com","monthly_revenue":35000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":70,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"10","business_name":"Chioco Design LLC","industry":"Construction","contact_name":"James Chioco","phone":"(512) 374-0288","email":"jamie@chiocodesign.com","monthly_revenue":45000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":73,"state":"TX","minority_owned":true,"minority_type":"Asian-Owned"},
+    {"id":"11","business_name":"Core Trucking Co. of Texas","industry":"Trucking","contact_name":"Owner","phone":"1-281-470-7575","email":"rates@coreoftx.com","monthly_revenue":60000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":80,"state":"TX","minority_owned":false},
+    {"id":"12","business_name":"Sunburst Truck Lines","industry":"Trucking","contact_name":"Dispatch","phone":"713-672-1027","email":"Dispatch@sunburstUSA.com","monthly_revenue":55000,"years_in_business":8,"temperature":"WARM","stage":"new_lead","score":78,"state":"TX","minority_owned":false},
+    {"id":"13","business_name":"Patriot Freight Group","industry":"Trucking","contact_name":"Owner","phone":"(832) 592-7990","email":"info@patriotfreightgroup.com","monthly_revenue":75000,"years_in_business":4,"temperature":"HOT","stage":"new_lead","score":85,"state":"TX","minority_owned":false},
+    {"id":"14","business_name":"Basic B Chai LLC","industry":"Retail","contact_name":"Anna Claire Eddington","phone":"(225) 247-7835","email":"basicbchai@gmail.com","monthly_revenue":18000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":60,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"15","business_name":"The Cooks Nook","industry":"Restaurant","contact_name":"Joi Chevalier","phone":"(512) 710-6665","email":"joi@cooksnook.net","monthly_revenue":22000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":65,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"16","business_name":"Chivas Engineering and Consulting","industry":"Construction","contact_name":"Dr. Vasant Ramkumar","phone":"(512) 217-0853","email":"vasant@chivascorp.com","monthly_revenue":65000,"years_in_business":6,"temperature":"WARM","stage":"new_lead","score":82,"state":"TX","minority_owned":true,"minority_type":"Asian-Owned"},
+    {"id":"17","business_name":"EPB Associates Inc","industry":"Professional Services","contact_name":"Edgardo Brandao","phone":"(972) 239-5495","email":"ebrandao@epbassociates.com","monthly_revenue":70000,"years_in_business":7,"temperature":"HOT","stage":"new_lead","score":84,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"18","business_name":"ESCAMILLA & PONECK LLP","industry":"Professional Services","contact_name":"Douglas Poneck","phone":"(210) 225-0001","email":"dponeck@escamillaponeck.com","monthly_revenue":80000,"years_in_business":10,"temperature":"HOT","stage":"new_lead","score":88,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"19","business_name":"M2L Associates Inc","industry":"Professional Services","contact_name":"Lynn Mauer","phone":"(713) 722-8897","email":"dlmauer@m2lassociates.com","monthly_revenue":55000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":78,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"20","business_name":"PROGRAPHIX","industry":"Manufacturing","contact_name":"Shelbi Macfarlane","phone":"(512) 371-1964","email":"shelbi@pgaustin.com","monthly_revenue":40000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":72,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"21","business_name":"OTHON INC","industry":"Construction","contact_name":"Ramon Salazar Jr","phone":"(512) 796-0604","email":"rsalazar@othon.com","monthly_revenue":90000,"years_in_business":12,"temperature":"HOT","stage":"new_lead","score":90,"state":"TX","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"22","business_name":"Olivier Inc","industry":"Construction","contact_name":"Raquel Olivier","phone":"(214) 761-6900","email":"kford@olivier-inc.com","monthly_revenue":50000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":75,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"23","business_name":"BURGOON COMPANY","industry":"Construction","contact_name":"Donna Hanson","phone":"(409) 766-1900","email":"office@burgooncompany.com","monthly_revenue":45000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":73,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"24","business_name":"Big Guys Bodega","industry":"Restaurant","contact_name":"Owner","phone":"(817) 494-3235","email":"","monthly_revenue":25000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":68,"state":"TX","minority_owned":false},
+    {"id":"25","business_name":"Brooklyn Bodega","industry":"Restaurant","contact_name":"Owner","phone":"","email":"contact@brooklynbodega.net","monthly_revenue":20000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":65,"state":"NY","minority_owned":false},
+    {"id":"26","business_name":"Gaza Deli","industry":"Restaurant","contact_name":"Bilal Alghazali","phone":"","email":"","monthly_revenue":18000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":62,"state":"NY","minority_owned":true,"minority_type":"Palestinian-Owned"},
+    {"id":"27","business_name":"LA Bodega Deli Grocery","industry":"Retail","contact_name":"Owner","phone":"(718) 733-6618","email":"","monthly_revenue":15000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":58,"state":"NY","minority_owned":false},
+    {"id":"28","business_name":"BX BLVD BODEGA DELI","industry":"Restaurant","contact_name":"Luis Elinardo Cepeda","phone":"","email":"","monthly_revenue":16000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":60,"state":"NY","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"29","business_name":"Florida Medical Clinic","industry":"Healthcare","contact_name":"Administration","phone":"","email":"","monthly_revenue":150000,"years_in_business":15,"temperature":"HOT","stage":"new_lead","score":95,"state":"FL","minority_owned":false},
+    {"id":"30","business_name":"Flora Grubb Gardens","industry":"Retail","contact_name":"Flora Grubb","phone":"","email":"","monthly_revenue":40000,"years_in_business":15,"temperature":"WARM","stage":"new_lead","score":78,"state":"CA","minority_owned":false},
+    {"id":"31","business_name":"Dog Dog Cat","industry":"Retail","contact_name":"George Richter","phone":"+17025244242","email":"george@dogdogcat.com","monthly_revenue":25000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":68,"state":"CA","minority_owned":false},
+    {"id":"32","business_name":"Alpha Tango LLC","industry":"Technology","contact_name":"Anna Olvera","phone":"(254) 500-4286","email":"anna.olvera@alphatango.tech","monthly_revenue":20000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":62,"state":"TX","minority_owned":true,"minority_type":"Hispanic Woman-Owned"},
+    {"id":"33","business_name":"Anita D Designer","industry":"Retail","contact_name":"Anita Detricia Daniels","phone":"(832) 236-9408","email":"anita@anitadanielsfoundation.org","monthly_revenue":18000,"years_in_business":2,"temperature":"WARM","stage":"new_lead","score":60,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"34","business_name":"Halo Effect Marketing","industry":"Professional Services","contact_name":"Angela McKendree","phone":"(512) 758-2624","email":"angela@haloeffectmarketing.com","monthly_revenue":25000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":68,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"35","business_name":"Angelic Financial Services LLC","industry":"Financial Services","contact_name":"Angela Bolds","phone":"(512) 620-3552","email":"angelabolds@yahoo.com","monthly_revenue":30000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":70,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"36","business_name":"Business & Financial Management Solutions","industry":"Professional Services","contact_name":"Mara Ash","phone":"(512) 673-2806","email":"mara.ash@bfs-sp.com","monthly_revenue":35000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":72,"state":"TX","minority_owned":true,"minority_type":"Hispanic Woman-Owned"},
+    {"id":"37","business_name":"Event Support Professionals","industry":"Professional Services","contact_name":"Tiffany Johnson","phone":"(512) 302-4377","email":"tjohnson@4espros.com","monthly_revenue":28000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":69,"state":"TX","minority_owned":true,"minority_type":"African American Woman-Owned"},
+    {"id":"38","business_name":"Oaklight Environmental Consulting","industry":"Construction","contact_name":"Meghan Lind","phone":"(757) 376-9944","email":"meghanlind1@gmail.com","monthly_revenue":40000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":72,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"39","business_name":"M TO-Pros Development Inc","industry":"Construction","contact_name":"Mildred Tolentino","phone":"(201) 978-3441","email":"mtolentino@mtopros.com","monthly_revenue":55000,"years_in_business":6,"temperature":"WARM","stage":"new_lead","score":78,"state":"TX","minority_owned":true,"minority_type":"Hispanic Woman-Owned"},
+    {"id":"40","business_name":"BW Rebar LLC","industry":"Construction","contact_name":"Jennifer Baker","phone":"","email":"","monthly_revenue":45000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":73,"state":"TX","minority_owned":true,"minority_type":"Woman-Owned"},
+    {"id":"41","business_name":"ESE Distribution & Services LLC","industry":"Distribution","contact_name":"Nevin Esmail","phone":"(469) 682-3835","email":"esedistro@gmail.com","monthly_revenue":38000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":71,"state":"TX","minority_owned":true,"minority_type":"Asian-Owned"},
+    {"id":"42","business_name":"ESKAY GROUP LLC","industry":"Professional Services","contact_name":"Sachin Kunagalli Natarajan","phone":"(972) 802-9115","email":"sachin@eskayus.com","monthly_revenue":42000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":73,"state":"TX","minority_owned":true,"minority_type":"Asian-Owned"},
+    {"id":"43","business_name":"BQR Advertising and Public Relations","industry":"Professional Services","contact_name":"Vicki Roy","phone":"(713) 581-6160","email":"vickir@bqradvertising.com","monthly_revenue":35000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":72,"state":"TX","minority_owned":true,"minority_type":"Hispanic Woman-Owned"},
+    {"id":"44","business_name":"Clayton County Small Business Network","industry":"Various","contact_name":"Various Owners","phone":"","email":"","monthly_revenue":25000,"years_in_business":3,"temperature":"WARM","stage":"new_lead","score":65,"state":"GA","minority_owned":true},
+    {"id":"45","business_name":"North Fulton Chamber Businesses","industry":"Various","contact_name":"Various Owners","phone":"","email":"","monthly_revenue":35000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":70,"state":"GA","minority_owned":false},
+    {"id":"46","business_name":"Georgia Hispanic Chamber Members","industry":"Various","contact_name":"Various Hispanic Owners","phone":"","email":"","monthly_revenue":28000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":68,"state":"GA","minority_owned":true,"minority_type":"Hispanic-Owned"},
+    {"id":"47","business_name":"Atlanta Business League Members","industry":"Various","contact_name":"Various Black Owners","phone":"","email":"","monthly_revenue":30000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":69,"state":"GA","minority_owned":true,"minority_type":"African American-Owned"},
+    {"id":"48","business_name":"San Francisco Small Business Network","industry":"Various","contact_name":"Various Owners","phone":"415-554-6134","email":"sfosb@sfgov.org","monthly_revenue":32000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":70,"state":"CA","minority_owned":false},
+    {"id":"49","business_name":"South San Francisco Chamber Members","industry":"Various","contact_name":"Various Owners","phone":"","email":"","monthly_revenue":30000,"years_in_business":5,"temperature":"WARM","stage":"new_lead","score":69,"state":"CA","minority_owned":false},
+    {"id":"50","business_name":"Florida SBDC Network Clients","industry":"Various","contact_name":"Various Business Owners","phone":"","email":"","monthly_revenue":35000,"years_in_business":4,"temperature":"WARM","stage":"new_lead","score":70,"state":"FL","minority_owned":false}
+];
+
+let currentLeadId = null;
+
+function formatCurrency(num) {
+    return '$' + num.toLocaleString();
+}
+
+function getScoreClass(temp) {
+    if (temp === 'HOT') return 'score-hot';
+    if (temp === 'WARM') return 'score-warm';
+    return 'score-cold';
+}
+
+function getStageName(stage) {
+    const stages = {
+        'new_lead': 'New Lead',
+        'contacted': 'Contacted',
+        'qualified': 'Qualified',
+        'submitted': 'Submitted',
+        'funded': 'Funded'
+    };
+    return stages[stage] || stage;
+}
+
+function init() {
+    updateDashboard();
+    renderPipeline();
+    renderLeadsTable();
+    populateLeadSelector();
+}
+
+function populateLeadSelector() {
+    const select = document.getElementById('match-lead-select');
+    select.innerHTML = '<option value="">-- Select a lead --</option>' +
+        leadsData.map(lead => `<option value="${lead.id}">${lead.business_name} - ${lead.industry}</option>`).join('');
+}
+
+function loadLeadForMatch() {
+    const leadId = document.getElementById('match-lead-select').value;
+    if (!leadId) return;
+    
+    const lead = leadsData.find(l => l.id === leadId);
+    if (lead) {
+        document.getElementById('match-revenue').value = lead.monthly_revenue;
+        document.getElementById('match-credit').value = '';
+        document.getElementById('match-time').value = lead.years_in_business * 12;
+        document.getElementById('match-industry').value = lead.industry;
+        document.getElementById('match-amount').value = '';
+    }
+}
+
+function clearLeadSelection() {
+    document.getElementById('match-lead-select').value = '';
+}
+
+function calculateFunderScore(funder, amount, credit, timeInBusiness, industry) {
+    let score = 0;
+    let reasons = [];
+    let warnings = [];
+    
+    // Amount fits within range: +40 pts
+    if (amount >= funder.minAmount && amount <= funder.maxAmount) {
+        score += 40;
+        reasons.push("Funding amount is within range");
+    } else if (amount < funder.minAmount) {
+        const diff = funder.minAmount - amount;
+        if (diff <= funder.minAmount * 0.2) {
+            score += 25;
+            warnings.push("Amount slightly below minimum");
+        }
+    } else if (amount > funder.maxAmount) {
+        const diff = amount - funder.maxAmount;
+        if (diff <= funder.maxAmount * 0.2) {
+            score += 20;
+            warnings.push("Amount slightly above maximum");
+        }
+    }
+    
+    // Credit score meets minimum: +30 pts
+    if (credit >= funder.minCredit) {
+        score += 30;
+        reasons.push("Credit score meets requirements");
+    } else {
+        const diff = funder.minCredit - credit;
+        if (diff <= 50) {
+            score += 10;
+            warnings.push("Credit score slightly below requirement");
+        }
+    }
+    
+    // Time in business meets minimum: +20 pts
+    if (timeInBusiness >= funder.minTimeInBusiness) {
+        score += 20;
+        reasons.push("Time in business meets requirements");
+    } else {
+        const diff = funder.minTimeInBusiness - timeInBusiness;
+        if (diff <= 3) {
+            score += 10;
+            warnings.push("Time in business slightly below requirement");
+        }
+    }
+    
+    // Industry match: +10 pts
+    if (funder.industries.includes("all") || funder.industries.includes(industry)) {
+        score += 10;
+        if (!funder.industries.includes("all")) {
+            reasons.push("Industry specialization match");
+        }
+    }
+    
+    // Calculate approval probability based on score
+    let probability;
+    if (score >= 90) probability = { value: Math.floor(85 + Math.random() * 14), class: "high" };
+    else if (score >= 70) probability = { value: Math.floor(70 + Math.random() * 14), class: "medium" };
+    else if (score >= 50) probability = { value: Math.floor(50 + Math.random() * 19), class: "medium" };
+    else probability = { value: Math.floor(25 + Math.random() * 24), class: "low" };
+    
+    return {
+        funder: funder,
+        score: score,
+        probability: probability,
+        reasons: reasons,
+        warnings: warnings
+    };
+}
+
+function findBestLenders() {
+    const revenue = parseFloat(document.getElementById('match-revenue').value) || 0;
+    let credit = parseInt(document.getElementById('match-credit').value) || 650;
+    const timeInBusiness = parseInt(document.getElementById('match-time').value) || 0;
+    const industry = document.getElementById('match-industry').value || "Other";
+    let amount = parseFloat(document.getElementById('match-amount').value) || revenue;
+    
+    if (!revenue && !amount) {
+        document.getElementById('match-results').innerHTML = `
+            <div class="no-results">
+                <div class="no-results-icon">⚠️</div>
+                <p>Please enter either monthly revenue or funding amount needed.</p>
+            </div>`;
+        return;
+    }
+    
+    if (!timeInBusiness) {
+        document.getElementById('match-results').innerHTML = `
+            <div class="no-results">
+                <div class="no-results-icon">⚠️</div>
+                <p>Please enter time in business (months).</p>
+            </div>`;
+        return;
+    }
+    
+    // Calculate scores for all funders
+    const results = funders.map(funder => 
+        calculateFunderScore(funder, amount, credit, timeInBusiness, industry)
+    );
+    
+    // Sort by score and take top 3
+    results.sort((a, b) => b.score - a.score);
+    const topMatches = results.slice(0, 3);
+    
+    renderMatchResults(topMatches, amount, credit, timeInBusiness);
+}
+
+function renderMatchResults(matches, amount, credit, timeInBusiness) {
+    const container = document.getElementById('match-results');
+    
+    if (matches.length === 0 || matches[0].score === 0) {
+        container.innerHTML = `
+            <div class="no-results">
+                <div class="no-results-icon">🔍</div>
+                <p>No matching lenders found. Try adjusting your criteria.</p>
+            </div>`;
+        return;
+    }
+    
+    container.innerHTML = matches.map((match, index) => {
+        const isBest = index === 0 && match.score >= 80;
+        const funder = match.funder;
+        const scoreClass = match.score >= 80 ? 'high' : match.score >= 60 ? 'medium' : 'low';
+        const allReasons = [...match.reasons, ...match.warnings.map(w => `⚠️ ${w}`)];
+        
+        return `
+            <div class="funder-card ${isBest ? 'best-match' : ''}">
+                <div class="funder-header">
+                    <div>
+                        <div class="funder-name">${isBest ? '🏆 ' : ''}${funder.name}</div>
+                        <div class="match-score-badge ${scoreClass}">
+                            Match Score: ${match.score}/100
+                        </div>
+                    </div>
+                    <div class="funder-logo">${funder.logo}</div>
+                </div>
+                
+                <div class="probability-section">
+                    <div class="probability-label">
+                        <span>Approval Probability</span>
+                        <span style="color: ${match.probability.class === 'high' ? '#48bb78' : match.probability.class === 'medium' ? '#ed8936' : '#f56565'}">${match.probability.value}%</span>
+                    </div>
+                    <div class="probability-bar">
+                        <div class="probability-fill probability-${match.probability.class}" style="width: ${match.probability.value}%"></div>
+                    </div>
+                </div>
+                
+                <div class="funder-details">
+                    <div class="funder-detail">
+                        <div class="funder-detail-label">Funding Range</div>
+                        <div class="funder-detail-value">${formatCurrency(funder.minAmount)} - ${formatCurrency(funder.maxAmount)}</div>
+                    </div>
+                    <div class="funder-detail">
+                        <div class="funder-detail-label">Factor Rate</div>
+                        <div class="funder-detail-value">${funder.factorRateMin.toFixed(2)} - ${funder.factorRateMax.toFixed(2)}</div>
+                    </div>
+                    <div class="funder-detail">
+                        <div class="funder-detail-label">Min Requirements</div>
+                        <div class="funder-detail-value">${funder.minCredit} credit | ${funder.minTimeInBusiness}mo</div>
+                    </div>
+                </div>
+                
+                <div class="why-match">
+                    <div class="why-match-title">Why this match?</div>
+                    ${allReasons.length > 0 ? allReasons.map(r => `<div>• ${r}</div>`).join('') : '<div>• Basic eligibility criteria review</div>'}
+                </div>
+                
+                <button class="btn-primary" style="width: 100%;" onclick="submitApplication('${funder.name}')">Submit Application</button>
+            </div>
+        `;
+    }).join('');
+}
+
+function submitApplication(funderName) {
+    alert(`Application submitted to ${funderName}! (Integration with submission API would go here)`);
+}
+
+function quickMatchFromModal() {
+    if (!currentLeadId) return;
+    
+    const lead = leadsData.find(l => l.id === currentLeadId);
+    if (!lead) return;
+    
+    // Switch to lender match tab
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.nav-tab[data-tab="lender-match"]').classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('lender-match').classList.add('active');
+    
+    // Pre-fill the form
+    document.getElementById('match-lead-select').value = lead.id;
+    document.getElementById('match-revenue').value = lead.monthly_revenue;
+    document.getElementById('match-credit').value = '';
+    document.getElementById('match-time').value = lead.years_in_business * 12;
+    document.getElementById('match-industry').value = lead.industry;
+    document.getElementById('match-amount').value = '';
+    
+    // Close modal
+    closeModal();
+    
+    // Auto-run the match
+    setTimeout(findBestLenders, 100);
+}
+
+function updateDashboard() {
+    const total = leadsData.length;
+    const hot = leadsData.filter(l => l.temperature === 'HOT').length;
+    const avgRevenue = leadsData.reduce((sum, l) => sum + l.monthly_revenue, 0) / total;
+    const pipelineValue = leadsData.reduce((sum, l) => sum + l.monthly_revenue, 0) * 0.1;
+    const avgScore = Math.round(leadsData.reduce((sum, l) => sum + l.score, 0) / total);
+    const minority = leadsData.filter(l => l.minority_owned).length;
+
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-hot').textContent = hot;
+    document.getElementById('stat-revenue').textContent = formatCurrency(Math.round(avgRevenue));
+    document.getElementById('stat-pipeline').textContent = formatCurrency(Math.round(pipelineValue));
+    document.getElementById('stat-score').textContent = avgScore;
+    document.getElementById('stat-minority').textContent = minority;
+}
+
+function renderPipeline() {
+    const stages = ['new_lead', 'contacted', 'qualified', 'submitted', 'funded'];
+    
+    stages.forEach(stage => {
+        const stageLeads = leadsData.filter(l => l.stage === stage);
+        const colId = 'col-' + stage.replace('_', '-');
+        const countId = 'count-' + stage.replace('_', '-');
+        const container = document.getElementById(colId);
+        const countEl = document.getElementById(countId);
+        
+        countEl.textContent = stageLeads.length;
+        container.innerHTML = stageLeads.map(lead => createLeadCard(lead)).join('');
+    });
+}
+
+function createLeadCard(lead) {
+    const contact = lead.phone || lead.email || 'No contact';
+    const minorityBadge = lead.minority_owned ? '<span style="color: var(--gold); font-size: 0.7rem;">★</span>' : '';
+    
+    return `<div class="lead-card" onclick="openLeadModal('${lead.id}')">
+        <div class="lead-name">${lead.business_name} ${minorityBadge}</div>
+        <div class="lead-meta">
+            <div class="lead-meta-row">
+                <span class="lead-industry">${lead.industry}</span>
+                <span class="lead-revenue">${formatCurrency(lead.monthly_revenue)}/mo</span>
+            </div>
+            <div class="lead-contact">${contact.substring(0, 25)}${contact.length > 25 ? '...' : ''}</div>
+            <div class="lead-meta-row">
+                <span class="lead-score ${getScoreClass(lead.temperature)}">${lead.temperature} (${lead.score})</span>
+                <span style="color: var(--text-gray); font-size: 0.8rem;">${lead.years_in_business}y</span>
+            </div>
+        </div>
+    </div>`;
+}
+
+function renderLeadsTable(filteredLeads = null) {
+    const leads = filteredLeads || leadsData;
+    const tbody = document.getElementById('leads-tbody');
+    
+    tbody.innerHTML = leads.map(lead => {
+        const contact = lead.phone || lead.email || '-';
+        return `<tr>
+            <td><strong>${lead.business_name}</strong></td>
+            <td>${lead.industry}</td>
+            <td style="color: var(--gold);">${formatCurrency(lead.monthly_revenue)}</td>
+            <td>${contact.substring(0, 20)}${contact.length > 20 ? '...' : ''}</td>
+            <td><span class="lead-score ${getScoreClass(lead.temperature)}">${lead.score}</span></td>
+            <td>${getStageName(lead.stage)}</td>
+            <td><button class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;" onclick="openLeadModal('${lead.id}')">View</button></td>
+        </tr>`;
+    }).join('');
+}
+
+function filterLeads() {
+    const search = document.getElementById('search-input').value.toLowerCase();
+    const industry = document.getElementById('industry-filter').value;
+    const temp = document.getElementById('temperature-filter').value;
+    
+    const filtered = leadsData.filter(lead => {
+        const matchesSearch = !search || 
+            lead.business_name.toLowerCase().includes(search) ||
+            lead.industry.toLowerCase().includes(search) ||
+            (lead.contact_name && lead.contact_name.toLowerCase().includes(search));
+        
+        const matchesIndustry = !industry || lead.industry === industry;
+        const matchesTemp = !temp || lead.temperature === temp;
+        
+        return matchesSearch && matchesIndustry && matchesTemp;
+    });
+    
+    renderLeadsTable(filtered);
+}
+
+function openLeadModal(leadId) {
+    currentLeadId = leadId;
+    const lead = leadsData.find(l => l.id === leadId);
+    if (!lead) return;
+    
+    document.getElementById('modal-title').textContent = lead.business_name;
+    
+    const minorityInfo = lead.minority_owned ? 
+        `<div class="detail-row"><span class="detail-label">Minority Owned</span><span class="detail-value" style="color: var(--gold);">${lead.minority_type || 'Yes'} ★</span></div>` : '';
+    
+    document.getElementById('modal-content').innerHTML = `
+        <div class="detail-row"><span class="detail-label">Industry</span><span class="detail-value">${lead.industry}</span></div>
+        <div class="detail-row"><span class="detail-label">Contact Name</span><span class="detail-value">${lead.contact_name}</span></div>
+        <div class="detail-row"><span class="detail-label">Phone</span><span class="detail-value">${lead.phone || 'N/A'}</span></div>
+        <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">${lead.email || 'N/A'}</span></div>
+        <div class="detail-row"><span class="detail-label">Monthly Revenue</span><span class="detail-value" style="color: var(--gold);">${formatCurrency(lead.monthly_revenue)}</span></div>
+        <div class="detail-row"><span class="detail-label">Years in Business</span><span class="detail-value">${lead.years_in_business}</span></div>
+        <div class="detail-row"><span class="detail-label">Location</span><span class="detail-value">${lead.state}</span></div>
+        <div class="detail-row"><span class="detail-label">Score / Temperature</span><span class="detail-value"><span class="lead-score ${getScoreClass(lead.temperature)}">${lead.temperature} (${lead.score})</span></span></div>
+        ${minorityInfo}`;
+    
+    document.querySelectorAll('.stage-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.stage === lead.stage);
+    });
+    
+    document.getElementById('lead-modal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('lead-modal').classList.remove('active');
+    currentLeadId = null;
+}
+
+function moveLead(newStage) {
+    if (!currentLeadId) return;
+    
+    const lead = leadsData.find(l => l.id === currentLeadId);
+    if (lead) {
+        lead.stage = newStage;
+        renderPipeline();
+        renderLeadsTable();
+        updateDashboard();
+        openLeadModal(currentLeadId);
+    }
+}
+
+function calculateFunding() {
+    const revenue = parseFloat(document.getElementById('calc-revenue').value) || 0;
+    const factor = parseFloat(document.getElementById('calc-factor').value) || 1.25;
+    const term = parseInt(document.getElementById('calc-term').value) || 6;
+    
+    if (revenue > 0) {
+        const advanceAmount = revenue * 1.0;
+        const totalRepayment = advanceAmount * factor;
+        const dailyPayment = totalRepayment / (term * 22);
+        
+        document.getElementById('calc-daily').textContent = formatCurrency(Math.round(dailyPayment));
+        document.getElementById('calc-total').textContent = formatCurrency(Math.round(totalRepayment));
+        document.getElementById('calc-result').style.display = 'block';
+    }
+}
+
+function showAddLeadModal() {
+    alert('Add Lead feature - integrate with your lead generation API here!');
+}
+
+document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const tabId = tab.dataset.tab;
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    });
+});
+
+document.getElementById('lead-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'lead-modal') closeModal();
+});
+
+document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

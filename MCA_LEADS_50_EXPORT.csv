@@ -1,0 +1,51 @@
+Business Name,Contact Name,Industry,Monthly Revenue,Phone,Email,Address,City,State,ZIP,Years in Business,Funding Need,Temperature,Score,Minority Owned
+"MG & JR TRUCKING LLC","Owner","Trucking",45000,"(214) 374-9610","Mgjrtruckingllc@yahoo.com","1956 Aspen St","Dallas","TX","75208",1,"Working capital","WARM",75,No
+"Action Trucking Company","Owner","Trucking",85000,"713-433-4574","info@actiontrucking.com","11111 Cash Rd","Houston","TX","77024",7,"Expansion","HOT",92,No
+"Faith Demolition LLC","Angela Johnson","Construction",35000,"(979) 777-6827","aj75240@gmail.com","4107 Southern Trace Dr","College Station","TX","77845",3,"Equipment","HOT",88,Yes,Hispanic
+"Aphrodite Enterprises Inc","Owner","Restaurant",25000,"(512) 693-4919","kj@aphroditeoysters.com","3715 S Congress Ave","Austin","TX","78704",2,"Expansion","WARM",65,No
+"Netro Construction LLC","Apolonio Nigoche","Construction",40000,"(512) 661-1926","polonigoche@netroconstruction.com","11501 Ranch Rd","Austin","TX","78726",3,"Working capital","WARM",72,No
+"Gerrald Drilling Inc","Owner","Construction",55000,"(409) 201-8708","gerralddrilling@gmail.com","1258 B Co Rd 402","Fayetteville","TX","78940",6,"Equipment","HOT",90,No
+"Arrington Concrete Inc","Owner","Construction",30000,"(713) 291-6772","arrington.concreteinc@gmail.com","17717 Fm 2100 Rd","Crosby","TX",77532,10,"Working capital","WARM",70,No
+"J & S Concrete LLC","Owner","Construction",42000,"(214) 469-9876","jnsconcretellc@gmail.com","12475 Plano Rd","Dallas","TX","75243",5,"Expansion","WARM",75,No
+"Lopez Custom Homes LLC","Luis Lopez","Construction",60000,"(956) 566-1612","lopezcustomhomes@gmail.com","1600 E Expressway 83","Mission","TX","78572",8,"Expansion","HOT",85,Yes,Hispanic
+"L & J Concrete LLC","Owner","Construction",38000,"(281) 485-2698","lnjconcretellc@gmail.com","13455 South Fwy","Houston","TX","77047",4,"Equipment","WARM",73,Yes,Hispanic
+"Stell Concrete LLC","Owner","Construction",28000,"(214) 497-6666","stellconcretellc@gmail.com","2914 Merriman St","Dallas","TX","75226",2,"Working capital","COLD",55,No
+"KJ Jones Concrete LLC","Owner","Construction",32000,"(972) 302-9612","kjjonesconcrete@gmail.com","1135 N Carrier Pkwy","Grand Prairie","TX","75050",4,"Expansion","WARM",68,No
+"Industrial Logistics LLC","Owner","Trucking",95000,"(832) 767-9413","industriallogisticsllc@gmail.com","10100 S Main St","Houston","TX","77025",9,"Fleet expansion","HOT",94,No
+"HINO OF DALLAS","Owner","Trucking",120000,"(214) 904-9000","hinoofdallas@hino.com","1330 N Walton Walker Blvd","Dallas","TX","75211",15,"Inventory financing","HOT",96,No
+"Jay Trailers Inc","Owner","Trucking",45000,"(512) 303-0801","jaytrailersinc@gmail.com","9900 N Interstate 35","Austin","TX","78753",6,"Equipment","WARM",76,No
+"US Concrete INC","Owner","Construction",75000,"(214) 856-0600","usconcrete@usconcrete.com","3311 E Jefferson St","Grand Prairie","TX","75051",12,"Working capital","HOT",89,No
+"CDM Constructors LLC","Owner","Construction",50000,"(210) 655-3833","cdmconstructors@gmail.com","1020 Central Pkwy S","San Antonio","TX","78232",8,"Expansion","HOT",84,No
+"RDI US CONSTRUCTION LP","Owner","Construction",65000,"(713) 522-2200","rdiusconstruction@rdi.com","3501 Allen Pkwy","Houston","TX","77019",10,"Working capital","HOT",87,No
+"ADP CONSTRUCTION INC","Owner","Construction",35000,"(817) 222-4445","adpconstructioninc@gmail.com","5812 Airport Fwy","Haltom City","TX","76117",5,"Equipment","WARM",71,No
+"AM HERITAGE HOMES INC","Owner","Construction",55000,"(817) 865-9172","amheritagehomes@gmail.com","3712 N Tarrant Pkwy","Fort Worth","TX","76177",7,"Expansion","HOT",83,No
+"ONTON INC","Owner","Construction",90000,"(713) 890-9300","ontoninc@gmail.com","11777 Katy Fwy","Houston","TX","77079",14,"Working capital","HOT",91,No
+"ESCAMILLA & PONECK LLP","Owner","Professional Services",80000,"(210) 646-0400","escamillaponeck@gmail.com","10203 Hood Pl","San Antonio","TX","78230",9,"Expansion","HOT",88,Yes,Hispanic
+"Patriot Freight Group LLC","Owner","Trucking",75000,"(281) 359-7200","patriotfreight@freightgroup.com","24003 Tomball Pkwy","Spring","TX","77380",8,"Fleet expansion","HOT",85,No
+"CUI Holdings LLC","Owner","Healthcare",150000,"(210) 852-5230","cuiholdings@gmail.com","8200 W Interstate 10","San Antonio","TX","78230",3,"Equipment purchase","HOT",95,No
+"PIZZA Holdings LP","Owner","Restaurant",65000,"(469) 800-5800","pizzaholdings@gmail.com","5940 Forest Ln","Dallas","TX","75230",5,"Working capital","HOT",82,No
+"Merit Office Suites LLC","Owner","Professional Services",35000,"(214) 810-1212","meritofficesuites@gmail.com","600 E John Carpenter Fwy","Irving","TX","75062",4,"Expansion","WARM",74,No
+"PEBBLE CREEK RANCH LTD","Owner","Retail",42000,"(830) 796-7500","pebblecreek@ranch.com","5420 Hwy 281 N","Spring Branch","TX","78070",6,"Working capital","WARM",77,No
+"Santa Cruz Processing Center LLC","Owner","Manufacturing",50000,"(956) 608-7300","santacruzprocessing@gmail.com","702 W Hidalgo Ave","Raymondville","TX","78580",7,"Equipment","HOT",81,No
+"Flores Telecom Group","Owner","Telecommunications",58000,"(210) 225-2202","florestelecom@gmail.com","1300 Guadalupe St","San Antonio","TX","78207",8,"Expansion","HOT",86,Yes,Hispanic
+"Valdez HVAC Solutions","Owner","HVAC/Construction",45000,"(713) 555-8900","valdezhvac@gmail.com","5505 De Soto St","Houston","TX","77091",5,"Working capital","WARM",78,Yes,Hispanic
+"Martinez Auto Repair","Carlos Martinez","Automotive",38000,"(512) 555-1234","martinezauto@gmail.com","2400 E 7th St","Austin","TX","78702",4,"Equipment","WARM",76,Yes,Hispanic
+"Chen Family Restaurant","Lisa Chen","Restaurant",32000,"(469) 555-7890","chenrestaurant@gmail.com","304 N Akard St","Dallas","TX","75201",3,"Expansion","WARM",73,Yes,Asian
+"Thompson Consulting Group","James Thompson","Consulting",67000,"(214) 555-4567","thompsonconsulting@gmail.com","2001 Ross Ave","Dallas","TX","75201",6,"Working capital","HOT",84,No
+"Rodriguez Law Firm","Maria Rodriguez","Legal Services",85000,"(713) 555-3210","rodriguezlaw@gmail.com","1001 Texas Ave","Houston","TX","77002",9,"Expansion","HOT",89,Yes,Hispanic
+"Kim's Dry Cleaning","David Kim","Retail/Cleaning",28000,"(832) 555-6543","kimscleaning@gmail.com","9600 Bellaire Blvd","Houston","TX","77036",2,"Working capital","COLD",58,Yes,Asian
+"Garcia Landscaping","Jose Garcia","Landscaping",42000,"(210) 555-9876","garcialandscaping@gmail.com","102 Painted Post Ln","San Antonio","TX","78216",5,"Equipment","WARM",79,Yes,Hispanic
+"Browns Logistics LLC","Owner","Trucking",95000,"(972) 555-1470","brownslogistics@gmail.com","1201 Corporate Dr","Irving","TX","75038",11,"Fleet expansion","HOT",93,No
+"Nails & Spa Express","Sarah Johnson","Beauty/Salon",25000,"(512) 555-8520","nailexpress@gmail.com","501 W 15th St","Austin","TX","78701",2,"Inventory","COLD",61,No
+"Wilson Home Inspections","Michael Wilson","Home Services",39000,"(214) 555-3690","wilsoninspections@gmail.com","500 S Ervay St","Dallas","TX","75201",4,"Working capital","WARM",75,No
+"Rivera Construction Co","Antonio Rivera","Construction",62000,"(713) 555-7410","riveraconstruction@gmail.com","1301 Fannin St","Houston","TX","77002",7,"Equipment","HOT",86,Yes,Hispanic
+"Peterson Insurance Agency","Jennifer Peterson","Insurance",48000,"(210) 555-1590","petersoninsurance@gmail.com","112 E Pecan St","San Antonio","TX","78205",6,"Expansion","WARM",80,No
+"Adams Towing Service","Robert Adams","Automotive/Towing",35000,"(469) 555-7530","adamstowing@gmail.com","1000 Commerce St","Dallas","TX","75202",3,"Fleet purchase","WARM",72,No
+"Nguyen Nail Salon","Linda Nguyen","Beauty/Salon",22000,"(832) 555-3570","nguyennails@gmail.com","910 Louisiana St","Houston","TX","77002",1,"Expansion","COLD",53,Yes,Asian
+"Brooks Electrical Services","Kevin Brooks","Electrical",56000,"(214) 555-9510","brookselectric@gmail.com","1500 Marilla St","Dallas","TX","75201",8,"Working capital","HOT",83,No
+"White Photography Studio","Amanda White","Creative Services",31000,"(713) 555-2580","whitestudio@gmail.com","901 Bagby St","Houston","TX","77002",2,"Equipment","WARM",70,No
+"Green Lawn Care","Brian Green","Landscaping",34000,"(512) 555-4560","greenlawncare@gmail.com","301 W 2nd St","Austin","TX","78701",4,"Expansion","WARM",74,No
+"Lewis Plumbing Co","Christopher Lewis","Plumbing",51000,"(469) 555-8520","lewisplumbing@gmail.com","611 Walker St","Houston","TX","77002",6,"Working capital","HOT",82,No
+"Jackson Moving Company","Marcus Jackson","Moving Services",43000,"(210) 555-3690","jacksonmoving@gmail.com","100 Montana St","San Antonio","TX","78203",5,"Fleet expansion","WARM",78,No
+"Cooper Painting LLC","Daniel Cooper","Painting",29000,"(214) 555-1470","cooperpainting@gmail.com","1500 S Belt Line Rd","Irving","TX","75060",3,"Working capital","COLD",63,No
+"Florida SBDC Network Clients","Various","Various",35000,"(850) 555-0123","contact@floridasbdc.org","Multiple","Florida","FL","Various",4,"Various","WARM",70,No

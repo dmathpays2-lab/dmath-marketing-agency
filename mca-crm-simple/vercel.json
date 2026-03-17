@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "name": "mca-crm-simple",
+  "builds": [{"src": "index.html", "use": "@vercel/static"}]
+}
