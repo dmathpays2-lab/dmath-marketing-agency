@@ -1,0 +1,1 @@
+/root/.openclaw/skills/model-switcher/scripts/switch-model.sh
