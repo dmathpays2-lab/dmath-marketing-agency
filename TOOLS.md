@@ -11,15 +11,15 @@ This file contains sensitive API keys. **Never share this file publicly.**
 ### Search & Data
 | Service | Key | Status | Last Verified |
 |---------|-----|--------|---------------|
-| Brave Search | `BSApqnJJZan2KhiBK5By_jODVBuDw9l` | ✅ Working | 2026-03-06 |
+| Brave Search | `[REDACTED]` | ✅ Working | 2026-03-06 |
 | Google Places | `[Stored in Vercel - see below]` | ✅ Active | 2026-03-16 |
 
 ### Hosting & Deployment
 | Service | Key/Token | Status | Last Verified |
 |---------|-----------|--------|---------------|
-| Netlify | `nfp_itEQH4Q8xVdwJGoyh7yWe45gC8k6cRPr797b` | ✅ Working | 2026-03-06 |
-| Vercel | `vcp_8YuDrL50k9QWlZbyVTlnOi3CR0g7NGMe7777dLPDS8bql1TtYX2ig6RZ` | ✅ Working | 2026-03-16 |
-| GitHub | `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` | ✅ Working | 2026-03-16 |
+| Netlify | `[REDACTED]` | ✅ Working | 2026-03-06 |
+| Vercel | `[REDACTED]` | ✅ Working | 2026-03-16 |
+| GitHub | `[REDACTED]` | ✅ Working | 2026-03-16 |
 
 ### Communication (Future)
 | Service | Key | Status | Purpose |
