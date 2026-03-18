@@ -52,6 +52,7 @@ This file defines what to check during heartbeat polls and other periodic tasks.
 - [ ] Clean up old temporary files
 - [ ] Check git status - commit/push if needed
 - [ ] Review and update TODOs
+- [ ] **Check for OpenClaw upgrades** (run: `/root/.openclaw/workspace/scripts/check-openclaw-upgrade.sh`)
 
 ---
 
@@ -104,6 +105,12 @@ Use `memory/heartbeat-state.json` to track when checks were last performed:
 ## Custom Triggers
 
 Add project-specific or context-specific checks here as they arise.
+
+### OpenClaw Upgrade Checks
+- Check `.upgrade-available` file in workspace root
+- If exists, notify user about available upgrade
+- Ask for confirmation before upgrading
+- Log upgrade to `memory/upgrade-notifications.md`
 
 ---
 
