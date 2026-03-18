@@ -2,17 +2,23 @@
 # GitHub Sync Script for Kimi Claw Memory System
 # Pushes to: github.com/dmathpays2-lab/dmath-marketing-agency/kimi-claw-memory/
 
-REPO_URL="https://dmathpays2-lab:${GITHUB_TOKEN}@github.com/dmathpays2-lab/dmath-marketing-agency.git"
 WORKSPACE="/root/.openclaw/workspace"
 SYNC_DIR="kimi-claw-memory"
 
 cd "$WORKSPACE" || exit 1
 
-# Check for token
+# Load GITHUB_TOKEN from vault if not set
 if [ -z "$GITHUB_TOKEN" ]; then
-    echo "⚠️ GITHUB_TOKEN not set"
-    exit 1
+    if [ -f "$WORKSPACE/.vault/keys/github" ]; then
+        GITHUB_TOKEN=$(base64 -d "$WORKSPACE/.vault/keys/github" 2>/dev/null)
+        export GITHUB_TOKEN
+    else
+        echo "⚠️ GITHUB_TOKEN not set and vault key not found"
+        exit 1
+    fi
 fi
+
+REPO_URL="https://dmathpays2-lab:${GITHUB_TOKEN}@github.com/dmathpays2-lab/dmath-marketing-agency.git"
 
 # Configure git
 git config user.email "kimi-claw@automated.sync" 2>/dev/null
