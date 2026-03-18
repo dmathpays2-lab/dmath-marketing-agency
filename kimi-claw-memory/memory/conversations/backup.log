@@ -31,3 +31,32 @@
  create mode 100644 kimi-claw-memory/research/mca_leads_trucking_2025-03-18.json
 ✅ Memory synced at 2026-03-18 07:39:52
 [2026-03-18 08:11:37] Conversation backup triggered
+[master 1c4c081] Memory sync: 2026-03-18 08:11:37 GMT+8
+ 28 files changed, 283 insertions(+), 601 deletions(-)
+ create mode 100644 kimi-claw-memory/research/crm_format_leads.json
+ mode change 100755 => 100644 kimi-claw-memory/scripts/auto_compact.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/conversation_backup.sh
+ create mode 100644 kimi-claw-memory/scripts/convert_crm_leads.py
+ mode change 100755 => 100644 kimi-claw-memory/scripts/credential_backup.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/cron/evening_checkin.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/cron/helpers/memory_consolidation.py
+ mode change 100755 => 100644 kimi-claw-memory/scripts/cron/project_heartbeat.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/cron/weekly_review.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/diagnose.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/fix-openclaw-timeouts.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/github_memory.py
+ mode change 100755 => 100644 kimi-claw-memory/scripts/github_sync.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/memory_manager.py
+ mode change 100755 => 100644 kimi-claw-memory/scripts/preflight.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/self-improver-review.sh
+ mode change 100755 => 100644 kimi-claw-memory/scripts/setup-self-improver.sh
+ mode change 100755 => 100644 kimi-claw-memory/shared/scripts/auto_compact.sh
+ mode change 100755 => 100644 kimi-claw-memory/shared/scripts/diagnose.sh
+ mode change 100755 => 100644 kimi-claw-memory/shared/scripts/github_memory.py
+ mode change 100755 => 100644 kimi-claw-memory/shared/scripts/github_sync.sh
+ mode change 100755 => 100644 kimi-claw-memory/shared/scripts/memory_manager.py
+ mode change 100755 => 100644 kimi-claw-memory/shared/scripts/preflight.sh
+ mode change 100755 => 100644 kimi-claw-memory/system/filer.py
+ mode change 100755 => 100644 kimi-claw-memory/system/smart-sync.sh
+✅ Memory synced at 2026-03-18 08:11:39
+[2026-03-18 08:35:42] Conversation backup triggered
