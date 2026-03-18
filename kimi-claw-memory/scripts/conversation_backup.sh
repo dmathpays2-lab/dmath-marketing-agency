@@ -14,7 +14,7 @@ mkdir -p "$CONVERSATION_DIR/$DATE"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Conversation backup triggered" >> "$CONVERSATION_DIR/backup.log"
 
 # Run GitHub sync
-export GITHUB_TOKEN='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'
+export GITHUB_TOKEN='[REDACTED_GITHUB_TOKEN]'
 cd "$WORKSPACE" && bash scripts/github_sync.sh >> "$CONVERSATION_DIR/backup.log" 2>&1
 
 echo "✅ Conversation backed up at $(date '+%Y-%m-%d %H:%M:%S')"

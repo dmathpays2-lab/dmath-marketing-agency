@@ -10,7 +10,7 @@ import time
 import csv
 from datetime import datetime
 
-APIFY_TOKEN = "apify_api_HbUkbiKl8g3ldJJXawiQ2fC6sFeWDF0nSD6F"
+APIFY_TOKEN = "[REDACTED_APIFY_TOKEN]"
 APIFY_BASE_URL = "https://api.apify.com/v2"
 
 # Target industries for MCA

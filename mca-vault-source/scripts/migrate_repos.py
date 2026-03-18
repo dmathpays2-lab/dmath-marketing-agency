@@ -9,7 +9,7 @@ import json
 import base64
 from datetime import datetime
 
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "[REDACTED_GITHUB_TOKEN]"
 GITHUB_API = "https://api.github.com"
 HEADERS = {
     "Authorization": f"token {GITHUB_TOKEN}",

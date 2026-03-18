@@ -38,8 +38,8 @@
 - **API Keys:**
   - **Brave Search:** `BSApqnJJZan2KhiBK5By_jODVBuDw9l` ✅ WORKING - Active
   - **Netlify:** `nfp_itEQH4Q8xVdwJGoyh7yWe45gC8k6cRPr797b`
-  - **Apify (Web Scraping):** `apify_api_HbUkbiKl8g3ldJJXawiQ2fC6sFeWDF0nSD6F` ✅ FOUND - Ready for scraping
-  - **GitHub API:** `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` ✅ SAVED - Permanent access
+  - **Apify (Web Scraping):** `[REDACTED_APIFY_TOKEN]` ✅ FOUND - Ready for scraping
+  - **GitHub API:** `[REDACTED_GITHUB_TOKEN]` ✅ SAVED - Permanent access
 - **Important:** Never share these keys publicly
 
 #### 3. D Math Marketing - AI Agency (Just Launched)

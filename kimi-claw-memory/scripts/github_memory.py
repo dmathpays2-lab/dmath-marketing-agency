@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 
 GITHUB_USER = "dmathpays2-lab"
-TOKEN = "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"
+TOKEN = "[REDACTED_GITHUB_TOKEN]"
 WORKSPACE = Path("/root/.openclaw/workspace")
 MEMORY_DIR = WORKSPACE / "github-memory"
 STATE_FILE = WORKSPACE / ".github_backup_state.json"

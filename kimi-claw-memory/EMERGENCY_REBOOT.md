@@ -143,7 +143,7 @@ git remote add origin https://github.com/dmathpays2-lab/dmath-marketing-agency.g
 ### Step 4: Set Environment
 ```bash
 # Add to ~/.bashrc and ~/.profile
-export GITHUB_TOKEN="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"
+export GITHUB_TOKEN="[REDACTED_GITHUB_TOKEN]"
 ```
 
 ### Step 5: Restore GitHub Repo Backups

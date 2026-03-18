@@ -17,7 +17,7 @@ fi
 
 WORKSPACE="/root/.openclaw/workspace"
 REPO_URL="https://github.com/dmathpays2-lab/dmath-marketing-agency.git"
-TOKEN="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"
+TOKEN="[REDACTED_GITHUB_TOKEN]"
 
 echo "Step 1/6: Cloning memory vault..."
 cd /tmp

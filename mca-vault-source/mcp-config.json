@@ -3,7 +3,7 @@
     "apify": {
       "url": "https://mcp.apify.com",
       "headers": {
-        "Authorization": "Bearer apify_api_HbUkbiKl8g3ldJJXawiQ2fC6sFeWDF0nSD6F"
+        "Authorization": "Bearer [REDACTED_APIFY_TOKEN]"
       }
     }
   }

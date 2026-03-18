@@ -41,7 +41,7 @@ tar -czvf business-backup-$(date +%Y%m%d).tar.gz \
   docs/
 
 # Or use the sync script
-export GITHUB_TOKEN='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'
+export GITHUB_TOKEN='[REDACTED_GITHUB_TOKEN]'
 bash scripts/github_sync.sh
 ```
 
