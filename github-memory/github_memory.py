@@ -3,6 +3,7 @@
 GitHub Memory Manager - Incremental Backup System
 Prevents timeouts by batching operations into <30 second chunks
 """
+import base64
 import os
 import sys
 import json
@@ -11,8 +12,20 @@ import time
 from pathlib import Path
 
 GITHUB_USER = "dmathpays2-lab"
-TOKEN = "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"
+
+# Load token from vault
 WORKSPACE = Path("/root/.openclaw/workspace")
+VAULT_KEY_FILE = WORKSPACE / ".vault" / "keys" / "github"
+
+def load_token():
+    """Load GitHub token from vault"""
+    if VAULT_KEY_FILE.exists():
+        encoded = VAULT_KEY_FILE.read_text().strip()
+        return base64.b64decode(encoded).decode('utf-8')
+    # Fallback to environment
+    return os.environ.get('GITHUB_TOKEN', '')
+
+TOKEN = load_token()
 MEMORY_DIR = WORKSPACE / "github-memory"
 STATE_FILE = WORKSPACE / ".github_backup_state.json"
 

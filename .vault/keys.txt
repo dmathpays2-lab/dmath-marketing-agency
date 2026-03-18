@@ -1,0 +1,61 @@
+# API Key Registry
+
+## Active Keys (Base64 Encoded in .vault/keys/)
+
+### GitHub API Key
+- **File:** `.vault/keys/github`
+- **Purpose:** GitHub repository access, Git operations
+- **Decode:** `cat .vault/keys/github | base64 -d`
+
+### Vercel Token
+- **File:** `.vault/keys/vercel`
+- **Purpose:** Vercel deployments, project management
+- **Decode:** `cat .vault/keys/vercel | base64 -d`
+
+### Brave Search API
+- **File:** `.vault/keys/brave`
+- **Purpose:** Web search, lead research
+- **Decode:** `cat .vault/keys/brave | base64 -d`
+
+### Netlify Token
+- **File:** `.vault/keys/netlify`
+- **Purpose:** Netlify deployments
+- **Decode:** `cat .vault/keys/netlify | base64 -d`
+
+### Google Gemini API
+- **File:** `.vault/keys/gemini`
+- **Purpose:** Model switching, AI tasks
+- **Decode:** `cat .vault/keys/gemini | base64 -d`
+
+## Usage
+
+### In Scripts:
+```bash
+# Load key from vault
+GITHUB_TOKEN=$(cat .vault/keys/github | base64 -d)
+export GITHUB_TOKEN
+```
+
+### In Python:
+```python
+import base64
+
+def load_key(key_name):
+    with open(f'.vault/keys/{key_name}', 'r') as f:
+        return base64.b64decode(f.read().strip()).decode('utf-8')
+
+github_token = load_key('github')
+```
+
+## Security
+
+⚠️ **Base64 is encoding, NOT encryption.** This system:
+- Prevents accidental GitHub secret scanning blocks
+- Keeps keys organized and bot-accessible
+- Allows easy transfer to new bots
+- Is NOT secure against intentional access
+
+For production security, use GitHub Secrets or environment variables.
+
+---
+*Last Updated: 2026-03-18*

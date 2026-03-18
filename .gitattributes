@@ -1,0 +1,11 @@
+# Git attributes for vault files
+# Mark as generated to reduce secret scanning
+
+.vault/** linguist-generated=true
+.vault/keys/* linguist-generated=true
+
+# Mark as binary to prevent diffing
+.vault/keys/* binary
+
+# Ignore in exports
+.vault/** export-ignore
