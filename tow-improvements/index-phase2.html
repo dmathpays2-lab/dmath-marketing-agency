@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Tow Directory - Emergency Towing Services 24/7</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-phase2.css">
+</head>
+<body>
+    <!-- Skeleton Loading Overlay -->
+    <div id="skeleton-loader" class="skeleton-overlay">
+        <div class="skeleton-header"></div>
+        <div class="skeleton-hero">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-subtitle"></div>
+            <div class="skeleton-search"></div>
+        </div>
+        <div class="skeleton-cards">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <span class="brand-icon">🚛</span>
+                    <span class="brand-text">DC Tow Directory</span>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#locations" class="nav-link">Locations</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link cta-nav">Get Help Now</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <div class="hero-pattern"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="emergency-badge">
+                        <span class="pulse-dot"></span>
+                        24/7 Emergency Service
+                    </div>
+                    <h1 class="hero-title">
+                        Stuck in DC?<br>
+                        <span class="highlight">We Got You.</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Connect with trusted towing services across Washington DC metro area. 
+                        Fast response times, verified providers, fair pricing.
+                    </p>
+                    
+                    <!-- Search Section -->
+                    <div class="search-container">
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="Enter your location or zip code..." id="location-search">
+                            <button class="search-btn">
+                                <span>Find Towing</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14"></path>
+                                    <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="search-chips">
+                            <span class="chip-label">Popular:</span>
+                            <button class="chip">Georgetown</button>
+                            <button class="chip">Adams Morgan</button>
+                            <button class="chip">Capitol Hill</button>
+                            <button class="chip">Dupont Circle</button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Counter -->
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="15" data-suffix=" min">0</div>
+                            <div class="stat-label">Average Response</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="4.9" data-suffix="★" data-decimals="1">0</div>
+                            <div class="stat-label">Customer Rating</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="50000" data-suffix="+" data-separator=",">0</div>
+                            <div class="stat-label">Tows Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="24" data-suffix="/7">0</div>
+                            <div class="stat-label">Availability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Towing Services</h2>
+                    <p class="section-subtitle">Professional towing solutions for every situation</p>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- Service Card 1 -->
+                    <div class="service-card card-3d">
+                        <div class="card-shine"></div>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="8" y="24" width="48" height="28" rx="4"></rect>
+                                <circle cx="20" cy="52" r="6"></circle>
+                                <circle cx="44" cy="52" r="6"></circle>
+                                <path d="M16 24V16a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v8"></path>
+                                <path d="M32 8v12"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Emergency Towing</h3>
+                        <p class="service-desc">24/7 emergency towing for breakdowns, accidents, and roadside emergencies across DC.</p>
+                        <div class="service-meta">
+                            <span class="response-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                                10-15 min
+                            </span>
+                            <span class="verified-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="service-card card-3d">
+                        <div class="card-shine"></div>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="32" cy="32" r="24"></circle>
+                                <circle cx="32" cy="32" r="8"></circle>
+                                <path d="M32 8v12M32 44v12M8 32h12M44 32h12"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Flat Tire Change</h3>
+                        <p class="service-desc">Quick tire changes using your spare or transport to nearest tire shop for replacement.</p>
+                        <div class="service-meta">
+                            <span class="response-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                                15-20 min
+                            </span>
+                            <span class="verified-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="service-card card-3d">
+                        <div class="card-shine"></div>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="12" y="16" width="40" height="32" rx="4"></rect>
+                                <path d="M20 28h24M20 36h16"></path>
+                                <path d="M44 16v-4a4 4 0 0 0-4-4H24a4 4 0 0 0-4 4v4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Battery Jump Start</h3>
+                        <p class="service-desc">Dead battery? Get a quick jump start or battery replacement delivered to your location.</p>
+                        <div class="service-meta">
+                            <span class="response-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                                10-15 min
+                            </span>
+                            <span class="verified-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="service-card card-3d">
+                        <div class="card-shine"></div>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 48V16a8 8 0 0 1 8-8h16a8 8 0 0 1 8 8v32"></path>
+                                <path d="M12 48h40"></path>
+                                <path d="M24 48v-8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Lockout Service</h3>
+                        <p class="service-desc">Locked your keys in the car? Our professionals will get you back in safely and quickly.</p>
+                        <div class="service-meta">
+                            <span class="response-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                                15-25 min
+                            </span>
+                            <span class="verified-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 5 -->
+                    <div class="service-card card-3d">
+                        <div class="card-shine"></div>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 48V24a4 4 0 0 1 4-4h40a4 4 0 0 1 4 4v24"></path>
+                                <path d="M4 48h56"></path>
+                                <path d="M20 48V36a4 4 0 0 1 4-4h16a4 4 0 0 1 4 4v12"></path>
+                                <circle cx="32" cy="16" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Fuel Delivery</h3>
+                        <p class="service-desc">Ran out of gas? We'll deliver fuel directly to your location to get you moving again.</p>
+                        <div class="service-meta">
+                            <span class="response-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                                20-30 min
+                            </span>
+                            <span class="verified-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 6 -->
+                    <div class="service-card card-3d">
+                        <div class="card-shine"></div>
+                        <div class="service-icon">
+                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="8" y="20" width="48" height="28" rx="4"></rect>
+                                <path d="M16 20v-4a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v4"></path>
+                                <path d="M24 32h16M24 38h12"></path>
+                                <circle cx="48" cy="48" r="8"></circle>
+                                <path d="M48 44v8M44 48h8"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Long Distance Tow</h3>
+                        <p class="service-desc">Need to transport your vehicle beyond DC? Secure long-distance towing to any destination.</p>
+                        <div class="service-meta">
+                            <span class="response-time">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 6v6l4 2"></path>
+                                </svg>
+                                30-60 min
+                            </span>
+                            <span class="verified-badge">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations Section with Glass Morphism -->
+        <section class="locations" id="locations">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Service Areas</h2>
+                    <p class="section-subtitle">Coverage across Washington DC and surrounding areas</p>
+                </div>
+
+                <div class="locations-grid">
+                    <!-- Glass Card 1 -->
+                    <div class="location-card glass-card">
+                        <div class="glass-bg"></div>
+                        <div class="location-content">
+                            <div class="location-icon">🏛️</div>
+                            <h3 class="location-name">Capitol Hill</h3>
+                            <p class="location-desc">Full coverage around the Capitol, Library of Congress, and Eastern Market areas.</p>
+                            <div class="location-stats">
+                                <span class="location-stat">
+                                    <strong>12</strong> providers
+                                </span>
+                                <span class="location-stat">
+                                    <strong>8 min</strong> avg response
+                                </span>
+                            </div>
+                            <button class="location-btn">View Providers</button>
+                        </div>
+                    </div>
+
+                    <!-- Glass Card 2 -->
+                    <div class="location-card glass-card">
+                        <div class="glass-bg"></div>
+                        <div class="location-content">
+                            <div class="location-icon">🏙️</div>
+                            <h3 class="location-name">Georgetown</h3>
+                            <p class="location-desc">Premium towing services for Georgetown University area and waterfront district.</p>
+                            <div class="location-stats">
+                                <span class="location-stat">
+                                    <strong>8</strong> providers
+                                </span>
+                                <span class="location-stat">
+                                    <strong>10 min</strong> avg response
+                                </span>
+                            </div>
+                            <button class="location-btn">View Providers</button>
+                        </div>
+                    </div>
+
+                    <!-- Glass Card 3 -->
+                    <div class="location-card glass-card">
+                        <div class="glass-bg"></div>
+                        <div class="location-content">
+                            <div class="location-icon">🎭</div>
+                            <h3 class="location-name">Adams Morgan</h3>
+                            <p class="location-desc">Rapid response for the vibrant Adams Morgan neighborhood and nearby areas.</p>
+                            <div class="location-stats">
+                                <span class="location-stat">
+                                    <strong>10</strong> providers
+                                </span>
+                                <span class="location-stat">
+                                    <strong>9 min</strong> avg response
+                                </span>
+                            </div>
+                            <button class="location-btn">View Providers</button>
+                        </div>
+                    </div>
+
+                    <!-- Glass Card 4 -->
+                    <div class="location-card glass-card">
+                        <div class="glass-bg"></div>
+                        <div class="location-content">
+                            <div class="location-icon">🚇</div>
+                            <h3 class="location-name">Dupont Circle</h3>
+                            <p class="location-desc">Reliable towing around Dupont Circle, Embassy Row, and surrounding streets.</p>
+                            <div class="location-stats">
+                                <span class="location-stat">
+                                    <strong>9</strong> providers
+                                </span>
+                                <span class="location-stat">
+                                    <strong>11 min</strong> avg response
+                                </span>
+                            </div>
+                            <button class="location-btn">View Providers</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-content">
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M24 4L6 14v20l18 10 18-10V14L24 4z"></path>
+                                <path d="M16 24l8 8 16-16"></path>
+                            </svg>
+                            <span>Licensed & Insured</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="24" cy="24" r="20"></circle>
+                                <path d="M24 14v10l6 6"></path>
+                            </svg>
+                            <span>15 Min Response</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M24 4l6 12 13 2-9 9 2 13-12-6-12 6 2-13-9-9 13-2z"></path>
+                            </svg>
+                            <span>Top Rated</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="8" y="8" width="32" height="32" rx="4"></rect>
+                                <path d="M16 24l6 6 12-12"></path>
+                            </svg>
+                            <span>BBB Accredited</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="contact">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Need a Tow Right Now?</h2>
+                    <p class="cta-subtitle">Don't wait. Connect with a towing professional in minutes.</p>
+                    <div class="cta-buttons">
+                        <a href="tel:+12025551234" class="cta-btn primary pulse-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            Call Now: (202) 555-1234
+                        </a>
+                        <button class="cta-btn secondary">Get Free Quote</button>
+                    </div>
+                    <p class="cta-note">Average response time: 12 minutes • Available 24/7/365</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <span class="brand-icon">🚛</span>
+                        <span class="brand-text">DC Tow Directory</span>
+                    </div>
+                    <p class="footer-copy">© 2026 DC Tow Directory. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Mobile Sticky CTA -->
+        <div class="mobile-sticky-cta">
+            <a href="tel:+12025551234" class="mobile-cta-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                Call Now
+            </a>
+        </div>
+    </div>
+
+    <script src="scripts-phase2.js"></script>
+</body>
+</html>
