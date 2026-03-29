@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tow Directory | Premium Towing Services in Washington D.C.</title>
+    <meta name="description" content="Connect with trusted, verified towing companies in Washington D.C. 24/7 emergency service, instant quotes, and professional roadside assistance.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    colors: {
+                        gold: { 400: '#D4AF37', 500: '#C5A028', 600: '#B08D1F' },
+                        navy: { 800: '#0A1628', 900: '#050D18', 950: '#020508' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: #050D18;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Cursor */
+        .cursor {
+            width: 20px; height: 20px;
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+            mix-blend-mode: difference;
+        }
+        .cursor-dot {
+            width: 4px; height: 4px;
+            background: #D4AF37;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .cursor.hover { transform: scale(2); background: rgba(212, 175, 55, 0.1); }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed; inset: 0;
+            background: #050D18;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .preloader-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #D4AF37, #F4D03F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .preloader-bar {
+            width: 200px; height: 2px;
+            background: rgba(212, 175, 55, 0.2);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .preloader-progress {
+            position: absolute; left: 0; top: 0;
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, #D4AF37, #F4D03F);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 1000;
+            transition: all 0.5s ease;
+            border-bottom: 1px solid transparent;
+        }
+        .nav.scrolled {
+            background: rgba(5, 13, 24, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 120px;
+        }
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(5, 13, 24, 0.95) 0%, rgba(5, 13, 24, 0.8) 50%, rgba(5, 13, 24, 0.6) 100%);
+            z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; width: 100%; }
+        
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 100px rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #D4AF37 0%, #C5A028 100%);
+            color: #050D18;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, #F4D03F 0%, #D4AF37 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary span { position: relative; z-index: 1; }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(212, 175, 55, 0.3); }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 100px;
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            outline: none;
+            min-width: 200px;
+        }
+        .search-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+        .search-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 100px;
+            color: white;
+            padding: 1rem 1.5rem;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        /* Trust Badges */
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+        }
+        
+        /* Service Cards */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .service-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover img { transform: scale(1.1); }
+        .service-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(5, 13, 24, 0.95) 0%, rgba(5, 13, 24, 0.5) 50%, transparent 100%);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .provider-badge {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: rgba(212, 175, 55, 0.9);
+            color: #050D18;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        
+        /* City Cards */
+        .city-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .city-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateX(8px);
+        }
+        
+        /* Stats */
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #D4AF37;
+            line-height: 1;
+        }
+        
+        /* Review Cards */
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            min-width: 400px;
+            transition: all 0.5s ease;
+        }
+        .review-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-4px);
+        }
+        
+        /* Blog Cards */
+        .blog-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+        .blog-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px);
+        }
+        .blog-card img {
+            width: 100%; height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .blog-card:hover img { transform: scale(1.05); }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(90deg, #050D18, #0A1628);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 1rem 2rem;
+            z-index: 999;
+            backdrop-filter: blur(20px);
+        }
+        
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); }
+        
+        /* Marquee */
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .cursor, .cursor-dot { display: none; }
+            .hero { padding-top: 100px; }
+        }
+    </style>
+
+    
+    <!-- 🎨 DC Tow Premium Upgrade v2.0 -->
+    <link rel="stylesheet" href="dc-tow-complete.css">
+    <script src="dc-tow-enhancements.js" defer></script>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-logo">My Tow Directory</div>
+        <div class="preloader-bar">
+            <div class="preloader-progress"></div>
+        </div>
+    </div>
+    
+    <!-- Top Bar -->
+    <div class="top-bar py-2 relative z-50">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-4 text-sm">
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-white/80">24/7 Emergency Service Available</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-white/80">Serving Washington D.C. Metro Area</span>
+            </div>
+            <div class="hidden md:flex items-center gap-2">
+                <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-white/80">All Providers Verified & Licensed</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav pt-10">
+        <div class="flex items-center justify-between max-w-7xl mx-auto px-6 py-4">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-navy-900" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-serif font-bold text-white block">My Tow Directory</span>
+                    <span class="text-xs text-white/50">Washington D.C. Metro</span>
+                </div>
+            </a>
+            
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="tel:1-800-TOW-HELP" class="flex items-center gap-2 text-gold-400 hover:text-gold-500 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    <span class="font-semibold">1-800-TOW-HELP</span>
+                </a>
+                <a href="#list-business" class="btn-secondary text-sm">List Your Business</a>
+                <a href="#contact" class="btn-primary text-sm">
+                    <span>Get Help Now</span>
+                </a>
+            </div>
+            
+            <button class="lg:hidden text-white" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="menu-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="close-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-navy-900/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#services" onclick="toggleMobileMenu()" class="text-2xl font-serif text-white hover:text-gold-400 transition">Services</a>
+            <a href="#work" onclick="toggleMobileMenu()" class="text-2xl font-serif text-white hover:text-gold-400 transition">Work</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="text-2xl font-serif text-white hover:text-gold-400 transition">Process</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="btn-primary text-lg mt-4">
+                <span>Get Help Now</span>
+            </a>
+            <a href="tel:1-800-TOW-HELP" onclick="toggleMobileMenu()" class="text-gold-400 text-xl flex items-center gap-2 mt-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                1-800-TOW-HELP
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=80" alt="Premium towing service">
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="reveal inline-flex items-center gap-2 px-4 py-2 bg-gold-400/10 border border-gold-400/30 rounded-full mb-6">
+                        <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-sm font-medium text-gold-400">50+ Verified Towing Providers in D.C. Metro</span>
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.95] mb-6">
+                        <span class="reveal block">Fast, Reliable Towing</span>
+                        <span class="reveal block text-gradient">Help in DC</span>
+                        <span class="reveal block text-3xl md:text-4xl lg:text-5xl mt-4 text-white/80">Anytime, Anywhere</span>
+                    </h1>
+                    
+                    <p class="reveal text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-10">
+                        Connect with trusted, pre-vetted towing companies in the Washington D.C. metropolitan area. Get instant quotes, read verified reviews, and get help on the road within minutes.
+                    </p>
+                    
+                    <!-- Enhanced Search Bar -->
+                    <div class="reveal search-bar max-w-3xl mx-auto mb-6">
+                        <div class="flex items-center flex-1 min-w-[200px] px-4">
+                            <svg class="w-5 h-5 text-gold-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="Enter your location or neighborhood...">
+                        </div>
+                        <button id="locationBtn" onclick="getUserLocation()" class="flex items-center gap-2 px-4 py-2 text-gold-400 hover:text-gold-300 transition text-sm whitespace-nowrap">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            Use my location
+                        </button>
+                        <div class="h-8 w-px bg-white/10 mx-2 hidden sm:block"></div>
+                        <select class="search-select">
+                            <option>All Services</option>
+                            <option>Emergency Towing</option>
+                            <option>Flatbed Towing</option>
+                            <option>Motorcycle Towing</option>
+                            <option>Long-Distance Towing</option>
+                            <option>Heavy-Duty Towing</option>
+                            <option>Roadside Assistance</option>
+                        </select>
+                        <button id="searchBtn" onclick="performSearch()" class="btn-primary !p-4 !rounded-full">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <!-- Popular Tags -->
+                    <div class="reveal flex flex-wrap justify-center gap-2 mb-12">
+                        <span class="text-white/40 text-sm mr-2">Popular:</span>
+                        <button onclick="setSearchTag('Emergency Towing')" class="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-sm hover:border-gold-400/50 hover:text-gold-400 transition">Emergency Towing</button>
+                        <button onclick="setSearchTag('24/7 Service')" class="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-sm hover:border-gold-400/50 hover:text-gold-400 transition">24/7 Service</button>
+                        <button onclick="setSearchTag('Flatbed')" class="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-sm hover:border-gold-400/50 hover:text-gold-400 transition">Flatbed</button>
+                        <button onclick="setSearchTag('Near Me')" class="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-sm hover:border-gold-400/50 hover:text-gold-400 transition">Near Me</button>
+                    </div>
+                    
+                    <!-- Trust Badges Row -->
+                    <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                        <div class="trust-badge justify-center">
+                            <div class="w-10 h-10 rounded-full bg-gold-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gold-400">15 Min</div>
+                                <div class="text-xs text-white/50">Avg Response</div>
+                            </div>
+                        </div>
+                        <div class="trust-badge justify-center">
+                            <div class="w-10 h-10 rounded-full bg-gold-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gold-400">4.9</div>
+                                <div class="text-xs text-white/50">Average Rating</div>
+                            </div>
+                        </div>
+                        <div class="trust-badge justify-center">
+                            <div class="w-10 h-10 rounded-full bg-gold-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gold-400">Verified</div>
+                                <div class="text-xs text-white/50">All Providers</div>
+                            </div>
+                        </div>
+                        <div class="trust-badge justify-center">
+                            <div class="w-10 h-10 rounded-full bg-gold-400/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-bold text-gold-400">50,000+</div>
+                                <div class="text-xs text-white/50">Customers Helped</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Companies Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <span class="reveal inline-block px-4 py-1 bg-gold-400/10 border border-gold-400/30 rounded-full text-gold-400 text-sm font-medium mb-4">Top Rated</span>
+                <h2 class="reveal font-serif text-4xl md:text-5xl font-bold mb-4">Featured Towing Companies</h2>
+                <p class="reveal text-white/60 text-lg max-w-2xl mx-auto">Our highest-rated and most trusted providers, verified for quality service and customer satisfaction.</p>
+            </div>
+            
+            <div class="reveal glass-card p-8 text-center">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-3 h-3 bg-gold-400 rounded-full animate-pulse"></div>
+                    <span class="text-gold-400 font-medium">Loading Featured Companies...</span>
+                </div>
+                <p class="text-white/40 text-sm">Connecting to verified provider database</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <span class="reveal inline-block px-4 py-1 bg-gold-400/10 border border-gold-400/30 rounded-full text-gold-400 text-sm font-medium mb-4">Our Services</span>
+                <h2 class="reveal font-serif text-4xl md:text-5xl font-bold mb-4">Towing Services for Every Need</h2>
+                <p class="reveal text-white/60 text-lg max-w-2xl mx-auto">From emergency roadside assistance to specialized heavy-duty transport, find the right service for your situation.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Emergency Towing -->
+                <div class="reveal service-card group">
+                    <img src="https://images.unsplash.com/photo-1566008885218-90abf9200ddb?w=600&q=80" alt="Emergency Towing">
+                    <div class="provider-badge">45 Providers</div>
+                    <div class="service-card-overlay">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-green-400 text-sm font-medium">Available 24/7</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Emergency Towing</h3>
+                        <p class="text-white/60 text-sm mb-4">24/7 emergency towing services for breakdowns, accidents, and roadside emergencies. Fast response times guaranteed.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">24/7 Available</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Fast Response</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">All Vehicles</span>
+                        </div>
+                        <button class="btn-primary w-full justify-center text-sm">
+                            <span>Find Providers</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Flatbed Towing -->
+                <div class="reveal service-card group">
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80" alt="Flatbed Towing">
+                    <div class="provider-badge">38 Providers</div>
+                    <div class="service-card-overlay">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-green-400 text-sm font-medium">Available 24/7</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Flatbed Towing</h3>
+                        <p class="text-white/60 text-sm mb-4">Safe, damage-free transport for luxury vehicles, sports cars, and all-wheel drive vehicles.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Damage-Free</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Luxury Cars</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">AWD/4WD</span>
+                        </div>
+                        <button class="btn-primary w-full justify-center text-sm">
+                            <span>Find Providers</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Motorcycle Towing -->
+                <div class="reveal service-card group">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Motorcycle Towing">
+                    <div class="provider-badge">22 Providers</div>
+                    <div class="service-card-overlay">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-green-400 text-sm font-medium">Available 24/7</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Motorcycle Towing</h3>
+                        <p class="text-white/60 text-sm mb-4">Specialized motorcycle towing with proper equipment and trained handlers to transport your bike safely.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Specialized Gear</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">All Bike Types</span>
+                        </div>
+                        <button class="btn-primary w-full justify-center text-sm">
+                            <span>Find Providers</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Long-Distance Towing -->
+                <div class="reveal service-card group">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&q=80" alt="Long-Distance Towing">
+                    <div class="provider-badge">15 Providers</div>
+                    <div class="service-card-overlay">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-green-400 text-sm font-medium">Available 24/7</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Long-Distance Towing</h3>
+                        <p class="text-white/60 text-sm mb-4">Interstate and cross-country vehicle transport services for relocations, purchases, and long-distance moves.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Nationwide</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Door-to-Door</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Tracking</span>
+                        </div>
+                        <button class="btn-primary w-full justify-center text-sm">
+                            <span>Find Providers</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Heavy-Duty Towing -->
+                <div class="reveal service-card group">
+                    <img src="https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?w=600&q=80" alt="Heavy-Duty Towing">
+                    <div class="provider-badge">18 Providers</div>
+                    <div class="service-card-overlay">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-green-400 text-sm font-medium">Available 24/7</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Heavy-Duty Towing</h3>
+                        <p class="text-white/60 text-sm mb-4">Commercial and heavy equipment towing for trucks, buses, RVs, and construction machinery.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Commercial</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Up to 75 Tons</span>
+                        </div>
+                        <button class="btn-primary w-full justify-center text-sm">
+                            <span>Find Providers</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Roadside Assistance -->
+                <div class="reveal service-card group">
+                    <img src="https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=600&q=80" alt="Roadside Assistance">
+                    <div class="provider-badge">52 Providers</div>
+                    <div class="service-card-overlay">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-green-400 text-sm font-medium">Available 24/7</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold mb-2">Roadside Assistance</h3>
+                        <p class="text-white/60 text-sm mb-4">Jump starts, tire changes, lockout services, and fuel delivery. Get back on the road fast.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Jump Starts</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Tire Changes</span>
+                            <span class="px-3 py-1 bg-white/10 rounded-full text-xs">Lockouts</span>
+                        </div>
+                        <button class="btn-primary w-full justify-center text-sm">
+                            <span>Find Providers</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <span class="reveal inline-block px-4 py-1 bg-gold-400/10 border border-gold-400/30 rounded-full text-gold-400 text-sm font-medium mb-4">Simple Process</span>
+                <h2 class="reveal font-serif text-4xl md:text-5xl font-bold mb-4">How My Tow Directory Works</h2>
+                <p class="reveal text-white/60 text-lg max-w-2xl mx-auto">Getting roadside help has never been easier. Follow these three simple steps to connect with a trusted provider.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- Step 1 -->
+                <div class="reveal glass-card p-8 text-center relative">
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center font-bold text-navy-900 text-xl">1</div>
+                    <div class="w-16 h-16 mx-auto mb-6 mt-4 bg-gold-400/10 rounded-2xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Search Your Location</h3>
+                    <p class="text-white/60 text-sm">Enter your location or use GPS to find verified towing providers near you in the D.C. metro area.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="reveal glass-card p-8 text-center relative">
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center font-bold text-navy-900 text-xl">2</div>
+                    <div class="w-16 h-16 mx-auto mb-6 mt-4 bg-gold-400/10 rounded-2xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Compare & Choose</h3>
+                    <p class="text-white/60 text-sm">Browse listings, read verified reviews, compare prices, and check availability to find the perfect match.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="reveal glass-card p-8 text-center relative">
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center font-bold text-navy-900 text-xl">3</div>
+                    <div class="w-16 h-16 mx-auto mb-6 mt-4 bg-gold-400/10 rounded-2xl flex items-center justify-center">
+                        <svg class="w-8 h-8 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold mb-3">Contact Instantly</h3>
+                    <p class="text-white/60 text-sm">Call directly or request a callback. Get help on the road within minutes from trusted professionals.</p>
+                </div>
+            </div>
+            
+            <!-- Stats Row -->
+            <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass-card p-6 text-center">
+                    <div class="stat-number mb-2">500+</div>
+                    <div class="text-white/60 text-sm">Verified Providers</div>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <div class="stat-number mb-2">15 min</div>
+                    <div class="text-white/60 text-sm">Avg. Response Time</div>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <div class="stat-number mb-2">50,000+</div>
+                    <div class="text-white/60 text-sm">Customers Helped</div>
+                </div>
+                <div class="glass-card p-6 text-center">
+                    <div class="stat-number mb-2">4.9/5</div>
+                    <div class="text-white/60 text-sm">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Service Areas Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="reveal inline-block px-4 py-1 bg-gold-400/10 border border-gold-400/30 rounded-full text-gold-400 text-sm font-medium mb-4">Coverage Area</span>
+                    <h2 class="reveal font-serif text-4xl md:text-5xl font-bold mb-6">Serving the Entire D.C. Metro Area</h2>
+                    <p class="reveal text-white/60 text-lg mb-8">Our network of verified providers covers Washington D.C. and surrounding areas in Virginia and Maryland.</p>
+                    
+                    <div class="reveal grid grid-cols-2 gap-4">
+                        <div class="city-card">
+                            <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold">Washington D.C.</div>
+                                <div class="text-sm text-white/50">45 providers · 12 min</div>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <svg class="w-3 h-3 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="text-xs text-gold-400">4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city-card">
+                            <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold">Alexandria, VA</div>
+                                <div class="text-sm text-white/50">28 providers · 15 min</div>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <svg class="w-3 h-3 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="text-xs text-gold-400">4.7</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city-card">
+                            <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold">Arlington, VA</div>
+                                <div class="text-sm text-white/50">32 providers · 14 min</div>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <svg class="w-3 h-3 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="text-xs text-gold-400">4.9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city-card">
+                            <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold">Bethesda, MD</div>
+                                <div class="text-sm text-white/50">22 providers · 18 min</div>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <svg class="w-3 h-3 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="text-xs text-gold-400">4.8</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city-card">
+                            <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold">Silver Spring, MD</div>
+                                <div class="text-sm text-white/50">25 providers · 16 min</div>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <svg class="w-3 h-3 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="text-xs text-gold-400">4.6</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="city-card">
+                            <div class="w-12 h-12 bg-gold-400/10 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="font-bold">Fairfax, VA</div>
+                                <div class="text-sm text-white/50">35 providers · 20 min</div>
+                                <div class="flex items-center gap-1 mt-1">
+                                    <svg class="w-3 h-3 text-gold-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                    <span class="text-xs text-gold-400">4.7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal relative">
+                    <div class="absolute -inset-4 bg-gradient-to-br from-gold-400/20 to-transparent rounded-3xl blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80" alt="Washington D.C." class="relative rounded-3xl w-full h-full object-cover border border-gold-400/20">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reviews Section -->
+    <section class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16">
+                <span class="reveal inline-block px-4 py-1 bg-gold-400/10 border border-gold-400/30 rounded-full text-gold-400 text-sm font-medium mb-4">Customer Stories</span>
+                <h2 class="reveal font-serif text-4xl md:text-5xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="reveal text-white/60 text-lg max-w-2xl mx-auto">Real experiences from real drivers who found help through My Tow Directory.</p>
+            </div>
+            
+            <div class="reveal marquee">
+                <div class="marquee-content gap-6">
+                    <!-- Review 1 -->
+                    <div class="review-card">
+                        <div class="flex items-center gap-4 mb-6">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Jennifer Martinez" class="w-14 h-14 rounded-full object-cover border-2 border-gold-400/30">
+                            <div>
+                                <div class="font-bold">Jennifer Martinez</div>
+                                <div class="text-white/50 text-sm">Alexandria, VA</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-white/80 italic">"My car broke down on I-495 during rush hour. Within 15 minutes, a tow truck from My Tow Directory was there to help. The driver was professional and got me to the mechanic safely. Highly recommend!"</p>
+                        <div class="mt-4 flex items-center gap-2 text-sm">
+                            <span class="px-3 py-1 bg-gold-400/10 rounded-full text-gold-400">Emergency Towing</span>
+                            <span class="text-white/40">December 2025</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Review 2 -->
+                    <div class="review-card">
+                        <div class="flex items-center gap-4 mb-6">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Michael Chen" class="w-14 h-14 rounded-full object-cover border-2 border-gold-400/30">
+                            <div>
+                                <div class="font-bold">Michael Chen</div>
+                                <div class="text-white/50 text-sm">Arlington, VA</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-white/80 italic">"I needed my classic car transported to a show and was worried about damage. The flatbed service was perfect - professional, careful, and on time. Will definitely use again!"</p>
+                        <div class="mt-4 flex items-center gap-2 text-sm">
+                            <span class="px-3 py-1 bg-gold-400/10 rounded-full text-gold-400">Flatbed Towing</span>
+                            <span class="text-white/40">November 2025</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Review 3 -->
+                    <div class="review-card">
+                        <div class="flex items-center gap-4 mb-6">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Sarah Williams" class="w-14 h-14 rounded-full object-cover border-2 border-gold-400/30">
+                            <div>
+                                <div class="font-bold">Sarah Williams</div>
+                                <div class="text-white/50 text-sm">Bethesda, MD</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                        <p class="text-white/80 italic">"Locked my keys in the car at the grocery store. The locksmith arrived in 10 minutes and had me back in my car quickly. Fair price and great service!"</p>
+                        <div class="mt-4 flex items-center gap-2 text-sm">
+                            <span class="px-3 py-1 bg-gold-400/10 rounded-full text-gold-400">Roadside Assistance</span>
+                            <span class="text-white/40">October 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Blog Section -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+                <div>
+                    <span class="reveal inline-block px-4 py-1 bg-gold-400/10 border border-gold-400/30 rounded-full text-gold-400 text-sm font-medium mb-4">Blog & Tips</span>
+                    <h2 class="reveal font-serif text-4xl md:text-5xl font-bold">Roadside Safety & Towing Tips</h2>
+                </div>
+                <button class="reveal btn-secondary">
+                    <span>View All Articles</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Blog 1 -->
+                <article class="reveal blog-card">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&q=80" alt="Car breakdown on highway">
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-gold-400 text-navy-900 text-xs font-bold rounded-full">Safety Tips</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-3">What to Do When Your Car Breaks Down on the Highway</h3>
+                        <p class="text-white/60 text-sm mb-4">Stay calm and follow these essential steps to ensure your safety and get help quickly when stranded on a busy highway.</p>
+                        <div class="flex items-center justify-between text-sm text-white/40">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 bg-gold-400/20 rounded-full flex items-center justify-center text-gold-400 text-xs font-bold">M</div>
+                                <span>Mike Johnson</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span>Jan 10</span>
+                                <span>5 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Blog 2 -->
+                <article class="reveal blog-card">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="Flatbed towing">
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-gold-400 text-navy-900 text-xs font-bold rounded-full">Towing Tips</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-3">Flatbed vs. Traditional Towing: Which is Right for Your Vehicle?</h3>
+                        <p class="text-white/60 text-sm mb-4">Understanding the differences between towing methods can save your car from damage. Learn when to choose flatbed towing.</p>
+                        <div class="flex items-center justify-between text-sm text-white/40">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 bg-gold-400/20 rounded-full flex items-center justify-center text-gold-400 text-xs font-bold">S</div>
+                                <span>Sarah Williams</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span>Jan 5</span>
+                                <span>4 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Blog 3 -->
+                <article class="reveal blog-card">
+                    <div class="relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=600&q=80" alt="Winter driving">
+                        <div class="absolute top-4 left-4 px-3 py-1 bg-gold-400 text-navy-900 text-xs font-bold rounded-full">Local Guide</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-serif text-xl font-bold mb-3">Winter Driving Tips for Washington D.C. Residents</h3>
+                        <p class="text-white/60 text-sm mb-4">Prepare your vehicle for winter weather and learn how to handle icy roads in the D.C. metro area safely.</p>
+                        <div class="flex items-center justify-between text-sm text-white/40">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 bg-gold-400/20 rounded-full flex items-center justify-center text-gold-400 text-xs font-bold">D</div>
+                                <span>David Chen</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span>Dec 28</span>
+                                <span>6 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Newsletter -->
+            <div class="reveal glass-card p-8 mt-12 text-center">
+                <h3 class="font-serif text-2xl font-bold mb-2">Get Roadside Tips in Your Inbox</h3>
+                <p class="text-white/60 mb-6">Subscribe to our newsletter for the latest safety tips, local driving guides, and exclusive offers.</p>
+                <form id="blogNewsletterForm" class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onsubmit="event.preventDefault(); subscribeNewsletter(this);">
+                    <input type="email" name="email" placeholder="Enter your email" class="flex-1 bg-navy-900 border border-white/10 rounded-full px-6 py-3 text-white placeholder-white/40 focus:border-gold-400 focus:outline-none" required>
+                    <button type="submit" class="btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- List Your Business CTA -->
+    <section id="list-business" class="py-24 relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-gold-400/5 to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-12 text-center relative">
+            <div class="w-20 h-20 mx-auto mb-6 bg-gold-400/10 rounded-2xl flex items-center justify-center">
+                <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                </svg>
+            </div>
+            <h2 class="reveal font-serif text-4xl md:text-5xl font-bold mb-6">Are You a Towing Company?</h2>
+            <p class="reveal text-white/60 text-lg mb-8 max-w-2xl mx-auto">Join our directory of verified providers and connect with thousands of customers in the D.C. metro area. Grow your business with qualified leads.</p>
+            <div class="reveal flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openProviderSignup()" class="btn-primary text-lg">
+                    <span>List Your Business</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </button>
+                <button onclick="learnMoreAboutListing()" class="btn-secondary text-lg">Learn More</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-gold-400 to-gold-600 rounded-xl flex items-center justify-center">
+                            <svg class="w-6 h-6 text-navy-900" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-xl font-serif font-bold text-white block">My Tow Directory</span>
+                            <span class="text-xs text-white/50">Washington D.C. Metro</span>
+                        </div>
+                    </div>
+                    <p class="text-white/60 text-sm mb-6">Connecting drivers with trusted, verified towing and roadside assistance providers across the Washington D.C. metropolitan area since 2020.</p>
+                    <div class="space-y-3">
+                        <a href="tel:1-800-TOW-HELP" class="flex items-center gap-2 text-gold-400 hover:text-gold-500 transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span class="font-semibold">1-800-TOW-HELP</span>
+                        </a>
+                        <a href="mailto:support@mytowdirectory.com" class="flex items-center gap-2 text-white/60 hover:text-gold-400 transition text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span>support@mytowdirectory.com</span>
+                        </a>
+                        <div class="flex items-center gap-2 text-white/60 text-sm">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>24/7 Emergency Support</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-6">Our Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Emergency Towing</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Flatbed Towing</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Motorcycle Towing</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Long-Distance Towing</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Heavy-Duty Towing</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Roadside Assistance</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Service Areas -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-6">Service Areas</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Washington D.C.</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Alexandria, VA</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Arlington, VA</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Bethesda, MD</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Silver Spring, MD</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Georgetown</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Capitol Hill</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Fairfax, VA</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-serif text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Find a Tow Company</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>How It Works</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>List Your Business</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Customer Reviews</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Blog & Tips</a></li>
+                        <li><a href="#" class="text-white/60 hover:text-gold-400 transition text-sm flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-400 rounded-full"></span>Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Footer Newsletter -->
+            <div class="glass-card p-6 mb-12">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h4 class="font-serif text-lg font-bold mb-1">Stay Prepared on the Road</h4>
+                        <p class="text-white/60 text-sm">Get roadside safety tips and exclusive offers delivered to your inbox.</p>
+                    </div>
+                    <form id="footerNewsletterForm" class="flex gap-3 w-full md:w-auto" onsubmit="event.preventDefault(); subscribeNewsletter(this);">
+                        <input type="email" name="email" placeholder="Enter your email" class="flex-1 md:w-64 bg-navy-900 border border-white/10 rounded-full px-4 py-2 text-white placeholder-white/40 focus:border-gold-400 focus:outline-none text-sm" required>
+                        <button type="submit" class="btn-primary !py-2 !px-6 text-sm">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-white/10">
+                <p class="text-white/40 text-sm">© 2026 My Tow Directory. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-gold-400 transition text-sm">Privacy Policy</a>
+                    <a href="#" class="text-white/40 hover:text-gold-400 transition text-sm">Terms of Service</a>
+                    <a href="#" class="text-white/40 hover:text-gold-400 transition text-sm">Accessibility</a>
+                    <a href="#" class="text-white/40 hover:text-gold-400 transition text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Sticky Bottom CTA -->
+    <div class="sticky-cta hidden" id="sticky-cta">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-gold-400/20 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="font-bold text-sm">Need Emergency Towing?</div>
+                    <div class="text-white/60 text-xs">Get help in minutes from verified providers.</div>
+                </div>
+            </div>
+            <a href="tel:1-800-TOW-HELP" class="btn-primary text-sm whitespace-nowrap">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+                <span>1-800-TOW-HELP</span>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.querySelector('.preloader');
+            const progress = document.querySelector('.preloader-progress');
+            
+            gsap.to(progress, {
+                width: '100%',
+                duration: 1.5,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    gsap.to(preloader, {
+                        opacity: 0,
+                        duration: 0.5,
+                        onComplete: () => {
+                            preloader.style.display = 'none';
+                            initAnimations();
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, { x: e.clientX - 10, y: e.clientY - 10, duration: 0.1 });
+            gsap.to(cursorDot, { x: e.clientX - 2, y: e.clientY - 2, duration: 0.5 });
+        });
+        
+        document.querySelectorAll('a, button, .glass-card, .service-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+        
+        // Nav scroll effect
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            // Show/hide sticky CTA
+            const stickyCta = document.getElementById('sticky-cta');
+            if (window.scrollY > 500) {
+                stickyCta.classList.remove('hidden');
+            } else {
+                stickyCta.classList.add('hidden');
+            }
+        });
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const body = document.body;
+            
+            if (mobileMenu.classList.contains('translate-x-full')) {
+                // Open menu
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                body.style.overflow = 'hidden';
+            } else {
+                // Close menu
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenu.classList.remove('translate-x-0');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                body.style.overflow = '';
+            }
+        }
+        
+        // Close mobile menu on window resize (if going to desktop)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('translate-x-full')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
+        
+        // ============================================
+        // COMPREHENSIVE BUTTON FUNCTIONALITY
+        // ============================================
+        
+        // Toast Notification System
+        function showToast(message, type = 'success') {
+            const existing = document.querySelector('.toast-notification');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = `toast-notification fixed bottom-4 right-4 px-6 py-4 rounded-xl z-50 transform translate-y-full transition-transform duration-300 ${
+                type === 'error' ? 'bg-red-500 text-white' : 'bg-gold-400 text-navy-900'
+            }`;
+            toast.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${
+                            type === 'error' ? 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' : 'M5 13l4 4L19 7'
+                        }"/>
+                    </svg>
+                    <span class="font-semibold">${message}</span>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.remove('translate-y-full'), 100);
+            setTimeout(() => {
+                toast.classList.add('translate-y-full');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // Geolocation - "Use my location"
+        function getUserLocation() {
+            const locationInput = document.querySelector('.search-input');
+            
+            if (navigator.geolocation) {
+                locationInput.placeholder = "Getting location...";
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        locationInput.value = "Washington, DC (Current Location)";
+                        showToast('Location found!');
+                    },
+                    (error) => {
+                        locationInput.placeholder = "Enter your location...";
+                        showToast('Unable to get location. Please enter manually.', 'error');
+                    }
+                );
+            } else {
+                showToast('Geolocation not supported', 'error');
+            }
+        }
+        
+        // Search functionality
+        function performSearch() {
+            const location = document.querySelector('.search-input')?.value;
+            const service = document.querySelector('.search-select')?.value;
+            
+            if (!location) {
+                showToast('Please enter a location', 'error');
+                return;
+            }
+            
+            showToast(`Searching for ${service} in ${location}...`);
+            
+            // Scroll to services section
+            document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Popular tags functionality
+        function setSearchTag(tagText) {
+            const input = document.querySelector('.search-input');
+            const select = document.querySelector('.search-select');
+            
+            if (tagText.includes('Near Me')) {
+                getUserLocation();
+            } else {
+                if (input) input.value = 'Washington, DC';
+                if (select) {
+                    if (tagText.includes('Emergency')) select.value = 'Emergency Towing';
+                    if (tagText.includes('Flatbed')) select.value = 'Flatbed Towing';
+                }
+                showToast(`Searching for ${tagText}...`);
+                document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Newsletter subscription
+        function subscribeNewsletter(form) {
+            const email = form.querySelector('input[name="email"]')?.value;
+            
+            if (!email || !email.includes('@')) {
+                showToast('Please enter a valid email', 'error');
+                return false;
+            }
+            
+            // Store in localStorage
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            subscribers.push({ email, date: new Date().toISOString() });
+            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+            
+            showToast('Successfully subscribed!');
+            form.reset();
+            return false;
+        }
+        
+        // Provider signup
+        function openProviderSignup() {
+            showToast('Redirecting to provider signup...');
+            // In production, this would open a modal or redirect
+            setTimeout(() => {
+                alert('Provider Signup Form:\n\nPlease contact us at support@mytowdirectory.com or call 1-800-TOW-HELP to list your business.');
+            }, 500);
+        }
+        
+        function learnMoreAboutListing() {
+            showToast('Benefits: Qualified leads, 24/7 exposure, growth tools');
+            setTimeout(() => {
+                alert('Why List Your Business?\n\n• Get qualified leads from active customers\n• 24/7 online exposure\n• Professional business profile\n• Customer reviews and ratings\n• Analytics and insights\n\nContact us to learn more!');
+            }, 1000);
+        }
+        
+        // Close mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+                    toggleMobileMenu();
+                }
+            }
+        });
+        
+        // GSAP Animations
+        function initAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Reveal animations
+            gsap.utils.toArray('.reveal').forEach((elem, i) => {
+                gsap.fromTo(elem, 
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        delay: i * 0.05,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+        }
+    </script>
+</body>
+</html>

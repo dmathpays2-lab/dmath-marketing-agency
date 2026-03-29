@@ -1,0 +1,328 @@
+/**
+ * DC Tow Directory - Mobile Touch Optimizations
+ * Native app-like touch experience
+ */
+
+/* ============================================
+   BASE TOUCH OPTIMIZATIONS
+   ============================================ */
+
+/* Remove 300ms tap delay on mobile browsers */
+html {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling for iOS momentum */
+html, body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none; /* Prevent pull-to-refresh bounce */
+}
+
+/* Disable text selection on interactive elements */
+button, a, .btn, .nav-link, .card, .service-card, 
+.location-card, .testimonial-card, .blog-card,
+.hamburger, .close-btn, .search-btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* ============================================
+   MINIMUM 44x44px TOUCH TARGETS
+   ============================================ */
+
+/* All buttons and links must be at least 44x44px */
+button, .btn, a, .nav-link, input[type="submit"], 
+input[type="button"], .hamburger, .close-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Navigation items - larger tap areas */
+.nav-item, .nav-link {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+/* Mobile menu links - extra padding */
+.mobile-nav .nav-link {
+  min-height: 56px;
+  padding: 16px 20px;
+  font-size: 1.1rem;
+}
+
+/* Search bar touch optimization */
+.search-input, .search-btn {
+  min-height: 48px;
+}
+
+.search-btn {
+  min-width: 48px;
+}
+
+/* Service cards - full card clickable */
+.service-card {
+  position: relative;
+  min-height: 120px;
+}
+
+.service-card a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Location cards */
+.location-card {
+  min-height: 80px;
+}
+
+/* Testimonial cards */
+.testimonial-card {
+  min-height: 200px;
+}
+
+/* Blog cards */
+.blog-card {
+  min-height: 280px;
+}
+
+/* Footer links */
+.footer-link {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+
+/* Social icons */
+.social-icon {
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   INCREASED PADDING FOR MOBILE BUTTONS
+   ============================================ */
+
+/* Primary buttons - minimum 12px 24px */
+.btn-primary, .btn-secondary, .btn-accent {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+/* Mobile-specific button sizing */
+@media (max-width: 639px) {
+  .btn-primary, .btn-secondary, .btn-accent {
+    padding: 16px 32px;
+    font-size: 1.05rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* CTA buttons - extra prominent */
+  .cta-btn {
+    padding: 18px 36px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+}
+
+/* Icon buttons */
+.icon-btn {
+  padding: 12px;
+  border-radius: 50%;
+}
+
+/* ============================================
+   TOUCH FEEDBACK (ACTIVE STATES)
+   ============================================ */
+
+/* Scale down effect on press */
+button:active, .btn:active, a:active, 
+.service-card:active, .location-card:active,
+.testimonial-card:active, .blog-card:active,
+.nav-link:active, .hamburger:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+/* Visual feedback */
+button:active, .btn:active {
+  opacity: 0.8;
+}
+
+/* Card press effect */
+.card:active, .service-card:active, 
+.location-card:active, .blog-card:active {
+  background-color: rgba(0,0,0,0.03);
+}
+
+/* Remove default outline, add custom focus */
+button:focus, a:focus, input:focus {
+  outline: none;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   FORM ELEMENTS TOUCH OPTIMIZATION
+   ============================================ */
+
+/* Larger form inputs */
+input, textarea, select {
+  min-height: 48px;
+  font-size: 16px; /* Prevents iOS zoom on focus */
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+
+/* Search bar in hero */
+.hero-search input {
+  min-height: 56px;
+  font-size: 16px;
+  padding: 16px 20px;
+}
+
+.hero-search button {
+  min-height: 56px;
+  min-width: 56px;
+}
+
+/* Checkbox and radio - larger touch targets */
+input[type="checkbox"], input[type="radio"] {
+  min-width: 24px;
+  min-height: 24px;
+  margin-right: 12px;
+}
+
+/* ============================================
+   CAROUSEL TOUCH OPTIMIZATION
+   ============================================ */
+
+/* Swipeable carousel container */
+.carousel, .testimonials-slider, .blog-slider {
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+}
+
+.carousel:active, .testimonials-slider:active {
+  cursor: grabbing;
+}
+
+/* Carousel dots - larger tap targets */
+.carousel-dot, .slider-dot {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+}
+
+.carousel-dot::after, .slider-dot::after {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Arrow buttons - larger */
+.carousel-prev, .carousel-next,
+.slider-prev, .slider-next {
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+}
+
+/* ============================================
+   HAMBURGER MENU TOUCH
+   ============================================ */
+
+.hamburger {
+  min-width: 48px;
+  min-height: 48px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger:active span {
+  background: rgba(0,0,0,0.6);
+}
+
+/* ============================================
+   PULL-TO-REFRESH PREVENTION
+   ============================================ */
+
+/* Prevent unwanted pull-to-refresh on main content */
+body {
+  overscroll-behavior-y: none;
+}
+
+/* Allow scrolling within specific containers */
+.scroll-container, .modal-content, .mobile-nav {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Force touch-friendly sizing */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.touch-target-lg {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+/* Disable touch actions */
+.no-touch {
+  pointer-events: none;
+}
+
+/* Smooth scroll behavior */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Momentum scrolling container */
+.momentum-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
